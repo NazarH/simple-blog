@@ -1,0 +1,172 @@
+
+.main-page{
+    display: flex;
+    flex-direction: column;
+}
+
+.main-page h1{
+    align-self: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.main-page{
+    margin-left: 50px;
+}
+
+.main-page>ul>li{
+    display: flex;
+}
+
+.main-page>ul>li div{
+    width: 15%;
+}
+
+/* ========================================= */
+
+.form{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+    width: 100%;
+}
+
+.form__block{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form__block *{
+    margin-bottom: 5px;
+}
+
+.form__block textarea{
+    height: 200px;
+}
+
+.form__block button{
+    align-self: center;
+}
+
+/* ========================================= */
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* ========================================= */
+
+.form-attr{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.form-attr button{
+    margin-left: 5px;
+}
+
+/* ========================================= */
+
+.top-btn{
+    margin-bottom: 5px;
+}
+
+/* ========================================= */
+
+.disabled{
+    background-color: #454D55 !important;
+    border: #454D55;
+    color: White;
+}
+
+.active{
+    background-color: white;
+    border: 2px solid #6C757D;
+    color: black;
+}
+
+.hidden{
+    display: none;
+}
+
+
+/* ========================================= */
+
+.user-btns{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* ========================================= */
+
+.ck-editor__editable[role="textbox"] {
+    /* editing area */
+    min-height: 200px;
+    color: black;
+}
+.ck-content .image {
+    /* block images */
+    max-width: 80%;
+    margin: 20px auto;
+}
+
+/* ========================================= */
+
+.user-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.user-form>div{
+    min-width: 25%;
+}
+
+.user-form>div input{
+    margin-bottom: 5px;
+}
+
+/* ========================================= */
+
+.css-b62m3t-container
+{
+    color: black;
+}
+
+/* ========================================= */
+
+.simple-form
+{
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.simple-form input
+{
+    margin-right: 5px;
+}
+
+/* ========================================= */
+
+.table td
+{}
+
+/* ========================================= */
+
+.comment-field{
+    background-color: white;
+}
+
+blockquote {
+    margin: 0 !important;
+    padding: 10px !important;
+    background: #EBEAE5 !important;
+    border: 1px solid #AAAAAA !important;
+    margin: 10px 0px 10px 30px !important;
+}

@@ -1,0 +1,15 @@
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.profile__item{
+    display: flex;
+    align-items: center;
+}
+
+.profile__item>p{
+    width: 185px;
+}

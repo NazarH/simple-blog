@@ -1,0 +1,22 @@
+figure[class="table"]>table{
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+figure[class="table"] td{
+    border: 1px solid black;
+}
+
+figure[class="image-inline"]{
+    display: flex;
+    justify-content: start;
+}
+
+figure[class="image"]{
+    display: flex;
+    justify-content: center;
+}
+
+.image-style-side{
+    float: right;
+}
