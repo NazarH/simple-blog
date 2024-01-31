@@ -1,0 +1,46 @@
+.comment{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    margin-bottom: 10px;
+}
+
+.comment__user{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    background-color: #808080;
+    color: white;
+
+}
+
+.comment__text{
+    padding: 15px;
+}
+
+blockquote {
+    margin: 0;
+    padding: 10px;
+    background: #EBEAE5;
+    border: 1px solid #AAAAAA;
+    margin: 10px 0px 10px 30px;
+}
+
+.pre>ul{
+    margin: 0px;
+}
+
+.comment__answer{
+    cursor: pointer;
+}
+
+.ban{
+    background: #FF0000;
+    padding: 0px 5px;
+    margin-left: 5px;
+}
+
+.comment__nickname {
+    display: flex;
+}
+

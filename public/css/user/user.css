@@ -1,0 +1,9 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.auth-user{
+    display: flex;
+    align-items: center;
+}
