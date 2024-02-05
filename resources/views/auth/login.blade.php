@@ -1,9 +1,6 @@
 @extends('layouts.front')
 @section('content')
-    <div class="auth-top">
-        <a href="/">< Домашня</a>
-    </div>
-    <form method="POST" action="{{ route('login') }}" class="loginForm">
+    <form method="POST" action="{{ route('auth.index') }}" class="loginForm">
         @csrf
         <div class="row mb-3">
             <div class="auth-block">

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Add from '@/Components/Add';
 import axios from 'axios';
 
 export default function IndexComponent()
@@ -23,9 +22,9 @@ export default function IndexComponent()
 
     const [rubricStates, setRubricStates] = useState(
         rubrics.map(rubric => ({
-          id: rubric.id,
-          name: rubric.name,
-          isEditing: false,
+            id: rubric.id,
+            name: rubric.name,
+            isEditing: false,
         }))
     );
 
@@ -34,12 +33,12 @@ export default function IndexComponent()
         document.getElementById('editBtn'+id).style='display: none';
         document.getElementById('saveBtn'+id).style='display: block';
         setRubricStates(prevStates =>
-          prevStates.map(rubricState => {
-            if (rubricState.id === id) {
-              return { ...rubricState, isEditing: true };
-            }
-            return rubricState;
-          })
+            prevStates.map(rubricState => {
+                if (rubricState.id === id) {
+                return { ...rubricState, isEditing: true };
+                }
+                return rubricState;
+            })
         );
     }
 
@@ -128,11 +127,17 @@ export default function IndexComponent()
                     onChange={(e) => setName(e.target.value)}
                     className="form-control"
                 />
-                <button type="submit" className="btn btn-primary">
+                <button
+                    type="submit"
+                    className="btn btn-primary"
+                >
                     Create
                 </button>
             </form>
-            <table id="example2" className="table table-bordered table-hover">
+            <table
+                id="example2"
+                className="table table-bordered table-hover"
+            >
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -174,9 +179,21 @@ export default function IndexComponent()
                                 </form>
                                 </td>
                                 <td>
-                                <form form id={`updateForm-${rubric.id}`} onSubmit={(e) => e.preventDefault()}>
-                                    <input type="hidden" name="_token" defaultValue={window.csrfToken} />
-                                    <input className="hidden" name="is_active" type="text" defaultValue={rubric.is_active === 1 ? 0 : 1} />
+                                <form
+                                    id={`updateForm-${rubric.id}`}
+                                    onSubmit={(e) => e.preventDefault()}
+                                >
+                                    <input
+                                        type="hidden"
+                                        name="_token"
+                                        defaultValue={window.csrfToken}
+                                    />
+                                    <input
+                                        className="hidden"
+                                        name="is_active"
+                                        type="text"
+                                        defaultValue={rubric.is_active === 1 ? 0 : 1}
+                                    />
                                     <button
                                         type="submit"
                                         className={`btn ${rubric.is_active === 1 ? 'btn-danger' : 'btn-success'}`}

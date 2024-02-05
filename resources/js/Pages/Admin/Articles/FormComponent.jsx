@@ -84,7 +84,11 @@ export default function CreateArticleForm() {
 
     return (
         <div className="container">
-            <form onSubmit={handleSubmit} className="form" method="POST">
+            <form
+                onSubmit={ handleSubmit }
+                className="form"
+                method="POST"
+            >
                 <div className="form__block">
                     <input
                         type="hidden"
@@ -127,7 +131,10 @@ export default function CreateArticleForm() {
                         />
                     )}
 
-                    <button type="submit" className="btn btn-success">
+                    <button
+                        type="submit"
+                        className="btn btn-success"
+                    >
                         Create
                     </button>
                 </div>

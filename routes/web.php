@@ -12,7 +12,7 @@ use App\Http\Controllers\RubricController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Front\CommentController;
 use App\Http\Controllers\Front\ProfileController;
-
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +23,8 @@ use App\Http\Controllers\Front\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 require(base_path('routes/admin/web.php'));
 
@@ -75,6 +77,10 @@ Route::group(['prefix' => '/'], function(){
             ->uses([ProfileController::class, 'update'])
             ->name('pages.profile.edit');
     });
+
+    Route::get('/login')
+        ->uses([LoginController::class, 'index'])
+        ->name('auth.index');
 });
 
 

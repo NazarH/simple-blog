@@ -12,13 +12,14 @@ class HomeController extends Controller
     public function index()
     {
         $rubrics = Rubric::active()->get();
+
         $articles = Article::query()->active()->with([
             'rubrics',
             'tags' => fn($q) => $q->active(),
             'user'
         ])->whereHas('rubrics', function ($query){
             $query->where('is_active', 1);
-        })->paginate(1);
+        })->paginate(8);
 
         return view('pages.home', [
             'rubrics' => $rubrics,

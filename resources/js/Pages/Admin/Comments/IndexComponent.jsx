@@ -44,37 +44,56 @@ export default function IndexComponent() {
 
     return (
         <div className="container">
-          <table id="example2" className="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>User ID</th>
-                <th>Text</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {commentStates.map((comment) => (
-                <tr key={comment.id}>
-                  <td>{comment.id}</td>
-                  <td>{comment.user_id} - {comment.user.login}</td>
-                  <td class="comment-field"><pre>{<div dangerouslySetInnerHTML={{ __html: comment.text }}></div>}</pre></td>
-                  <td>
-                            {comment.user.role !== 'admin' && (
-                            <>
-                                {comment.user.is_active === 1 ? (
-                                    <button className="btn btn-danger" onClick={() => updateUser(comment.user.id, 'ban')}>Ban</button>
-                                ) : (
-                                    <button className="btn btn-success" onClick={() => updateUser(comment.user.id, 'unban')}>Unban</button>
+            <table
+                id="example2"
+                className="table table-bordered table-hover"
+            >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>Text</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {commentStates.map((comment) => (
+                        <tr key={comment.id}>
+                            <td>{comment.id}</td>
+                            <td>{comment.user_id} - {comment.user.login}</td>
+                            <td class="comment-field">
+                                <pre>
+                                    {
+                                        <div dangerouslySetInnerHTML={{ __html: comment.text }}>
+                                        </div>
+                                    }
+                                </pre>
+                            </td>
+                            <td>
+                                {comment.user.role !== 'admin' && (
+                                    <>
+                                        {comment.user.is_active === 1 ? (
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={() => updateUser(comment.user.id, 'ban')}
+                                            >
+                                                Ban
+                                            </button>
+                                        ) : (
+                                            <button
+                                                className="btn btn-success"
+                                                onClick={() => updateUser(comment.user.id, 'unban')}
+                                            >
+                                                Unban
+                                            </button>
+                                        )}
+                                    </>
                                 )}
-                            </>
-                            )}
-                    {}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }

@@ -3,8 +3,6 @@
     <div class="article">
         <div class="article__top">
             <div class="article__title">
-                <a href="javascript:void(0);" onclick="window.location.href = document.referrer;">На попередню</a>
-                <
                 <a href="{{route('pages.article', $article->id)}}">{{$article->title}}</a>
             </div>
             <div class="article__title-bottom">
@@ -13,14 +11,16 @@
                 </div>
                 <div class="article__hr">|</div>
                 <div class="article__bottom">
-                    {{str_replace(' ', ' - ', str_replace('-','.', substr($article->created_at, 0, -3)))}}
+                    {{ \Carbon\Carbon::parse($article->created_at)->format('Y.m.d - H:i') }}
                 </div>
                 <div class="item__hr-2">|</div>
                 <div class="item__rubrics">
                     @foreach ($article->rubrics as $rubric)
                         @if ($rubric->is_active === 1)
                             <div>
-                                <a href="{{route('pages.rubric', $rubric['id'])}}">{{$rubric['name']}}</a>
+                                <a href="{{route('pages.rubric', $rubric['id'])}}">
+                                    {{$rubric['name']}}
+                                </a>
                             </div>
                         @endif
                     @endforeach
@@ -38,7 +38,9 @@
                 @foreach ($article->tags as $tag)
                     @if ($tag->is_active === 1)
                         <div class="item__tag">
-                            <a href="{{route('pages.tag', $tag['id'])}}">{{{$tag->name}}}</a>
+                            <a href="{{route('pages.tag', $tag['id'])}}">
+                                {{{$tag->name}}}
+                            </a>
                         </div>
                     @endif
                 @endforeach
@@ -146,6 +148,16 @@
             <div class='article__paginate'>
                 {{$comments->links()}}
             </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer__logo">
+            <a href="/">
+                <span class="footer__simple">Simple</span>Blog
+            </a>
+        </div>
+        <div class="all-rights">
+            © 2023-2024 PetBlog.test
         </div>
     </div>
 @endsection

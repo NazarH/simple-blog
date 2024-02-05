@@ -13,7 +13,9 @@
 
         <div class="comment__btns">
             <div class="comment__answer" onclick="addAnswer('<b>{{$comment->user->login}}</b>')">
-                {{Auth::user() && (Auth::user()->id !== $comment->user->id) ? '[відповісти]' : ''}}
+                {{
+                    Auth::user() && (Auth::user()->id !== $comment->user->id) ? '[відповісти]' : ''
+                }}
             </div>
         </div>
     </div>

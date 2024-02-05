@@ -109,7 +109,10 @@ export default function EditArticleForm() {
 
     return (
         <div className="container">
-            <form onSubmit={handleFormSubmit} className="form">
+            <form
+                onSubmit={handleFormSubmit}
+                className="form"
+            >
                 <div className="form__block">
                     {/* ... (existing code) */}
 
@@ -149,7 +152,10 @@ export default function EditArticleForm() {
                         />
                     )}
 
-                    <button type="submit" className="btn btn-success">
+                    <button
+                        type="submit"
+                        className="btn btn-success"
+                    >
                         Edit
                     </button>
                 </div>

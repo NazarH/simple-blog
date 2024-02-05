@@ -114,7 +114,10 @@ export default function IndexComponent() {
 
     return (
         <div className="container">
-            <form onSubmit={handleSubmit} className="simple-form">
+            <form
+                onSubmit={handleSubmit}
+                className="simple-form"
+            >
                 <input
                     type="text"
                     name="name"
@@ -122,88 +125,94 @@ export default function IndexComponent() {
                     onChange={(e) => setName(e.target.value)}
                     className="form-control"
                 />
-                <button type="submit" className="btn btn-primary">
+                <button
+                    type="submit"
+                    className="btn btn-primary"
+                >
                     Create
                 </button>
             </form>
-          <table id="example2" className="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Tag Name</th>
-                <th>Active</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {tagStates.map((tag, index) => (
-                <tr key={tag.id} id={`tagN${index}`}>
-                  <td>{tag.id}</td>
-                  <td>
-                    <form action={`/admin/tags/edit/${tag.id}`} method="POST">
-                        <input
-                                type="hidden"
-                                name="_token"
-                                defaultValue={window.csrfToken}
-                        />
-                        <input
-                            id={`tagName${tag.id}`}
-                            className="disabled background"
-                            type="text"
-                            value={tagStates[index].name}
-                            placeholder={tagStates[index].name}
-                            name="name"
-                            disabled={!tagStates[index].isEditing}
-                            onChange={(e) => {
-                                const newName = e.target.value;
-                                setTagStates(prevStates => prevStates.map(tagState => {
-                                if (tagState.id === tag.id) {
-                                    return { ...tagState, name: newName };
-                                }
-                                    return tagState;
-                                }));
-                            }}
-                        />
-                        <button id={`saveTagChanges${tag.id}`} className="hidden"></button>
-                    </form>
-                  </td>
-                  <td>
-                    <form form id={`updateForm-${tag.id}`} onSubmit={(e) => e.preventDefault()}>
-                        <input type="hidden" name="_token" defaultValue={window.csrfToken} />
-                        <input className="hidden" name="is_active" type="text" defaultValue={tag.is_active === 1 ? 0 : 1} />
-                        <button
-                            type="submit"
-                            className={`btn ${tag.is_active === 1 ? 'btn-danger' : 'btn-success'}`}
-                            onClick={() => updateTag(tag.id, tag.is_active)}
-                            id={`tagAct-${tag.id}`}
-                        >
-                            {tag.is_active === 1 ? 'Deactivate' : 'Activate'}
-                        </button>
-                    </form>
-                  </td>
-                  <td className="buttons">
-                    <button
-                      id={`editTagBtn${tag.id}`}
-                      className="btn btn-primary"
-                      onClick={() => tagEdit(tag.id)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      id={`saveTagBtn${tag.id}`}
-                      className={`btn btn-success hidden`}
-                      onClick={() => saveTagChanges(tag.id)}
-                    >
-                      Save
-                    </button>
-                    <button className="btn btn-danger" onClick={() => deletePost(tag.id, index)}>
-                        Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <table
+              id="example2"
+              className="table table-bordered table-hover"
+            >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tag Name</th>
+                        <th>Active</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {tagStates.map((tag, index) => (
+                        <tr key={tag.id} id={`tagN${index}`}>
+                            <td>{tag.id}</td>
+                            <td>
+                                <form action={`/admin/tags/edit/${tag.id}`} method="POST">
+                                    <input
+                                        type="hidden"
+                                        name="_token"
+                                        defaultValue={window.csrfToken}
+                                    />
+                                    <input
+                                        id={`tagName${tag.id}`}
+                                        className="disabled background"
+                                        type="text"
+                                        value={tagStates[index].name}
+                                        placeholder={tagStates[index].name}
+                                        name="name"
+                                        disabled={!tagStates[index].isEditing}
+                                        onChange={(e) => {
+                                            const newName = e.target.value;
+                                            setTagStates(prevStates => prevStates.map(tagState => {
+                                            if (tagState.id === tag.id) {
+                                                return { ...tagState, name: newName };
+                                            }
+                                                return tagState;
+                                            }));
+                                        }}
+                                    />
+                                    <button id={`saveTagChanges${tag.id}`} className="hidden"></button>
+                                </form>
+                            </td>
+                            <td>
+                                <form form id={`updateForm-${tag.id}`} onSubmit={(e) => e.preventDefault()}>
+                                    <input type="hidden" name="_token" defaultValue={window.csrfToken} />
+                                    <input className="hidden" name="is_active" type="text" defaultValue={tag.is_active === 1 ? 0 : 1} />
+                                    <button
+                                        type="submit"
+                                        className={`btn ${tag.is_active === 1 ? 'btn-danger' : 'btn-success'}`}
+                                        onClick={() => updateTag(tag.id, tag.is_active)}
+                                        id={`tagAct-${tag.id}`}
+                                    >
+                                        {tag.is_active === 1 ? 'Deactivate' : 'Activate'}
+                                    </button>
+                                </form>
+                            </td>
+                            <td className="buttons">
+                                <button
+                                  id={`editTagBtn${tag.id}`}
+                                  className="btn btn-primary"
+                                  onClick={() => tagEdit(tag.id)}
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                  id={`saveTagBtn${tag.id}`}
+                                  className={`btn btn-success hidden`}
+                                  onClick={() => saveTagChanges(tag.id)}
+                                >
+                                    Save
+                                </button>
+                                <button className="btn btn-danger" onClick={() => deletePost(tag.id, index)}>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }
