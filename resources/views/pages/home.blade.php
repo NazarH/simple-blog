@@ -14,9 +14,6 @@
     </div>
     <div class="footer">
         <div class="footer__logo">
-            <a href="/">
-                <span class="footer__simple">Simple</span>Blog
-            </a>
         </div>
         <div class="all-rights">
             © 2023-2024 PetBlog.test

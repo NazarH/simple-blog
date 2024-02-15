@@ -16,7 +16,7 @@ class TagController extends Controller
                         ->articles()
                         ->active()
                         ->with(['tags' => fn($q) => $q->active()])
-                        ->paginate(1);
+                        ->paginate(9);
 
         return view('pages.tag', [
             'tag' => $tag,

@@ -4,28 +4,24 @@
         #{{ $tag?->name }}
     </div>
     <div class="content">
-        @if ($rubrics)
-            <ul class="nav">
-                <div class="nav__title">Категорії</div>
-                @foreach ($rubrics as $rubric)
-                    <li class="nav__item">
-                        <a href="{{route('pages.rubric', $rubric['id'])}}">{{$rubric['name']}}</a>
-                    </li>
-                @endforeach
-            </ul>
-        @endif
         <div class="content__block">
+            <div class="content__articles">
             @foreach ($articles as $article)
                 @if ($article->is_active === 1)
                     <x-front.article :article='$article' />
                 @endif
             @endforeach
+            </div>
             <div class=paginate>
                 {{$articles->links()}}
             </div>
         </div>
     </div>
     <div class="footer">
-
+        <div class="footer__logo">
+        </div>
+        <div class="all-rights">
+            © 2023-2024 PetBlog.test
+        </div>
     </div>
 @endsection

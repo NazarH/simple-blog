@@ -11,7 +11,22 @@
 
 .auth-block{
     display: flex;
+    flex-direction: column;
     margin-bottom: 10px;
+}
+
+.center{
+    margin: 0 auto;
+}
+
+.title{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.mail-send{
+    margin-top: 15px;
+    color: #24973e;
 }
 
 .auth-block div{

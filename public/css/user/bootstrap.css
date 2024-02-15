@@ -1,0 +1,28 @@
+.active>.page-link, .page-link.active{
+    background-color: black;
+    border-color: black;
+}
+
+.page-link{
+    color: black;
+}
+
+.page-link:hover{
+    color: grey;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card a{
+    color: black;
+    text-decoration: none;
+}
+
+.card-bottom{
+    display: flex;
+    justify-content: space-between;
+}

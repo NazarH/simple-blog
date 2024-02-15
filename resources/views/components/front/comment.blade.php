@@ -20,6 +20,6 @@
         </div>
     </div>
     <div class="comment__text">
-        <pre>@php echo $comment->text;@endphp</pre>
+        {{$comment->text}}
     </div>
 </div>

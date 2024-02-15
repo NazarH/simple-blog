@@ -18,8 +18,8 @@ class HomeController extends Controller
             'tags' => fn($q) => $q->active(),
             'user'
         ])->whereHas('rubrics', function ($query){
-            $query->where('is_active', 1);
-        })->paginate(8);
+            $query->active();
+        })->paginate(9);
 
         return view('pages.home', [
             'rubrics' => $rubrics,

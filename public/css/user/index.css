@@ -13,14 +13,20 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.content__block
-{
+.content__block {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;
+    width: 100%;
 }
+.content__block2 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 
 
@@ -37,36 +43,15 @@
     margin: 0 auto;
 }
 
-.pagination .disabled{
-    display: none;
-}
-
-
-.pagination .active{
-    background: white;
-    padding: 2px;
-}
-
-.pagination li{
-    border: 1px solid black;
-    border-radius: 3px;
-    padding: 2px;
-    background: black;
-    margin: 3px;
-}
-
-.pagination li a{
-    color: black;
-    margin: 0px 5px;
-    color: white;
-}
-
-
 /* ========================================= */
 
 .rubric{
     margin: 0 auto;
     margin-bottom: 20px;
+    margin-top: -20px;
     font-size: 26px;
     font-weight: bold;
+    background: black;
+    color: white;
+    padding: 0px 20px;
 }

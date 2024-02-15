@@ -3,9 +3,24 @@ function showDropdown()
 {
     if(drop) {
         document.getElementById('dropdown').style="display: none";
+        document.getElementById('bar').style="display: inline";
         drop = false;
     } else {
         document.getElementById('dropdown').style="display: flex";
+        document.getElementById('bar').style="display: none;";
+        drop = true;
+    }
+}
+
+function closeNav()
+{
+    if(drop) {
+        document.getElementById('dropdown').style="display: none";
+        document.getElementById('bar').style="display: inline";
+        drop = false;
+    } else {
+        document.getElementById('dropdown').style="display: flex";
+        document.getElementById('bar').style="display: none;";
         drop = true;
     }
 }
@@ -21,3 +36,4 @@ function showSearch()
         search = true;
     }
 }
+

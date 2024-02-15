@@ -28,9 +28,13 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/tags/index')
         ->uses([TagController::class, 'index']);
+Route::get('/select/tags')
+        ->uses([TagController::class, 'search']);
 
 Route::get('/rubrics/index')
         ->uses([RubricsController::class, 'index']);
+Route::get('/select/rubrics')
+        ->uses([RubricsController::class, 'search']);
 
 Route::get('/users/index')
         ->uses([UsersController::class, 'index']);

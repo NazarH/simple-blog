@@ -1,11 +1,13 @@
 <?php
 
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+
 use App\Models\Tag;
 use App\Models\User;
-use Inertia\Inertia;
 use App\Models\Rubric;
 use App\Models\Article;
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RubricController;
@@ -13,6 +15,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Front\CommentController;
 use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,6 +85,19 @@ Route::group(['prefix' => '/'], function(){
     Route::get('/login')
         ->uses([LoginController::class, 'index'])
         ->name('auth.index');
+
+    Route::get('/forgot-password')
+        ->uses([ForgotPasswordController::class, 'index'])
+        ->name('password.index');
+    Route::post('/forgot-password')
+        ->uses([ForgotPasswordController::class, 'store'])
+        ->name('password.request');
+    Route::get('/reset-password')
+        ->uses([ResetPasswordController::class, 'index'])
+        ->name('password.reset');
+    Route::post('/reset-password')
+        ->uses([ResetPasswordController::class, 'update'])
+        ->name('password.update');
 });
 
 

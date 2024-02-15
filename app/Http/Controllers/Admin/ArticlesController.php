@@ -23,13 +23,7 @@ class ArticlesController extends Controller
 
     public function create()
     {
-        $tags = Tag::get();
-        $rubrics = Rubric::get();
-
-        return Inertia::render('Admin/Articles/FormComponent', [
-            'tags' => $tags,
-            'rubrics' => $rubrics
-        ]);
+        return Inertia::render('Admin/Articles/FormComponent');
     }
 
     public function store(StoreRequest $request): RedirectResponse

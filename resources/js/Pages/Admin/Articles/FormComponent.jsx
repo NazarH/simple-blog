@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 export default function CreateArticleForm() {
-    const [arrStates, setArrStates] = useState({});
+    const [searchTags, setSearchTags] = useState('');
+    const [searchRubrics, setSearchRubrics] = useState('');
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/articles/form');
-                setArrStates(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error('Помилка отримання даних:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
+    const [options, setOptions] = useState([]);
+    const [options2, setOptions2] = useState([]);
 
     const [formData, setFormData] = useState({
         title: '',
@@ -58,7 +48,7 @@ export default function CreateArticleForm() {
         ClassicEditor
             .create(document.querySelector('#editor'), {
                 ckfinder: {
-                    uploadUrl: 'http://pet-blog.test/admin/articles/upload'
+                    uploadUrl: window.location.origin + '/admin/articles/upload'
                 },
                 toolbar: {
                     items: [
@@ -80,7 +70,37 @@ export default function CreateArticleForm() {
             });
     }, []);
 
-    console.log(arrStates);
+    useEffect(() => {
+        searchRubricsAsync(searchRubrics);
+    }, [searchRubrics]);
+
+    useEffect(() => {
+        searchTagsAsync(searchTags);
+    }, [searchTags]);
+
+    const searchRubricsAsync = async (inputValue) => {
+        if (inputValue) {
+            try {
+                const response = await axios.get(`/api/select/rubrics?search=${inputValue}`);
+                setOptions(response.data);
+            } catch (error) {
+                console.error('Error searching rubrics:', error);
+                setOptions([]);
+            }
+        }
+    };
+
+    const searchTagsAsync = async (inputValue) => {
+        if (inputValue) {
+            try {
+                const response= await axios.get(`/api/select/tags?search=${inputValue}`)
+                setOptions2(response.data);
+            } catch (error) {
+                console.error('Error searching tags:', error);
+                setOptions2([]);
+            }
+        }
+    };
 
     return (
         <div className="container">
@@ -113,23 +133,23 @@ export default function CreateArticleForm() {
                         id="editor"
                     />
 
-                    {arrStates.tags && (
-                        <Select
-                            name="tag_ids[]"
-                            options={arrStates.tags.map((tag) => ({ value: tag.id, label: tag.name }))}
-                            isMulti
-                            onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'tag_ids' })}
-                        />
-                    )}
+                    <Select
+                        name="tag_ids[]"
+                        options={options2}
+                        isMulti
+                        onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'tag_ids' })}
+                        onInputChange={setSearchTags}
+                        placeholder="Search tags..."
+                    />
 
-                    {arrStates.rubrics && (
-                        <Select
-                            name="rubric_ids[]"
-                            options={arrStates.rubrics.map((rubric) => ({ value: rubric.id, label: rubric.name }))}
-                            isMulti
-                            onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'rubric_ids' })}
-                        />
-                    )}
+                    <Select
+                        name="rubric_ids[]"
+                        options={options}
+                        isMulti
+                        onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'rubric_ids' })}
+                        onInputChange={setSearchRubrics}
+                        placeholder="Search rubrics..."
+                    />
 
                     <button
                         type="submit"
@@ -142,6 +162,5 @@ export default function CreateArticleForm() {
         </div>
     );
 }
-
 
 

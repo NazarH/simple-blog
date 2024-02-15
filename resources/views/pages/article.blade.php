@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="article__text">
-            <pre>@php echo $article->text;@endphp</pre>
+            {!!$article->text!!}
         </div>
         <div class="item__read">
             <div class="item_tags">
@@ -36,7 +36,7 @@
                     Теги:
                 </div>
                 @foreach ($article->tags as $tag)
-                    @if ($tag->is_active === 1)
+                    @if ($tag->is_active)
                         <div class="item__tag">
                             <a href="{{route('pages.tag', $tag['id'])}}">
                                 {{{$tag->name}}}
@@ -48,113 +48,30 @@
         </div>
         <div class="article__comments">
             @if (Auth::user())
-                <form action="{{route('pages.comment', $article->id)}}" class="article__form" method="POST">
-                    @csrf
-                    <div>
-                        <span class="form__text-btn" title="Жирний текст: <b>текст</b>" onclick='addFormat("<b></b>")'>
-                            B
-                        </span>
+                <div id="disqus_thread"></div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = "{{ route('pages.comment', $article->id) }}";
+                        this.page.identifier = "{{ $article->id }}";
+                    };
 
-                        <span class="form__text-btn tilted" title="Нахилений текст: <i>текст</i>" onclick='addFormat("<i></i>")'>
-                            I
-                        </span>
-
-                        <span class="form__text-btn emphatic" title="Підкреслений текст: <u>текст</u>" onclick='addFormat("<u></u>")'>
-                            U
-                        </span>
-
-                        <span class="form__text-btn" title="Цитата: <q>текст</q>" onclick='addFormat("<blockquote></blockquote>")'>
-                            Q
-                        </span>
-
-                        <span class="form__text-btn" title="Перекреслений: <s>текст</s>" onclick='addFormat("<s></s>")'>
-                            S
-                        </span>
-                    </div>
-                    <textarea cols="30" rows="6" id='textArea' name="text"></textarea>
-                    <div class="article__form-emo">
-                        <div onclick='addEmote("🙂")'>
-                            🙂
-                        </div>
-                        <div onclick='addEmote("🙁")'>
-                            🙁
-                        </div>
-                        <div onclick='addEmote("😟")'>
-                            😟
-                        </div>
-                        <div onclick='addEmote("😉")'>
-                            😉
-                        </div>
-                        <div onclick='addEmote("😐")'>
-                            😐
-                        </div>
-                        <div onclick='addEmote("😁")'>
-                            😁
-                        </div>
-                        <div onclick='addEmote("😎")'>
-                            😎
-                        </div>
-                        <div onclick='addEmote("😲")'>
-                            😲
-                        </div>
-                        <div onclick='addEmote("🙄")'>
-                            🙄
-                        </div>
-                        <div onclick='addEmote("😭")'>
-                            😭
-                        </div>
-                        <div onclick='addEmote("🤔")'>
-                            🤔
-                        </div>
-                        <div onclick='addEmote("🤨")'>
-                            🤨
-                        </div>
-                        <div onclick='addEmote("😆")'>
-                            😆
-                        </div>
-                        <div onclick='addEmote("🤬")'>
-                            🤬
-                        </div>
-                        <div onclick='addEmote("🤢")'>
-                            🤢
-                        </div>
-                        <div onclick='addEmote("🤡")'>
-                            🤡
-                        </div>
-                        <div onclick='addEmote("👍")'>
-                            👍
-                        </div>
-                        <div onclick='addEmote("👎")'>
-                            👎
-                        </div>
-                    </div>
-                    <button type="submit">
-                        Відправити
-                    </button>
-                </form>
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://pet-blog.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             @else
                 <div class="article__comment-login">
                     <a href="/login">Авторизуйтесь</a>, щоб залишити коментар
                 </div>
             @endif
-            <div class="article__comments-title">
-                Коментарі:
-            </div>
-            <div class="article__comments-block">
-                @foreach ($comments as $comment)
-                    <x-front.comment :comment='$comment' />
-                @endforeach
-            </div>
-            <div class='article__paginate'>
-                {{$comments->links()}}
-            </div>
         </div>
     </div>
     <div class="footer">
         <div class="footer__logo">
-            <a href="/">
-                <span class="footer__simple">Simple</span>Blog
-            </a>
         </div>
         <div class="all-rights">
             © 2023-2024 PetBlog.test

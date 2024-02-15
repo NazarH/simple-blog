@@ -6,13 +6,24 @@
 
 .auth-block{
     display: flex;
+    flex-direction: column;
     margin-bottom: 10px;
 }
 
 .auth-block div{
-    width: 250px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .auth-block input{
     width: 75%;
+}
+
+.auth-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-weight: bold;
 }

@@ -10,6 +10,12 @@ export default function EditArticleForm() {
     const [arrStates, setArrStates] = useState({});
     let [count, setCount] = useState(0);
 
+    const [searchTags, setSearchTags] = useState('');
+    const [searchRubrics, setSearchRubrics] = useState('');
+
+    const [options, setOptions] = useState([]);
+    const [options2, setOptions2] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -42,7 +48,7 @@ export default function EditArticleForm() {
         const editor = ClassicEditor
             .create(document.querySelector('#editor'), {
                 ckfinder: {
-                    uploadUrl: 'http://pet-blog.test/admin/articles/upload',
+                    uploadUrl: window.location.origin + '/admin/articles/upload',
                 },
                 toolbar: {
                     items: [
@@ -107,6 +113,38 @@ export default function EditArticleForm() {
         }
     };
 
+    useEffect(() => {
+        searchRubricsAsync(searchRubrics);
+    }, [searchRubrics]);
+
+    useEffect(() => {
+        searchTagsAsync(searchTags);
+    }, [searchTags]);
+
+    const searchRubricsAsync = async (inputValue) => {
+        if (inputValue) {
+            try {
+                const response = await axios.get(`/api/select/rubrics?search=${inputValue}`);
+                setOptions(response.data);
+            } catch (error) {
+                console.error('Error searching rubrics:', error);
+                setOptions([]);
+            }
+        }
+    };
+
+    const searchTagsAsync = async (inputValue) => {
+        if (inputValue) {
+            try {
+                const response= await axios.get(`/api/select/tags?search=${inputValue}`)
+                setOptions2(response.data);
+            } catch (error) {
+                console.error('Error searching tags:', error);
+                setOptions2([]);
+            }
+        }
+    };
+
     return (
         <div className="container">
             <form
@@ -129,12 +167,13 @@ export default function EditArticleForm() {
                     {arrStates.tags && (
                         <Select
                             name="tag_ids[]"
-                            options={arrStates.tags.map((tag) => ({ value: tag.id, label: tag.name }))}
+                            options={options2}
                             isMulti
                             onChange={(selectedOptions) => setFormData((prevFormData) => ({
                                 ...prevFormData,
                                 tag_ids: selectedOptions.map((option) => option.value),
                             }))}
+                            onInputChange={setSearchTags}
                             defaultValue={findSelectedOptions(arrStates.a_tags && arrStates.a_tags.map(tag => tag.id), arrStates.tags && arrStates.tags)}
                         />
                     )}
@@ -142,12 +181,13 @@ export default function EditArticleForm() {
                     {arrStates.rubrics && (
                         <Select
                             name="rubric_ids[]"
-                            options={arrStates.rubrics.map((rubric) => ({ value: rubric.id, label: rubric.name }))}
+                            options={options}
                             isMulti
                             onChange={(selectedOptions) => setFormData((prevFormData) => ({
                                 ...prevFormData,
                                 rubric_ids: selectedOptions.map((option) => option.value),
                             }))}
+                            onInputChange={setSearchRubrics}
                             defaultValue={findSelectedOptions(arrStates.a_rubrics && arrStates.a_rubrics.map(rubric => rubric.id), arrStates.rubrics && arrStates.rubrics)}
                         />
                     )}

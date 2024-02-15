@@ -1,5 +1,4 @@
 .footer{
-    background: black;
     color: white;
     padding: 25px;
     display: flex;
@@ -13,14 +12,14 @@
 }
 
 .footer__logo a{
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
 .footer__simple {
     padding: 5px;
-    background: white;
-    color: black;
+    background: black;
+    color: white;
     border-radius: 3px;
     margin-right: 5px;
 }
@@ -30,5 +29,5 @@
 }
 
 .all-rights{
-    color: white;
+    color: black;
 }

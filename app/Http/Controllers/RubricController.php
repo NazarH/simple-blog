@@ -9,15 +9,17 @@ class RubricController extends Controller
 {
     public function index(Rubric $rubric): View
     {
+        $rubrics = Rubric::active()->get();
         $articles = $rubric
                         ->articles()
                         ->active()
                         ->with(['tags' => fn($q) => $q->active()])
-                        ->paginate(1);
+                        ->paginate(9);
 
         return view('pages.rubric', [
             'rubric' => $rubric,
-            'articles' => $articles
+            'articles' => $articles,
+            'rubrics' => $rubrics
         ]);
     }
 }
