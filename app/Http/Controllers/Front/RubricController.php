@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
+use App\Http\Controllers\Controller;
 use App\Models\Rubric;
 use Illuminate\View\View;
 
@@ -11,10 +12,10 @@ class RubricController extends Controller
     {
         $rubrics = Rubric::active()->get();
         $articles = $rubric
-                        ->articles()
-                        ->active()
-                        ->with(['tags' => fn($q) => $q->active()])
-                        ->paginate(9);
+            ->articles()
+            ->active()
+            ->with(['tags' => fn($q) => $q->active()])
+            ->paginate(9);
 
         return view('pages.rubric', [
             'rubric' => $rubric,

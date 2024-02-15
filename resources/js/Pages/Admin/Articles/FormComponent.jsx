@@ -6,10 +6,8 @@ import axios from 'axios';
 export default function CreateArticleForm() {
     const [searchTags, setSearchTags] = useState('');
     const [searchRubrics, setSearchRubrics] = useState('');
-
     const [options, setOptions] = useState([]);
     const [options2, setOptions2] = useState([]);
-
     const [formData, setFormData] = useState({
         title: '',
         text: '',
@@ -104,57 +102,48 @@ export default function CreateArticleForm() {
 
     return (
         <div className="container">
-            <form
-                onSubmit={ handleSubmit }
-                className="form"
-                method="POST"
+            <form onSubmit={ handleSubmit }
+                  className="form"
+                  method="POST"
             >
                 <div className="form__block">
-                    <input
-                        type="hidden"
-                        name="_token"
-                        defaultValue={window.csrfToken}
+                    <input type="hidden"
+                           name="_token"
+                           defaultValue={window.csrfToken}
                     />
 
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="Title"
-                        className="form-control"
-                        value={formData.title}
-                        onChange={handleInputChange}
+                    <input type="text"
+                           name="title"
+                           placeholder="Title"
+                           className="form-control"
+                           value={formData.title}
+                           onChange={handleInputChange}
                     />
 
-                    <textarea
-                        name="text"
-                        className="form-control"
-                        placeholder="Write comment here"
-                        resize="none"
-                        id="editor"
+                    <textarea name="text"
+                              className="form-control"
+                              placeholder="Write comment here"
+                              resize="none"
+                              id="editor"
                     />
 
-                    <Select
-                        name="tag_ids[]"
-                        options={options2}
-                        isMulti
-                        onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'tag_ids' })}
-                        onInputChange={setSearchTags}
-                        placeholder="Search tags..."
+                    <Select name="tag_ids[]"
+                            options={options2}
+                            isMulti
+                            onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'tag_ids' })}
+                            onInputChange={setSearchTags}
+                            placeholder="Search tags..."
                     />
 
-                    <Select
-                        name="rubric_ids[]"
-                        options={options}
-                        isMulti
-                        onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'rubric_ids' })}
-                        onInputChange={setSearchRubrics}
-                        placeholder="Search rubrics..."
+                    <Select name="rubric_ids[]"
+                            options={options}
+                            isMulti
+                            onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'rubric_ids' })}
+                            onInputChange={setSearchRubrics}
+                            placeholder="Search rubrics..."
                     />
 
-                    <button
-                        type="submit"
-                        className="btn btn-success"
-                    >
+                    <button type="submit" className="btn btn-success">
                         Create
                     </button>
                 </div>

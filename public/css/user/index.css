@@ -16,6 +16,16 @@
     justify-content: space-between;
 }
 
+.card-atr{
+    width: 26.8rem !important;
+    height: 23rem !important;
+}
+
+.img-atr{
+    width: 26.6rem !important;
+    height: 16rem !important;
+}
+
 .content__block {
     display: flex;
     flex-wrap: wrap;
@@ -26,9 +36,6 @@
     display: flex;
     flex-wrap: wrap;
 }
-
-
-
 
 .content__block>.pagination {
     margin: 0 auto;

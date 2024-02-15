@@ -37,9 +37,20 @@ class MainController extends Controller
             ];
         });
 
-        $users = User::get();
+        $users = User::paginate(10)->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'email' => $user->email,
+                'role' => $user->role,
+                'is_active' => $user->is_active
+            ];
+        });
 
-        $arr = ['articles' => $articles, 'rubrics' => $rubrics, 'tags' => $tags, 'users' => $users];
+        $arr = [
+            'articles' => $articles,
+            'rubrics' => $rubrics,
+            'tags' => $tags, 'users' => $users
+        ];
 
         return $arr;
     }

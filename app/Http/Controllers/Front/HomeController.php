@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
-use App\Models\Rubric;
-use App\Models\Article;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Articles\SearchRequest;
+use App\Models\Article;
+use App\Models\Rubric;
 
 class HomeController extends Controller
 {

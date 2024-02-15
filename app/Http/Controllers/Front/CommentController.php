@@ -13,11 +13,8 @@ class CommentController extends Controller
     public function add(CommentRequest $request, $article_id): RedirectResponse
     {
         $data = $request->validated();
-        Comment::create([
-            'text' => $data['text'],
-            'user_id' => Auth::user()->id,
-            'article_id'=> $article_id
-        ]);
+        $data['user_id'] = Auth::user()->id;
+        Comment::create($data);
 
         return redirect()->route('pages.article', $article_id);
     }

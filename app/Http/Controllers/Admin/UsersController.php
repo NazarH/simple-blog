@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Users\StoreRequest;
 use App\Http\Requests\Users\UpdateRequest;
@@ -14,13 +13,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::get();
-        $auth = Auth::user();
-
-        return Inertia::render('Admin/Users/IndexComponent', [
-            'users' => $users,
-            'auth' => $auth
-        ]);
+        return Inertia::render('Admin/Users/IndexComponent');
     }
 
     public function create()

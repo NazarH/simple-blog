@@ -41,15 +41,15 @@ export default function IndexComponent()
         formData.append('_token', window.csrfToken);
 
         try {
-          await axios.post(`/admin/users/${id}/update`, formData);
-          setUserStates((prevStates) =>
-            prevStates.map((userState) => {
-              if (userState.id === id) {
-                return { ...userState, role: newRole, isEditing: false };
-              }
-              return userState;
-            })
-          );
+            await axios.post(`/admin/users/${id}/update`, formData);
+            setUserStates((prevStates) =>
+                prevStates.map((userState) => {
+                    if (userState.id === id) {
+                        return { ...userState, role: newRole, isEditing: false };
+                    }
+                    return userState;
+                })
+            );
         } catch (error) {
           console.error('Error saving role changes:', error);
         }
@@ -59,7 +59,11 @@ export default function IndexComponent()
 
     const updateUser = async (id, action) => {
         const formData = new FormData();
-        formData.append('is_active', userStates.find((user) => user.id === id).is_active === 1 ? 0 : 1);
+        formData.append('is_active',
+            userStates.find((user) => user.id === id).is_active === 1
+                ? 0
+                : 1
+        );
         formData.append('_token', window.csrfToken);
 
         try {
@@ -85,58 +89,69 @@ export default function IndexComponent()
                     Create
                 </button>
             </Link>
-          <table id="example2" className="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Login</th>
-                <th>Role</th>
-                <th>Active</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {userStates.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.login}</td>
-                  <td>
-                    {user.role} {authStates.id === user.id ? '(auth)' : ''}
-                  </td>
-                  <td>{user.is_active === 1 ? 'Active' : 'Ban'}</td>
-                    {authStates.id !== user.id ?
-                        <td className={user.role !== 'admin' ? 'user-btns' : ''}>
-                            {auth.id !== user.id && user.is_active !== 0 && (
-                            <form action={`/admin/users/${user.id}/update`} method="POST">
-                                <input
-                                        type="hidden"
-                                        name="_token"
-                                        defaultValue={window.csrfToken}
-                                />
-                                <select name="role" value={user.role} onChange={(e) => changeRole(user.id, e.target.value)}>
-                                    <option value="user">user</option>
-                                    <option value="admin">admin</option>
-                                    <option value="editor">editor</option>
-                                </select>
-                                <button type="submit" className="hidden" id={`roleChange${user.id}`}></button>
-                            </form>
-                            )}
-                            {user.role !== 'admin' && (
-                            <>
-                                {user.is_active === 1 ? (
-                                    <button className="btn btn-danger" onClick={() => updateUser(user.id, 'ban')}>Ban</button>
-                                ) : (
-                                    <button className="btn btn-success" onClick={() => updateUser(user.id, 'unban')}>Unban</button>
-                                )}
-                            </>
-                            )}
-                        </td>
-                    : ''}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <table id="example2" className="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Login</th>
+                        <th>Role</th>
+                        <th>Active</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {userStates.map((user) => (
+                        <tr key={user.id}>
+                            <td>{user.id}</td>
+                            <td>{user.login}</td>
+                            <td>
+                                {user.role} {authStates.id === user.id ? '(auth)' : ''}
+                            </td>
+                            <td>{user.is_active === 1 ? 'Active' : 'Ban'}</td>
+                            {authStates.id !== user.id ?
+                                <td className={user.role !== 'admin' ? 'user-btns' : ''}>
+                                    {authStates.id !== user.id && user.is_active !== 0 && (
+                                        <form action={`/admin/users/${user.id}/update`} method="POST">
+                                            <input type="hidden"
+                                                   name="_token"
+                                                   defaultValue={window.csrfToken}
+                                            />
+                                            <select name="role"
+                                                    value={user.role}
+                                                    onChange={(e) =>
+                                                        changeRole(user.id, e.target.value)}>
+                                                <option value="user">user</option>
+                                                <option value="admin">admin</option>
+                                                <option value="editor">editor</option>
+                                            </select>
+                                            <button type="submit"
+                                                    className="hidden"
+                                                    id={`roleChange${user.id}`}>
+                                            </button>
+                                        </form>
+                                    )}
+                                    {user.role !== 'admin' && (
+                                        <>
+                                            {user.is_active === 1 ? (
+                                                <button className="btn btn-danger"
+                                                        onClick={() => updateUser(user.id, 'ban')}>
+                                                    Ban
+                                                </button>
+                                            ) : (
+                                                <button className="btn btn-success"
+                                                        onClick={() => updateUser(user.id, 'unban')}>
+                                                    Unban
+                                                </button>
+                                            )}
+                                        </>
+                                    )}
+                                </td>
+                            : ''}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
-      );
+    );
 }
 

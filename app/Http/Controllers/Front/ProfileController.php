@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Rubric;
 use App\Models\User;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
@@ -12,16 +13,15 @@ class ProfileController extends Controller
 {
     public function index(): View
     {
-        return view("pages.profile");
+        $rubrics = Rubric::active()->get();
+
+        return view("pages.profile", compact('rubrics'));
     }
 
     public function update(UpdateRequest $request, User $user): RedirectResponse
     {
         $data = $request->validated();
-        $user->update([
-            'password' => $data['password'],
-            'email' => $data['email']
-        ]);
+        $user->update($data);
 
         return redirect()->route('pages.profile');
     }

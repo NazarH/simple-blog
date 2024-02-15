@@ -1,11 +1,11 @@
-<div class="card mb-3" style="width: 26.8rem; height: 23rem;">
+<div class="card mb-3 card-atr">
     @php
         if(preg_match('/<img[^>]+src="([^">]+)"/', $article->text, $matches))
             $link = $matches[1];
         else
-            $link = '';
+            $link = asset("img/noimage.png");
     @endphp
-    <img src="{{$link}}" class="card-img-top" style="width: 26.7rem; height: 16rem;">
+    <img src="{{$link}}" class="card-img-top img-atr">
     <div class="card-body">
         <a href="{{route('pages.article', $article->id)}}" class="card-title">{{ $article->title }}</a>
 

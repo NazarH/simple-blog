@@ -23,23 +23,15 @@ class ArticlesController extends Controller
         return $articles;
     }
 
-    public function form()
-    {
-        $tags = Tag::get();
-        $rubrics = Rubric::get();
-        $arr = ['tags' => $tags, 'rubrics' => $rubrics];
-
-        return $arr;
-    }
-
     public function edit($id)
     {
         $article = Article::find($id);
-        $tags = Tag::get();
-        $rubrics = Rubric::get();
-        $a_tags = $article->tags;
-        $a_rubrics = $article->rubrics;
-        $arr = ['article' => $article, 'tags' => $tags, 'rubrics' => $rubrics, 'a_tags' => $a_tags, 'a_rubrics' => $a_rubrics];
+
+        $arr = [
+            'article' => $article,
+            'tags' => $article->tags,
+            'rubrics' => $article->rubrics
+        ];
 
         return $arr;
     }

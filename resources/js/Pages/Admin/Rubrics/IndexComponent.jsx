@@ -120,24 +120,17 @@ export default function IndexComponent()
     return (
         <div className="container">
             <form onSubmit={handleSubmit} className="simple-form">
-                <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="form-control"
+                <input type="text"
+                       name="name"
+                       value={name}
+                       onChange={(e) => setName(e.target.value)}
+                       className="form-control"
                 />
-                <button
-                    type="submit"
-                    className="btn btn-primary"
-                >
+                <button type="submit" className="btn btn-primary">
                     Create
                 </button>
             </form>
-            <table
-                id="example2"
-                className="table table-bordered table-hover"
-            >
+            <table id="example2" className="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -151,75 +144,70 @@ export default function IndexComponent()
                             <tr key={rubric.id}>
                                 <td>{rubric.id}</td>
                                 <td>
-                                <form action={`/admin/rubrics/edit/${rubric.id}`} method="POST">
-                                    <input
-                                            type="hidden"
-                                            name="_token"
-                                            defaultValue={window.csrfToken}
-                                    />
-                                    <input
-                                        id={`rubricName${rubric.id}`}
-                                        className="disabled background"
-                                        type="text"
-                                        value={rubricStates[index].name}
-                                        placeholder={rubricStates[index].name}
-                                        name="name"
-                                        disabled={!rubricStates[index].isEditing}
-                                        onChange={(e) => {
-                                            const newName = e.target.value;
-                                            setRubricStates(prevStates => prevStates.map(rubricState => {
-                                            if (rubricState.id === rubric.id) {
-                                                return { ...rubricState, name: newName };
-                                            }
-                                                return rubricState;
-                                            }));
-                                        }}
-                                    />
-                                    <button id={`saveTagChanges${rubric.id}`} className="hidden"></button>
-                                </form>
+                                    <form action={`/admin/rubrics/edit/${rubric.id}`} method="POST">
+                                        <input type="hidden"
+                                               name="_token"
+                                               defaultValue={window.csrfToken}
+                                        />
+                                        <input id={`rubricName${rubric.id}`}
+                                               className="disabled background"
+                                               type="text"
+                                               value={rubricStates[index].name}
+                                               placeholder={rubricStates[index].name}
+                                               name="name"
+                                               disabled={!rubricStates[index].isEditing}
+                                               onChange={(e) => {
+                                                   const newName = e.target.value;
+                                                   setRubricStates(prevStates => prevStates.map(rubricState => {
+                                                       if (rubricState.id === rubric.id) {
+                                                           return { ...rubricState, name: newName };
+                                                       }
+                                                       return rubricState;
+                                                   }));
+                                               }}
+                                        />
+                                        <button id={`saveTagChanges${rubric.id}`} className="hidden">
+                                        </button>
+                                    </form>
                                 </td>
                                 <td>
-                                <form
-                                    id={`updateForm-${rubric.id}`}
-                                    onSubmit={(e) => e.preventDefault()}
-                                >
-                                    <input
-                                        type="hidden"
-                                        name="_token"
-                                        defaultValue={window.csrfToken}
-                                    />
-                                    <input
-                                        className="hidden"
-                                        name="is_active"
-                                        type="text"
-                                        defaultValue={rubric.is_active === 1 ? 0 : 1}
-                                    />
-                                    <button
-                                        type="submit"
-                                        className={`btn ${rubric.is_active === 1 ? 'btn-danger' : 'btn-success'}`}
-                                        onClick={() => updateTag(rubric.id, rubric.is_active)}
-                                        id={`rubricAct-${rubric.id}`}
+                                    <form id={`updateForm-${rubric.id}`}
+                                          onSubmit={(e) => e.preventDefault()}
                                     >
-                                        {rubric.is_active === 1 ? 'Deactivate' : 'Activate'}
-                                    </button>
-                                </form>
+                                        <input type="hidden"
+                                               name="_token"
+                                               defaultValue={window.csrfToken}
+                                        />
+                                        <input className="hidden"
+                                               name="is_active"
+                                               type="text"
+                                               defaultValue={rubric.is_active === 1 ? 0 : 1}
+                                        />
+                                        <button type="submit"
+                                                className={`btn ${rubric.is_active ? 'btn-danger' : 'btn-success'}`}
+                                                onClick={() => updateTag(rubric.id, rubric.is_active)}
+                                                id={`rubricAct-${rubric.id}`}
+                                        >
+                                            {rubric.is_active ? 'Deactivate' : 'Activate'}
+                                        </button>
+                                    </form>
                                 </td>
                                 <td className="buttons">
-                                    <button
-                                        id={`editBtn${rubric.id}`}
-                                        className="btn btn-primary"
-                                        onClick={() => rubEdit(rubric.id)}
+                                    <button id={`editBtn${rubric.id}`}
+                                            className="btn btn-primary"
+                                            onClick={() => rubEdit(rubric.id)}
                                     >
                                         Edit
                                     </button>
-                                    <button
-                                        id={`saveBtn${rubric.id}`}
-                                        className={`btn btn-success hidden`}
-                                        onClick={() => saveChanges(rubric.id)}
+                                    <button id={`saveBtn${rubric.id}`}
+                                            className={`btn btn-success hidden`}
+                                            onClick={() => saveChanges(rubric.id)}
                                     >
                                         Save
                                     </button>
-                                    <button className="btn btn-danger" onClick={() => deletePost(rubric.id, index)}>
+                                    <button className="btn btn-danger"
+                                            onClick={() => deletePost(rubric.id, index)}
+                                    >
                                         Delete
                                     </button>
                                 </td>

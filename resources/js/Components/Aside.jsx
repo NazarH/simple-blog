@@ -41,11 +41,6 @@ export default function Aside({tags})
                                         <p>Users</p>
                                     </Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link to="/admin/comments" className="nav-link">
-                                        <p>Comments</p>
-                                    </Link>
-                                </li>
                             </ul>
                         </nav>
                 </div>

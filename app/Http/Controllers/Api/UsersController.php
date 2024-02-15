@@ -10,7 +10,14 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::get();
+        $users = User::paginate(10)->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'email' => $user->email,
+                'role' => $user->role,
+                'is_active' => $user->is_active
+            ];
+        });
 
         return $users;
     }

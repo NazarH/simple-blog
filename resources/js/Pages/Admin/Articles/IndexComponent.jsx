@@ -59,10 +59,8 @@ export default function IndexComponent()
                     Create
                 </button>
             </Link>
-            <table
-                id="example2"
-                className="table table-bordered table-hover"
-            >
+            <table id="example2"
+                   className="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -81,46 +79,38 @@ export default function IndexComponent()
                                 { article.title }
                             </td>
                             <td>
-                                <form
-                                    form
-                                    id={`updateForm-${ article.id }`}
-                                    onSubmit={(e) => e.preventDefault()}
+                                <form form
+                                      id={`updateForm-${ article.id }`}
+                                      onSubmit={(e) => e.preventDefault()}
                                 >
-                                    <input
-                                        type="hidden"
-                                        name="_token"
-                                        defaultValue={ window.csrfToken }
+                                    <input type="hidden"
+                                           name="_token"
+                                           defaultValue={ window.csrfToken }
                                     />
-                                    <input
-                                        className="hidden"
-                                        name="is_active"
-                                        type="text"
-                                        defaultValue={ article.is_active === 1 ? 0 : 1 }
+                                    <input className="hidden"
+                                           name="is_active"
+                                           type="text"
+                                           defaultValue={ article.is_active ? 0 : 1 }
                                     />
-                                    <button
-                                        type="submit"
-                                        className={`btn ${ article.is_active === 1 ? 'btn-danger' : 'btn-success' }`}
-                                        onClick={() => updateTag( article.id, article.is_active )}
-                                        id={`articleAct-${ article.id }`}
+                                    <button type="submit"
+                                            className={`btn ${ article.is_active ? 'btn-danger' : 'btn-success' }`}
+                                            onClick={() => updateTag( article.id, article.is_active )}
+                                            id={`articleAct-${ article.id }`}
                                     >
-                                        { article.is_active === 1 ? 'Deactivate' : 'Activate' }
+                                        { article.is_active ? 'Deactivate' : 'Activate' }
                                     </button>
                                 </form>
                             </td>
                             <td className="buttons">
-                                <Link
-                                    to={`/admin/articles/edit/${ article.id }`}
-                                    state={{
-                                        id: article.id
-                                    }}
+                                <Link to={ `/admin/articles/edit/${ article.id }` }
+                                      state={{ id: article.id }}
                                 >
                                     <button className="btn btn-primary">
                                         Edit
                                     </button>
                                 </Link>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => deleteArt(article.id)}
+                                <button className="btn btn-danger"
+                                        onClick={() => deleteArt(article.id)}
                                 >
                                         Delete
                                 </button>

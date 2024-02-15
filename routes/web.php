@@ -1,22 +1,20 @@
 <?php
 
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Front\ArticleController;
+use App\Http\Controllers\Front\CommentController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\ProfileController;
+use App\Http\Controllers\Front\RubricController;
+use App\Http\Controllers\Front\TagController;
+use App\Models\Rubric;
 use App\Models\Tag;
 use App\Models\User;
-use App\Models\Rubric;
-use App\Models\Article;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RubricController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\Front\CommentController;
-use App\Http\Controllers\Front\ProfileController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

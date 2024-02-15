@@ -13,3 +13,11 @@
 .profile__item>p{
     width: 185px;
 }
+
+.user-title{
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 3px;
+}

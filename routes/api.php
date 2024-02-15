@@ -43,14 +43,11 @@ Route::get('/auth')
 
 Route::get('/articles/index')
         ->uses([ArticlesController::class, 'index']);
-Route::get('/articles/form')
-        ->uses([ArticlesController::class, 'form']);
 Route::get('/articles/edit/{id}')
         ->uses([ArticlesController::class, 'edit']);
 
 Route::get('/comments/index/{articleId?}')
         ->uses([CommentsController::class, 'index']);
-
 
 Route::get('/admin/info')
         ->uses([MainController::class, 'index']);

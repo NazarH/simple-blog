@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Tag;
 use Inertia\Inertia;
-use App\Models\Rubric;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,13 +27,9 @@ class ArticlesController extends Controller
     public function store(StoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
+        $data['user_id'] = Auth::user()->id;
 
-        $article = Article::create([
-            'title' => $data['title'],
-            'text' => $data['text'],
-            'user_id' => Auth::user()->id
-        ]);
-
+        $article = Article::create($data);
         $article->tags()->sync($data['tag_ids']);
         $article->rubrics()->sync($data['rubric_ids']);
 
@@ -69,6 +63,7 @@ class ArticlesController extends Controller
     public function is_active(UpdateRequest $request, Article $article): RedirectResponse
     {
         $data = $request->validated();
+
         $article->update([
             'is_active' => $data['is_active']
         ]);
@@ -79,6 +74,7 @@ class ArticlesController extends Controller
     public function upload(Request $request): JsonResponse
     {
         $url = asset('storage/'.$request->file('upload')->store('images', 'public'));
+
         $response = [
             'uploaded' => true,
             'url' => $url
