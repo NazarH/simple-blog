@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\MainController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\RubricsController;
 use App\Http\Controllers\Api\ArticlesController;
-use App\Http\Controllers\Api\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +44,6 @@ Route::get('/articles/index')
         ->uses([ArticlesController::class, 'index']);
 Route::get('/articles/edit/{id}')
         ->uses([ArticlesController::class, 'edit']);
-
-Route::get('/comments/index/{articleId?}')
-        ->uses([CommentsController::class, 'index']);
 
 Route::get('/admin/info')
         ->uses([MainController::class, 'index']);

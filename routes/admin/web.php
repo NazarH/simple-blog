@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\RubricsController;
 use App\Http\Controllers\Admin\ArticlesController;
-use App\Http\Controllers\Admin\CommentsController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
     Route::get('/')
@@ -112,17 +111,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
         Route::post('/{user}/update')
                 ->uses([UsersController::class, 'update'])
                 ->name('admin.users.update');
-    });
-
-    Route::group(['prefix' => 'comments'], function(){
-        Route::get('/')
-                ->uses([CommentsController::class, 'index'])
-                ->name('admin.comments.index');
-    });
-
-    Route::group(['prefix' => 'articles'], function(){
-        Route::get('/')
-                ->uses([CommentsController::class, 'index'])
-                ->name('admin.comments.index');
     });
 });

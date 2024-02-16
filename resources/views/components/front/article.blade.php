@@ -1,9 +1,10 @@
 <div class="card mb-3 card-atr">
     @php
-        if(preg_match('/<img[^>]+src="([^">]+)"/', $article->text, $matches))
+        if (preg_match('/<img[^>]+src="([^">]+)"/', $article->text, $matches)) {
             $link = $matches[1];
-        else
+        } else {
             $link = asset("img/noimage.png");
+        }
     @endphp
     <img src="{{$link}}" class="card-img-top img-atr">
     <div class="card-body">

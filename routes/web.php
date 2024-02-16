@@ -4,7 +4,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Front\ArticleController;
-use App\Http\Controllers\Front\CommentController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\RubricController;
@@ -54,9 +53,6 @@ Route::group(['prefix' => '/'], function(){
         Route::get('/{article}')
             ->uses([ArticleController::class, 'index'])
             ->name('pages.article');
-        Route::post('/{article}/add-comment/')
-            ->uses([CommentController::class, 'add'])
-            ->name('pages.comment');
     });
 
     Route::get('/rubric/{rubricId}')
@@ -84,18 +80,23 @@ Route::group(['prefix' => '/'], function(){
         ->uses([LoginController::class, 'index'])
         ->name('auth.index');
 
-    Route::get('/forgot-password')
-        ->uses([ForgotPasswordController::class, 'index'])
-        ->name('password.index');
-    Route::post('/forgot-password')
-        ->uses([ForgotPasswordController::class, 'store'])
-        ->name('password.request');
-    Route::get('/reset-password')
-        ->uses([ResetPasswordController::class, 'index'])
-        ->name('password.reset');
-    Route::post('/reset-password')
-        ->uses([ResetPasswordController::class, 'update'])
-        ->name('password.update');
+    Route::group(['prefix' => '/forgot-password'], function(){
+        Route::get('/')
+            ->uses([ForgotPasswordController::class, 'index'])
+            ->name('password.index');
+        Route::post('/')
+            ->uses([ForgotPasswordController::class, 'store'])
+            ->name('password.request');
+    });
+
+    Route::group(['prefix' => '/reset-password'], function(){
+        Route::get('/')
+            ->uses([ResetPasswordController::class, 'index'])
+            ->name('password.reset');
+        Route::post('/')
+            ->uses([ResetPasswordController::class, 'update'])
+            ->name('password.update');
+    });
 });
 
 

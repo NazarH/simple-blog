@@ -13,6 +13,7 @@ class UsersController extends Controller
         $users = User::paginate(10)->map(function ($user) {
             return [
                 'id' => $user->id,
+                'login' => $user->login,
                 'email' => $user->email,
                 'role' => $user->role,
                 'is_active' => $user->is_active

@@ -1,28 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios';
+import ArticleList from "@/Components/Articles/Index/ArticleList.jsx";
 
-export default function CreateArticleForm() {
-    const [searchTags, setSearchTags] = useState('');
-    const [searchRubrics, setSearchRubrics] = useState('');
-    const [options, setOptions] = useState([]);
-    const [options2, setOptions2] = useState([]);
-    const [formData, setFormData] = useState({
-        title: '',
-        text: '',
-        tag_ids: [],
-        rubric_ids: [],
-    });
+import FormInputs from '../../../Components/Articles/Form/FormInputs';
+import SelectTags from '../../../Components/Articles/Form/SelectTags';
+import SelectRubrics from '../../../Components/Articles/Form/SelectRubrics';
+import FormData from "../../../Components/Articles/Form/FormData";
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value,
-        }));
-    };
-
+export default function CreateArticleForm()
+{
+    const { formData, setFormData } = FormData();
     const handleSelectChange = (selectedOptions, { name }) => {
         const selectedValues = selectedOptions.map((option) => option.value);
         setFormData((prevFormData) => ({
@@ -42,64 +29,6 @@ export default function CreateArticleForm() {
         }
     };
 
-    useEffect(() => {
-        ClassicEditor
-            .create(document.querySelector('#editor'), {
-                ckfinder: {
-                    uploadUrl: window.location.origin + '/admin/articles/upload'
-                },
-                toolbar: {
-                    items: [
-                        'heading', '|',
-                        'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', '|',
-                        'blockQuote', 'code', 'link', 'imageUpload', '|',
-                        'undo', 'redo'
-                    ],
-                },
-            })
-            .then(editor => {
-                editor.model.document.on('change', () => {
-                    const newData = editor.getData();
-                    setFormData((prevFormData) => ({
-                        ...prevFormData,
-                        text: newData,
-                    }));
-                });
-            });
-    }, []);
-
-    useEffect(() => {
-        searchRubricsAsync(searchRubrics);
-    }, [searchRubrics]);
-
-    useEffect(() => {
-        searchTagsAsync(searchTags);
-    }, [searchTags]);
-
-    const searchRubricsAsync = async (inputValue) => {
-        if (inputValue) {
-            try {
-                const response = await axios.get(`/api/select/rubrics?search=${inputValue}`);
-                setOptions(response.data);
-            } catch (error) {
-                console.error('Error searching rubrics:', error);
-                setOptions([]);
-            }
-        }
-    };
-
-    const searchTagsAsync = async (inputValue) => {
-        if (inputValue) {
-            try {
-                const response= await axios.get(`/api/select/tags?search=${inputValue}`)
-                setOptions2(response.data);
-            } catch (error) {
-                console.error('Error searching tags:', error);
-                setOptions2([]);
-            }
-        }
-    };
-
     return (
         <div className="container">
             <form onSubmit={ handleSubmit }
@@ -112,36 +41,9 @@ export default function CreateArticleForm() {
                            defaultValue={window.csrfToken}
                     />
 
-                    <input type="text"
-                           name="title"
-                           placeholder="Title"
-                           className="form-control"
-                           value={formData.title}
-                           onChange={handleInputChange}
-                    />
-
-                    <textarea name="text"
-                              className="form-control"
-                              placeholder="Write comment here"
-                              resize="none"
-                              id="editor"
-                    />
-
-                    <Select name="tag_ids[]"
-                            options={options2}
-                            isMulti
-                            onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'tag_ids' })}
-                            onInputChange={setSearchTags}
-                            placeholder="Search tags..."
-                    />
-
-                    <Select name="rubric_ids[]"
-                            options={options}
-                            isMulti
-                            onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'rubric_ids' })}
-                            onInputChange={setSearchRubrics}
-                            placeholder="Search rubrics..."
-                    />
+                    <FormInputs formData={formData} setFormData={setFormData}/>
+                    <SelectTags handleSelectChange={handleSelectChange}/>
+                    <SelectRubrics handleSelectChange={handleSelectChange}/>
 
                     <button type="submit" className="btn btn-success">
                         Create
