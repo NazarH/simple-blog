@@ -11,6 +11,7 @@ class RubricController extends Controller
     public function index(Rubric $rubric): View
     {
         $rubrics = Rubric::active()->get();
+
         $articles = $rubric
             ->articles()
             ->active()

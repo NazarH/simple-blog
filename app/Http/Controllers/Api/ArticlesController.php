@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Tag;
-use App\Models\Rubric;
 use App\Models\Article;
 use App\Http\Controllers\Controller;
 

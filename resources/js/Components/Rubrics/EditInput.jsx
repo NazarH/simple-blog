@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateRubricName } from '@/actions/rubrics';
 
-export default function EditInput({id, rubricStates, index, setRubricStates, rubric})
+export default function EditInput({id, rubricStates, index})
 {
     const dispatch = useDispatch();
 

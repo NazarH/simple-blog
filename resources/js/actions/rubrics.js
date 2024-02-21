@@ -39,6 +39,7 @@ export const createRubric = (rubricName) => {
             });
     };
 };
+
 export const deleteRubric = (id) => {
     return (dispatch) => {
         axios.delete(`/admin/rubrics/delete/${id}`)

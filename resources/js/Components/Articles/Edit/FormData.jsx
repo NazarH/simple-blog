@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const useFormInput = (arrStates) => {

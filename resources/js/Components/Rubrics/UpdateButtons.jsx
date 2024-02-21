@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateRubric } from '@/actions/rubrics';
 
-export default function UpdateButtons({rubric, rubricStates, index, setRubricStates})
+export default function UpdateButtons({rubric})
 {
     const dispatch = useDispatch();
 
@@ -11,8 +11,7 @@ export default function UpdateButtons({rubric, rubricStates, index, setRubricSta
     };
 
     return (
-        <form id={`updateForm-${rubric.id}`} onSubmit={(e) => e.preventDefault()}
-        >
+        <form id={`updateForm-${rubric.id}`} onSubmit={(e) => e.preventDefault()}>
             <input
                 type="hidden"
                 name="_token"

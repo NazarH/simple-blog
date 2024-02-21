@@ -5,7 +5,7 @@ import { deleteRubric } from '@/actions/rubrics';
 import { updateRubricData } from '@/actions/rubrics';
 import { toggleRubricEdit } from '@/actions/rubrics';
 
-export default function EditButtons({rubric, rubricStates, index, setRubricStates})
+export default function EditButtons({rubric, rubricStates, index})
 {
     const dispatch = useDispatch();
 

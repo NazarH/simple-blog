@@ -104,7 +104,7 @@ const articlesReducer = (state = initialState, action) => {
         case 'FETCH_TAGS_SUCCESS':
             return {
                 ...state,
-                tags: action.payload, // оновлюємо стан для ключа tags
+                tags: action.payload,
                 loading: false,
                 error: null
             };

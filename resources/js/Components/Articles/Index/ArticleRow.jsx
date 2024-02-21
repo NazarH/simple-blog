@@ -52,7 +52,10 @@ export default function ArticleRow ({ article, articleStates }) {
                 </form>
             </td>
             <td className="buttons">
-                <Link to={`/admin/articles/edit/${article.id}`} state={{ id: article.id }}>
+                <Link
+                    to={`/admin/articles/edit/${article.id}`}
+                    state={{ id: article.id }}
+                >
                     <button className="btn btn-primary">
                         Редагувати
                     </button>

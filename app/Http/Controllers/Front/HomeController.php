@@ -30,6 +30,7 @@ class HomeController extends Controller
     public function search(SearchRequest $request)
     {
         $data = $request->validated();
+
         $articles = Article::query()->active()->with([
             'rubrics',
             'tags' => fn($q) => $q->active(),
