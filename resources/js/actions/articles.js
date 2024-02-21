@@ -82,3 +82,29 @@ export const createArticle = (formData) => {
             });
     };
 };
+
+export const fetchTags = (searchTerm) => {
+    return (dispatch) => {
+        axios.get(`/api/select/tags?search=${searchTerm}`)
+            .then(response => {
+                dispatch({ type: 'FETCH_TAGS_SUCCESS', payload: response.data });
+            })
+            .catch(error => {
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_TAGS_FAILURE', payload: errorMessage });
+            });
+    };
+};
+
+export const fetchRubrics = (searchTerm) => {
+    return (dispatch) => {
+        axios.get(`/api/select/rubrics?search=${searchTerm}`)
+            .then(response => {
+                dispatch({ type: 'FETCH_RUBRICS_SUCCESS', payload: response.data });
+            })
+            .catch(error => {
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_RUBRICS_FAILURE', payload: errorMessage });
+            });
+    };
+};

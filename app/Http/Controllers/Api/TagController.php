@@ -11,7 +11,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::paginate(10)->map(function ($tag) {
+        $tags = Tag::paginate(5)->map(function ($tag) {
             return [
                 'id' => $tag->id,
                 'name' => $tag->name,

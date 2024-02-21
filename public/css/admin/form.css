@@ -170,3 +170,30 @@ blockquote {
     border: 1px solid #AAAAAA !important;
     margin: 10px 0px 10px 30px !important;
 }
+
+/* ========================================= */
+.table td, .table th{
+    vertical-align: baseline;
+}
+
+.page-link {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+
+    color: black;
+}
+
+.active {
+    padding: 5px;
+    border: 1px solid #6C757D;
+    color: black;
+}
+
+.pagination {
+    align-items: center;
+    justify-content: center;
+}
+
+.simple-link{
+    padding: 5px 7px;
+}

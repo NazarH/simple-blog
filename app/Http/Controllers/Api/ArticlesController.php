@@ -11,7 +11,7 @@ class ArticlesController extends Controller
 {
     public function index()
     {
-        $articles = Article::paginate(30)->map(function ($article) {
+        $articles = Article::paginate(5)->map(function ($article) {
             return [
                 'id' => $article->id,
                 'title' => $article->title,

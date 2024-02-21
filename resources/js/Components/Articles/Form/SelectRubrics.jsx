@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRubrics } from "@/actions/articles.js";
 
 export default function SelectRubrics({handleSelectChange})
 {
+    const dispatch = useDispatch();
     const [searchRubrics, setSearchRubrics] = useState('');
-    const [options, setOptions] = useState([]);
-
-    const searchRubricsAsync = async (inputValue) => {
-        if (inputValue) {
-            try {
-                const response = await axios.get(`/api/select/rubrics?search=${inputValue}`);
-                setOptions(response.data);
-            } catch (error) {
-                console.error('Error searching rubrics:', error);
-                setOptions([]);
-            }
-        }
-    };
+    const options = useSelector(state => state.rubricsReducer.rubrics);
 
     useEffect(() => {
-        searchRubricsAsync(searchRubrics);
-    }, [searchRubrics]);
+        if (searchRubrics) {
+            dispatch(fetchRubrics(searchRubrics));
+        }
+    }, [dispatch, searchRubrics]);
 
     return(
         <>
@@ -35,4 +28,3 @@ export default function SelectRubrics({handleSelectChange})
         </>
     )
 }
-

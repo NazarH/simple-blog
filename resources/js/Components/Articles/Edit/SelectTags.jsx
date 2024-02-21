@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Select from 'react-select';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTags } from "@/actions/articles.js";
 
-export default function SelectTags({arrStates, setFormData}) {
-    const [options2, setOptions2] = useState([]);
+export default function SelectTags({arrStates, setFormData})
+{
+    const dispatch = useDispatch();
     const [searchTags, setSearchTags] = useState('');
+    const options2 = useSelector(state => state.tagsReducer.tags);
 
     useEffect(() => {
-        searchTagsAsync(searchTags);
-    }, [searchTags]);
-
-    const searchTagsAsync = async (inputValue) => {
-        if (inputValue) {
-            try {
-                const response= await axios.get(`/api/select/tags?search=${inputValue}`)
-                setOptions2(response.data);
-            } catch (error) {
-                console.error('Error searching tags:', error);
-                setOptions2([]);
-            }
+        if (searchTags) {
+            dispatch(fetchTags(searchTags));
         }
-    };
+    }, [dispatch, searchTags]);
 
     return (
         <>

@@ -7512,7 +7512,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
+"prop-types@npm:^15, prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -7676,6 +7676,17 @@ __metadata:
     react: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18
     react-dom: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18
   checksum: 7b56e2c505b2b924736c471a34754a4211df40ac2d6fb0949cf095aea5e65d3326bd9f111fa7898acf40afa54f526809ad8aa47e02b8328663d11422568dc7b1
+  languageName: node
+  linkType: hard
+
+"react-paginate@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "react-paginate@npm:8.2.0"
+  dependencies:
+    prop-types: "npm:^15"
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+  checksum: 3d436f5e56e6b14b809767718da46f22d4315221c972c4990e7c22de3b8074235852fa2ad00f6849aad50fa0df16aa14adc2243e767fe4851f0c1ba154ef8b15
   languageName: node
   linkType: hard
 
@@ -8071,6 +8082,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-modal: "npm:^3.16.1"
+    react-paginate: "npm:^8.2.0"
     react-redux: "npm:^9.0.4"
     react-router-dom: "npm:^6.21.1"
     react-select: "npm:^5.8.0"

@@ -27,7 +27,6 @@ export default function CreateArticleForm()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         dispatch(createArticle(formData));
         navigate('/admin/articles');
     };

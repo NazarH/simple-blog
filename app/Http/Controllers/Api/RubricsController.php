@@ -10,7 +10,7 @@ class RubricsController extends Controller
 {
     public function index()
     {
-        $rubrics = Rubric::paginate(10)->map(function ($rubric) {
+        $rubrics = Rubric::paginate(5)->map(function ($rubric) {
             return [
                 'id' => $rubric->id,
                 'name' => $rubric->name,

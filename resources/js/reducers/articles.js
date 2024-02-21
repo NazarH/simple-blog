@@ -1,6 +1,8 @@
 const initialState = {
     articles: [],
     article: [],
+    tags: [],
+    rubrics: [],
     loading: false,
     error: null
 };
@@ -72,19 +74,6 @@ const articlesReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
-        case 'FETCH_ARTICLE_EDIT_SUCCESS':
-            return {
-                ...state,
-                article: action.payload,
-                loading: false,
-                error: null
-            };
-        case 'FETCH_ARTICLE_EDIT_FAILURE':
-            return {
-                ...state,
-                loading: false,
-                error: action.payload
-            };
         case 'FETCH_ARTICLE_CREATE_SUCCESS':
             return {
                 ...state,
@@ -93,6 +82,32 @@ const articlesReducer = (state = initialState, action) => {
                 error: null
             };
         case 'FETCH_ARTICLE_CREATE_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case 'FETCH_TAGS_SUCCESS':
+            return {
+                ...state,
+                tags: action.payload, // оновлюємо стан для ключа tags
+                loading: false,
+                error: null
+            };
+        case 'FETCH_TAGS_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case 'FETCH_RUBRICS_SUCCESS':
+            return {
+                ...state,
+                rubrics: action.payload,
+                loading: false,
+                error: null
+            };
+        case 'FETCH_RUBRICS_FAILURE':
             return {
                 ...state,
                 loading: false,
