@@ -1,12 +1,12 @@
 import './bootstrap';
 import '../css/app.css';
 
-import React, { Suspense } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { store } from './store'
+import store from './store'
 import { Provider } from 'react-redux';
 
 import IndexComponent from './Pages/Admin/IndexComponent';

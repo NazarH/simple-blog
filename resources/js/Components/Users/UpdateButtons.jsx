@@ -1,27 +1,13 @@
-export default function UpdateButtons({user, userStates, setUserStates})
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '@/actions/users';
+
+export default function UpdateButtons({ user, setUserStates, userStates })
 {
-    const updateUser = async (id, action) => {
-        const formData = new FormData();
+    const dispatch = useDispatch();
 
-        formData.append('is_active',
-            !userStates.find((user) => user.id === id).is_active
-        );
-        formData.append('_token', window.csrfToken);
-
-        try {
-            await axios.post(`/admin/users/${id}/${action}`, formData);
-
-            setUserStates((prevStates) =>
-                prevStates.map((userState) => {
-                    if (userState.id === id) {
-                        return { ...userState, is_active: userState.is_active ? 0 : 1, isEditing: false };
-                    }
-                    return userState;
-                })
-            );
-        } catch (error) {
-            console.error('Error saving tag changes:', error);
-        }
+    const updateUserHandler = (id, action, active) => {
+        dispatch(updateUser(id, action, active));
     };
 
     return (
@@ -29,18 +15,22 @@ export default function UpdateButtons({user, userStates, setUserStates})
             {user.role !== 'admin' && (
                 <>
                     {user.is_active ? (
-                        <button className="btn btn-danger"
-                                onClick={() => updateUser(user.id, 'ban')}>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => updateUserHandler(user.id, 'ban', 0)}
+                        >
                             Ban
                         </button>
                     ) : (
-                        <button className="btn btn-success"
-                                onClick={() => updateUser(user.id, 'unban')}>
+                        <button
+                            className="btn btn-success"
+                            onClick={() => updateUserHandler(user.id, 'unban', 1)}
+                        >
                             Unban
                         </button>
                     )}
                 </>
             )}
         </>
-    )
-}
+    );
+};

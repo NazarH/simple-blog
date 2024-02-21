@@ -23,12 +23,13 @@ export default function SelectTags({handleSelectChange})
 
     return(
        <>
-           <Select name="tag_ids[]"
-                   options={options2}
-                   isMulti
-                   onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'tag_ids' })}
-                   onInputChange={setSearchTags}
-                   placeholder="Search tags..."
+           <Select
+               name="tag_ids[]"
+               options={options2}
+               isMulti
+               onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'tag_ids' })}
+               onInputChange={setSearchTags}
+               placeholder="Search tags..."
            />
        </>
     );

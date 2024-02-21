@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from 'react';
-export default function TagState()
-{
-    let tags = [];
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTags } from '@/actions/tags';
+
+export default function TagState() {
+    const dispatch = useDispatch();
+    const tagStates = useSelector(state => state.tagsReducer.tags);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/tags/index');
-                setTagStates(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+        dispatch(fetchTags());
+    }, [dispatch]);
 
-        fetchData();
-    }, []);
-
-    const [tagStates, setTagStates] = useState(tags.map(tag => ({ id: tag.id, name: tag.name })));
-
-    return {
-        tagStates,
-        setTagStates
-    }
+    return { tagStates };
 }

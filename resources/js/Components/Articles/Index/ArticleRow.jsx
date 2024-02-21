@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-export default function ArticleRow ({ article, articleStates, setArticleStates }) {
-    const deleteArt = async (id) => {
-        try {
-            await axios.delete('/admin/articles/delete/' + id);
-            console.log('Видалення успішне');
-        } catch (error) {
-            console.error('Видалення не вдалося', error);
-        }
+import { updateArt } from "@/actions/articles";
+import { deleteArt } from "@/actions/articles"
+
+export default function ArticleRow ({ article, articleStates }) {
+
+    const dispatch = useDispatch();
+    const handleDeleteArticle = (id) => {
+        dispatch(deleteArt(id));
+        document.getElementById('artN' + id).remove();
     };
 
-    const updateTag = async (artId, active) => {
+    const handleUpdateArticle = (artId) => {
         const formData = new FormData();
         formData.append('_token', window.csrfToken);
         formData.append(
@@ -19,38 +21,31 @@ export default function ArticleRow ({ article, articleStates, setArticleStates }
             articleStates.find((article) => article.id === artId).is_active ? 0 : 1
         );
 
-        try {
-            await axios.post(`/admin/articles/update/${artId}`, formData);
-
-            setArticleStates((prevStates) =>
-                prevStates.map((articleStates) => {
-                    if (articleStates.id === artId) {
-                        return { ...articleStates, is_active: active ? 0 : 1 };
-                    }
-                    return articleStates;
-                })
-            );
-        } catch (error) {
-            console.error('Помилка оновлення тегу:', error);
-        }
+        dispatch(updateArt(artId, formData));
     };
 
     return (
-        <tr key={article.id}>
+        <tr key={article.id} id={`artN${article.id}`}>
             <td>{article.id}</td>
             <td>{article.title}</td>
             <td>
-                <form form id={`updateForm-${article.id}`} onSubmit={(e) => e.preventDefault()}>
-                    <input type="hidden" name="_token" defaultValue={window.csrfToken} />
-                    <input className="hidden"
-                           name="is_active"
-                           type="text"
-                           defaultValue={article.is_active ? 0 : 1}
+                <form id={`updateForm-${article.id}`} onSubmit={(e) => e.preventDefault()}>
+                    <input
+                        type="hidden"
+                        name="_token"
+                        defaultValue={window.csrfToken}
                     />
-                    <button type="submit"
-                            className={`btn ${article.is_active ? 'btn-danger' : 'btn-success'}`}
-                            onClick={() => updateTag(article.id, article.is_active)}
-                            id={`articleAct-${article.id}`}
+                    <input
+                        className="hidden"
+                        name="is_active"
+                        type="text"
+                        defaultValue={article.is_active ? 0 : 1}
+                    />
+                    <button
+                        type="submit"
+                        className={`btn ${article.is_active ? 'btn-danger' : 'btn-success'}`}
+                        onClick={() => handleUpdateArticle(article.id)}
+                        id={`articleAct-${article.id}`}
                     >
                         {article.is_active ? 'Деактивувати' : 'Активувати'}
                     </button>
@@ -62,9 +57,7 @@ export default function ArticleRow ({ article, articleStates, setArticleStates }
                         Редагувати
                     </button>
                 </Link>
-                <button className="btn btn-danger"
-                        onClick={() => deleteArt(article.id)}
-                >
+                <button className="btn btn-danger" onClick={() => handleDeleteArticle(article.id)}>
                     Видалити
                 </button>
             </td>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+
 export default function SelectRubrics({handleSelectChange})
 {
     const [searchRubrics, setSearchRubrics] = useState('');
@@ -23,13 +24,15 @@ export default function SelectRubrics({handleSelectChange})
 
     return(
         <>
-            <Select name="rubric_ids[]"
-                    options={options}
-                    isMulti
-                    onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'rubric_ids' })}
-                    onInputChange={setSearchRubrics}
-                    placeholder="Search rubrics..."
+            <Select
+                name="rubric_ids[]"
+                options={options}
+                isMulti
+                onChange={(selectedOptions) => handleSelectChange(selectedOptions, { name: 'rubric_ids' })}
+                onInputChange={setSearchRubrics}
+                placeholder="Search rubrics..."
             />
         </>
     )
 }
+

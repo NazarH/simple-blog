@@ -1,24 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import ArticleList from '../../../Components/Articles/Index/ArticleList';
-import CreateButton from '../../../Components/Articles/Index/CreateButton';
+import ArticleList from '@/Components/Articles/Index/ArticleList';
+import CreateButton from '@/Components/Articles/Index/CreateButton';
+
+import { fetchArticles } from "@/actions/articles";
 
 export default function IndexComponent() {
-    const [articleStates, setArticleStates] = useState([]);
+    const dispatch = useDispatch();
+    const articleStates = useSelector(state => state.articlesReducer.articles);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/articles/index');
-                setArticleStates(response.data);
-            } catch (error) {
-                console.error('Помилка отримання даних:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
+        dispatch(fetchArticles())
+    }, [dispatch]);
 
     return (
         <div className="container">
@@ -32,7 +26,7 @@ export default function IndexComponent() {
                     <th></th>
                 </tr>
                 </thead>
-                <ArticleList articleStates={articleStates} setArticleStates={setArticleStates} />
+                <ArticleList articleStates={articleStates} />
             </table>
         </div>
     );

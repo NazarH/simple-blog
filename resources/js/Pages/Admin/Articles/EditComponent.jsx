@@ -1,39 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import FormInputs from '../../../Components/Articles/Edit/FormInputs';
-import SelectTags from '../../../Components/Articles/Edit/SelectTags';
-import SelectRubrics from '../../../Components/Articles/Edit/SelectRubrics';
-import FormData from '../../../Components/Articles/Edit/FormData';
+import FormInputs from '@/Components/Articles/Edit/FormInputs';
+import SelectTags from '@/Components/Articles/Edit/SelectTags';
+import SelectRubrics from '@/Components/Articles/Edit/SelectRubrics';
+import FormData from '@/Components/Articles/Edit/FormData';
+
+import { fetchEditData } from "@/actions/articles";
+import { formSubmit } from "@/actions/articles";
 
 export default function EditArticleForm() {
     const location = useLocation();
     const id = location.state ? location.state.id : window.location.href.match(/\/(\d+)$/)[1];
 
-    let [count, setCount] = useState(0);
-    const [arrStates, setArrStates] = useState({});
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/articles/edit/' + id);
-                setArrStates(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error('Помилка отримання даних:', error);
-            }
-        };
-
-        fetchData();
+        dispatch(fetchEditData(id));
     }, []);
 
+    const arrStates = useSelector(state => state.articlesReducer.article);
+    let [count, setCount] = useState(0);
     const { formData, setFormData } = FormData(arrStates);
-
     const initialRubricIds = arrStates.a_rubrics && arrStates.a_rubrics.map(rubric => rubric.id);
     const initialTagIds = arrStates.a_tags && arrStates.a_tags.map(tag => tag.id);
 
-    const handleFormSubmit = async (e) => {
+    const handleFormSubmit = (e) => {
         e.preventDefault();
 
         if(arrStates.rubrics.length === formData.rubric_ids.length && arrStates.tags.length === formData.tag_ids.length) {
@@ -43,13 +37,9 @@ export default function EditArticleForm() {
                 formData.rubric_ids = initialRubricIds;
             }
         }
-        console.log(formData);
-        try {
-            const response = await axios.post(`/admin/articles/edit/${arrStates.article && arrStates.article.id}/update`, formData);
-            console.log('Form submitted successfully:', response.data);
-        } catch (error) {
-            console.error('Error submitting form:', error);
-        }
+
+        dispatch(formSubmit(formData, arrStates));
+        navigate('/admin/articles');
     };
 
     return (
@@ -59,6 +49,7 @@ export default function EditArticleForm() {
                     <FormInputs formData={formData} setFormData={setFormData}/>
                     <SelectTags arrStates={arrStates} setFormData={setFormData}/>
                     <SelectRubrics arrStates={arrStates} setFormData={setFormData}/>
+
                     <button type="submit" className="btn btn-success">
                         Edit
                     </button>

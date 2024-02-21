@@ -25,20 +25,21 @@ export default function SelectTags({arrStates, setFormData}) {
     return (
         <>
             { arrStates.tags && (
-                <Select name="tag_ids[]"
-                        options={options2}
-                        isMulti
-                        onChange={(selectedOptions) => setFormData((prevFormData) => ({
-                            ...prevFormData,
-                            tag_ids: selectedOptions.map((option) => option.value),
-                        }))}
-                        onInputChange={setSearchTags}
-                        defaultValue={
-                            arrStates.tags.map((tag) => ({
-                                'value': tag.id,
-                                'label': tag.name
-                            }))
-                        }
+                <Select
+                    name="tag_ids[]"
+                    options={options2}
+                    isMulti
+                    onChange={(selectedOptions) => setFormData((prevFormData) => ({
+                        ...prevFormData,
+                        tag_ids: selectedOptions.map((option) => option.value),
+                    }))}
+                    onInputChange={setSearchTags}
+                    defaultValue={
+                        arrStates.tags.map((tag) => ({
+                            'value': tag.id,
+                            'label': tag.name
+                        }))
+                    }
                 />
             )}
         </>

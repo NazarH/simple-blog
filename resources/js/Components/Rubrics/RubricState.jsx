@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRubrics } from '@/actions/rubrics';
 
-export default function RubricState()
-{
-    let rubrics = [];
+export default function RubricState() {
+    const dispatch = useDispatch();
+    const rubricStates = useSelector(state => state.rubricsReducer.rubrics);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/rubrics/index');
-                setRubricStates(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+        dispatch(fetchRubrics());
+    }, [dispatch]);
 
-        fetchData();
-    }, []);
-
-    const [rubricStates, setRubricStates] = useState(
-        rubrics.map(rubric => ({
-            id: rubric.id,
-            name: rubric.name,
-            isEditing: false,
-        }))
-    );
-
-    return{
-        rubricStates,
-        setRubricStates
-    }
+    return { rubricStates };
 }

@@ -1,13 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from '@reduxjs/toolkit/query'
-import { articleApi } from './Services/article'
+import { configureStore } from '@reduxjs/toolkit';
 
-export const store = configureStore({
-  reducer: {
-    [articleApi.reducerPath]: articleApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(articleApi.middleware),
-})
+import tagsReducer from '@/reducers/tags';
+import rubricsReducer from '@/reducers/rubrics';
+import usersReducer from '@/reducers/users';
+import articlesReducer from '@/reducers/articles'
 
-setupListeners(store.dispatch)
+const store = configureStore({
+    reducer: {
+        tagsReducer: tagsReducer,
+        rubricsReducer: rubricsReducer,
+        usersReducer: usersReducer,
+        articlesReducer: articlesReducer
+    }
+});
+
+export default store;

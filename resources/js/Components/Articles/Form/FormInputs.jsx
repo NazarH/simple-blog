@@ -10,19 +10,21 @@ export default function FormInputs({formData, setFormData})
 
     return(
         <>
-            <input type="text"
-                   name="title"
-                   placeholder="Title"
-                   className="form-control"
-                   value={formData.title}
-                   onChange={handleInputChange}
+            <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                className="form-control"
+                value={formData.title}
+                onChange={handleInputChange}
             />
 
-            <textarea name="text"
-                      className="form-control"
-                      placeholder="Write comment here"
-                      resize="none"
-                      id="editor"
+            <textarea
+                name="text"
+                className="form-control"
+                placeholder="Write comment here"
+                resize="none"
+                id="editor"
             />
         </>
     )

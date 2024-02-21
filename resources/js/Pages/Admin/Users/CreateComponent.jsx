@@ -1,8 +1,14 @@
-import React from 'react';
-import { useState } from 'react';
+import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { createUser } from '@/actions/users';
 
 export default function CreateComponent()
 {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         login: '',
         password: '',
@@ -17,17 +23,12 @@ export default function CreateComponent()
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(formData);
-
-        try {
-            const response = await axios.post('/admin/users/store', formData);
-            console.log('Form submitted successfully:', response.data);
-        } catch (error) {
-            console.error('Error submitting form:', error);
-        }
+        dispatch(createUser(formData))
+            .then(() => {
+                navigate('/admin/users');
+            });
     };
 
     return (

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Select from 'react-select';
 
 export default function SelectRubrics({arrStates, setFormData}) {
+
     const [options, setOptions] = useState([]);
     const [searchRubrics, setSearchRubrics] = useState('');
 
@@ -25,20 +26,21 @@ export default function SelectRubrics({arrStates, setFormData}) {
     return (
         <>
             { arrStates.rubrics && (
-                <Select name="rubric_ids[]"
-                        options={options}
-                        isMulti
-                        onChange={(selectedOptions) => setFormData((prevFormData) => ({
-                            ...prevFormData,
-                            rubric_ids: selectedOptions.map((option) => option.value),
-                        }))}
-                        onInputChange={setSearchRubrics}
-                        defaultValue={
-                            arrStates.rubrics.map((rubric) => ({
-                                'value': rubric.id,
-                                'label': rubric.name
-                            }))
-                        }
+                <Select
+                    name="rubric_ids[]"
+                    options={options}
+                    isMulti
+                    onChange={(selectedOptions) => setFormData((prevFormData) => ({
+                        ...prevFormData,
+                        rubric_ids: selectedOptions.map((option) => option.value),
+                    }))}
+                    onInputChange={setSearchRubrics}
+                    defaultValue={
+                        arrStates.rubrics.map((rubric) => ({
+                            'value': rubric.id,
+                            'label': rubric.name
+                        }))
+                    }
                 />
             )}
         </>

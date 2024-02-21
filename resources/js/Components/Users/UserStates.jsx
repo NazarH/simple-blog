@@ -1,38 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function UserStates()
-{
-    let users = [];
-    let auth = [];
+import { fetchUsers } from '@/actions/users';
+import { fetchAuth } from '@/actions/users';
+
+export default function UserState() {
+    const dispatch = useDispatch();
+    const userStates = useSelector(state => state.usersReducer.users);
+    const authStates = useSelector(state => state.usersReducer.auth);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/users/index');
-                setUserStates(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+        dispatch(fetchUsers());
+        dispatch(fetchAuth());
+    }, [dispatch]);
 
-        const fetchAuth = async () => {
-            try {
-                const response = await axios.get('/api/auth');
-                setAuthStates(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-        fetchAuth();
-    }, []);
-
-    const [userStates, setUserStates] = useState(users);
-    const [authStates, setAuthStates] = useState();
-
-    return {
-        userStates, setUserStates,
-        authStates, setAuthStates
-    }
+    return { userStates, authStates };
 }

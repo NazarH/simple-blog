@@ -1,70 +1,59 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { deleteRubric } from '@/actions/rubrics';
+import { updateRubricData } from '@/actions/rubrics';
+import { toggleRubricEdit } from '@/actions/rubrics';
+
 export default function EditButtons({rubric, rubricStates, index, setRubricStates})
 {
-    const saveChanges = async (id) => {
+    const dispatch = useDispatch();
+
+    const saveRubricChanges = (id) => {
         document.getElementById('editBtn'+id).style='display: block';
         document.getElementById('saveBtn'+id).style='display: none';
         document.getElementById('rubricName'+id).style='color: white;';
 
-        const formData = new FormData();
-        formData.append('name', rubricStates.find((rubric) => rubric.id === id).name);
-        formData.append('_token', window.csrfToken);
+        const updatedRubricData = {
+            name: rubricStates.find(rubricState => rubricState.id === id).name,
+            _token: window.csrfToken
+        };
 
         try {
-            await axios.post(`/admin/rubrics/edit/${id}`, formData);
-
-            setTagStates((prevStates) =>
-                prevStates.map((tagState) => {
-                    if (tagState.id === id) {
-                        return { ...tagState, isEditing: false };
-                    }
-                    return tagState;
-                })
-            );
+            dispatch(updateRubricData(id, updatedRubricData));
         } catch (error) {
-            console.error('Error saving tag changes:', error);
+            console.error('Error saving rubric changes:', error);
         }
     };
 
-    function rubEdit(id)
-    {
+    const rubEdit = (id) => {
         document.getElementById('editBtn'+id).style='display: none';
         document.getElementById('saveBtn'+id).style='display: block';
-        setRubricStates(prevStates =>
-            prevStates.map(rubricState => {
-                if (rubricState.id === id) {
-                    return { ...rubricState, isEditing: true };
-                }
-                return rubricState;
-            })
-        );
-    }
+        dispatch(toggleRubricEdit(id));
+    };
 
-    const deletePost = async (id, index) => {
-        axios
-            .delete('/admin/rubrics/delete/' + id)
-            .then(response => {
-                console.log("Delete successful")
-            });
-        document.getElementById('rubN'+index).remove();
-    }
+    const deletePost = (id, index) => {
+        dispatch(deleteRubric(id));
+        document.getElementById('rubN' + index).remove();
+    };
 
     return (
         <td className="buttons">
-            <button id={`editBtn${rubric.id}`}
-                    className="btn btn-primary"
-                    onClick={() => rubEdit(rubric.id)}
+            <button
+                id={`editBtn${rubric.id}`}
+                className="btn btn-primary"
+                onClick={() => rubEdit(rubric.id)}
             >
                 Edit
             </button>
-            <button id={`saveBtn${rubric.id}`}
-                    className={`btn btn-success hidden`}
-                    onClick={() => saveChanges(rubric.id)}
+            <button
+                id={`saveBtn${rubric.id}`}
+                className={`btn btn-success hidden`}
+                onClick={() => saveRubricChanges(rubric.id)}
             >
                 Save
             </button>
-            <button className="btn btn-danger"
-                    onClick={() => deletePost(rubric.id, index)}
-            >
+            <button className="btn btn-danger" onClick={() => deletePost(rubric.id, index)}>
                 Delete
             </button>
         </td>

@@ -11,12 +11,8 @@ const useFormInput = (arrStates) => {
 
     useEffect(() => {
         setFormData({
-            title: arrStates.article
-                ? arrStates.article.title
-                : '',
-            text: arrStates.article
-                ? arrStates.article.text
-                : '',
+            title: arrStates.article ? arrStates.article.title : '',
+            text: arrStates.article ? arrStates.article.text : '',
             tag_ids: arrStates.tags && arrStates.tags.map((tag) => ({
                     value: tag.id,
                     label: tag.name
@@ -52,9 +48,7 @@ const useFormInput = (arrStates) => {
 
             editor.setData(arrStates.article && arrStates.article.text);
 
-        }).catch((error) => {
-            console.error(error);
-        });
+        }).catch((error) => {});
 
         return () => {
             if (editor) {
