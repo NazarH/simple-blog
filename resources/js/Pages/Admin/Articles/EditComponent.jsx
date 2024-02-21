@@ -24,20 +24,11 @@ export default function EditArticleForm() {
     const arrStates = useSelector(state => state.articlesReducer.article);
     let [count, setCount] = useState(0);
     const { formData, setFormData } = FormData(arrStates);
-    const initialRubricIds = arrStates.a_rubrics && arrStates.a_rubrics.map(rubric => rubric.id);
-    const initialTagIds = arrStates.a_tags && arrStates.a_tags.map(tag => tag.id);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        if(arrStates.rubrics.length === formData.rubric_ids.length && arrStates.tags.length === formData.tag_ids.length) {
-            if(count === 0) {
-                setCount(1);
-                formData.tag_ids = initialTagIds;
-                formData.rubric_ids = initialRubricIds;
-            }
-        }
-
+        console.log(formData);
         dispatch(formSubmit(formData, arrStates));
         navigate('/admin/articles');
     };

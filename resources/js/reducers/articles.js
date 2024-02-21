@@ -1,4 +1,5 @@
 const initialState = {
+    array: [],
     articles: [],
     article: [],
     tags: [],
@@ -9,6 +10,19 @@ const initialState = {
 
 const articlesReducer = (state = initialState, action) => {
     switch (action.type) {
+        case 'FETCH_ARRAY_SUCCESS':
+            return {
+                ...state,
+                array: action.payload,
+                loading: false,
+                error: null
+            };
+        case 'FETCH_ARRAY_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
         case 'FETCH_ARTICLES_SUCCESS':
             return {
                 ...state,

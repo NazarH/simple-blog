@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchArray } from "@/actions/articles";
 
 export default function IndexComponent() {
-    const [arrStates, setArrStates] = useState({});
+    const dispatch = useDispatch();
+    const arrStates = useSelector(state => state.articlesReducer.array);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/admin/info');
-                setArrStates(response.data);
-            } catch (error) {
-                console.error('Помилка отримання даних:', error);
-            }
-        };
-
-        fetchData();
+        dispatch(fetchArray());
     }, []);
 
     return (

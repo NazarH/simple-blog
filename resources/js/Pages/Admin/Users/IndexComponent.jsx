@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-import axios from 'axios';
+import React from 'react';
 
 import UserStates from "@/Components/Users/UserStates";
 import UpdateButtons from "@/Components/Users/UpdateButtons";
@@ -13,7 +11,6 @@ export default function IndexComponent()
         userStates,
         setUserStates,
         authStates,
-        setAuthStates
     } = UserStates();
 
     return (

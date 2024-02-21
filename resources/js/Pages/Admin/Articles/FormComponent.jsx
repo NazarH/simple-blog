@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
-import ArticleList from "@/Components/Articles/Index/ArticleList.jsx";
 import FormInputs from '@/Components/Articles/Form/FormInputs';
 import SelectTags from '@/Components/Articles/Form/SelectTags';
 import SelectRubrics from '@/Components/Articles/Form/SelectRubrics';

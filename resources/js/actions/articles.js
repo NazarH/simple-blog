@@ -1,5 +1,17 @@
 import axios from 'axios';
 
+export const fetchArray = () => {
+    return dispatch => {
+        axios.get('/api/admin/info')
+            .then(response => {
+                dispatch({ type: 'FETCH_ARRAY_SUCCESS', payload: response.data });
+            })
+            .catch(error => {
+                dispatch({ type: 'FETCH_ARRAY_FAILURE', payload: error });
+            });
+    };
+};
+
 export const fetchArticles = () => {
     return dispatch => {
         axios.get('/api/articles/index')
