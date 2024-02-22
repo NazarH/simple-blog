@@ -10,8 +10,6 @@ class RubricController extends Controller
 {
     public function index(Rubric $rubric): View
     {
-        $rubrics = Rubric::active()->get();
-
         $articles = $rubric
             ->articles()
             ->active()
@@ -21,7 +19,7 @@ class RubricController extends Controller
         return view('pages.rubric', [
             'rubric' => $rubric,
             'articles' => $articles,
-            'rubrics' => $rubrics
+            'rubrics' => Rubric::active()->get()
         ]);
     }
 }

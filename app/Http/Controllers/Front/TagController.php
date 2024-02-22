@@ -11,8 +11,6 @@ class TagController extends Controller
 {
     public function index(Tag $tag): View
     {
-        $rubrics = Rubric::active()->get();
-
         $articles = $tag
             ->articles()
             ->active()
@@ -21,7 +19,7 @@ class TagController extends Controller
 
         return view('pages.tag', [
             'tag' => $tag,
-            'rubrics' => $rubrics,
+            'rubrics' => Rubric::active()->get(),
             'articles' => $articles,
         ]);
     }

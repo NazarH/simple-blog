@@ -12,8 +12,6 @@ class ArticleController extends Controller
 {
     public function index(Article $article): View
     {
-        $rubrics = Rubric::active()->get();
-
         $comments = Comment::query()
             ->where("article_id", '=', $article->id)
             ->with('user')
@@ -22,7 +20,7 @@ class ArticleController extends Controller
         return view("pages.article", [
             'article' => $article,
             'comments' => $comments,
-            'rubrics' => $rubrics
+            'rubrics' => Rubric::active()->get()
         ]);
     }
 }

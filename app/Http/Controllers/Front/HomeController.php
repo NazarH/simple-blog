@@ -11,8 +11,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $rubrics = Rubric::active()->get();
-
         $articles = Article::query()->active()->with([
             'rubrics',
             'tags' => fn($q) => $q->active(),
@@ -22,7 +20,7 @@ class HomeController extends Controller
         })->paginate(9);
 
         return view('pages.home', [
-            'rubrics' => $rubrics,
+            'rubrics' => Rubric::active()->get(),
             'articles' => $articles
         ]);
     }
