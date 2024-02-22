@@ -41,7 +41,8 @@ class HomeController extends Controller
 
         return view('pages.search', [
             'articles' => $articles,
-            'title' => $data['search']
+            'title' => $data['search'],
+            'rubrics' => Rubric::active()->get()
         ]);
     }
 }
