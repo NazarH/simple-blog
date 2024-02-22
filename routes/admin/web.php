@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
             ->name('admin.articles.index');
 
         Route::post('/update/{article}')
-            ->uses([ArticlesController::class, 'is_active'])
+            ->uses([ArticlesController::class, 'activeUpdate'])
             ->name('admin.articles.update');
 
         Route::delete('/delete/{article}')

@@ -19,7 +19,6 @@ class RubricController extends Controller
         return view('pages.rubric', [
             'rubric' => $rubric,
             'articles' => $articles,
-            'rubrics' => Rubric::active()->get()
         ]);
     }
 }

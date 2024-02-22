@@ -49,7 +49,8 @@ class MainController extends Controller
         $arr = [
             'articles' => $articles,
             'rubrics' => $rubrics,
-            'tags' => $tags, 'users' => $users
+            'tags' => $tags,
+            'users' => $users
         ];
 
         return $arr;

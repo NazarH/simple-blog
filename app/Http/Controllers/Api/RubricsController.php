@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Admin\SearchRequest;
 use App\Models\Rubric;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,18 +22,18 @@ class RubricsController extends Controller
         return $rubrics;
     }
 
-    public function search(Request $request)
+    public function search(SearchRequest $request)
     {
-        $search = $request->query('search');
+        $search = $request->validated();
 
         $query = Rubric::query();
 
         if ($search) {
             $query->where('name', 'like', '%' . $search . '%')
-                ->where('is_active', '=', 1);
+                ->active();
         }
 
-        $rubrics = $query->get()->map(function ($rubric) {
+        $rubrics = $query->take(10)->get()->map(function ($rubric) {
             return [
                 'value' => $rubric->id,
                 'label' => $rubric->name,

@@ -60,7 +60,7 @@ class ArticlesController extends Controller
         return redirect(route('admin.articles.index'));
     }
 
-    public function is_active(UpdateRequest $request, Article $article): RedirectResponse
+    public function activeUpdate(UpdateRequest $request, Article $article): RedirectResponse
     {
         $data = $request->validated();
 

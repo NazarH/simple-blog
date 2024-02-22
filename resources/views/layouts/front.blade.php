@@ -39,7 +39,7 @@
                     <div class="header__search">
                         <form action="{{route('pages.search')}}">
                             @csrf
-                            <input type="text" name="search" placeholder="Пошук..." id="search">
+                            <input type="text" name="query" placeholder="Пошук..." id="search">
                         </form>
                     </div>
                     <div class="header__icons">
@@ -53,13 +53,7 @@
                         @endif
                     </div>
                 </div>
-                <ul class="nav">
-                    @foreach ($rubrics as $rubric)
-                        <li class="nav__item">
-                            <a href="{{route('pages.rubric', $rubric['id'])}}">{{ $rubric['name'] }}</a>
-                        </li>
-                    @endforeach
-                </ul>
+                <x-nav />
             </div>
             @yield('content')
         </div>

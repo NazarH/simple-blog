@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Rubric;
 use App\Models\Tag;
 use Illuminate\View\View;
 
@@ -19,7 +18,6 @@ class TagController extends Controller
 
         return view('pages.tag', [
             'tag' => $tag,
-            'rubrics' => Rubric::active()->get(),
             'articles' => $articles,
         ]);
     }

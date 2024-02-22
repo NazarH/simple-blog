@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.form')
 @section('content')
     <div class="center title">
         Встановіть новий пароль

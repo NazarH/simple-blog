@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Articles;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SearchRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class SearchRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return !(empty(Auth::user()));
     }
 
     /**
@@ -23,7 +24,6 @@ class SearchRequest extends FormRequest
     {
         return [
             'query' => [
-                'required',
                 'string',
                 'max:255'
             ]

@@ -16,7 +16,7 @@
                 <div class="item__hr-2">|</div>
                 <div class="item__rubrics">
                     @foreach ($article->rubrics as $rubric)
-                        @if ($rubric->is_active === 1)
+                        @if ($rubric->is_active)
                             <div>
                                 <a href="{{route('pages.rubric', $rubric['id'])}}">
                                     {{$rubric['name']}}

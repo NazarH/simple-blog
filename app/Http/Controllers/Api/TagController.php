@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Admin\SearchRequest;
 use App\Models\Tag;
 use App\Http\Controllers\Controller;
 
@@ -22,18 +23,18 @@ class TagController extends Controller
         return $tags;
     }
 
-    public function search(Request $request)
+    public function search(SearchRequest $request)
     {
-        $search = $request->query('search');
+        $search = $request->validated();
 
         $query = Tag::query();
 
         if ($search) {
             $query->where('name', 'like', '%' . $search . '%')
-                ->where('is_active', '=', 1);
+                ->active();
         }
 
-        $tags = $query->get()->map(function ($tag) {
+        $tags = $query->take(10)->get()->map(function ($tag) {
             return [
                 'value' => $tag->id,
                 'label' => $tag->name,
