@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Admin\SearchRequest;
 use App\Models\Rubric;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class RubricsController extends Controller
 {
