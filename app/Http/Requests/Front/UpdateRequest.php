@@ -30,7 +30,6 @@ class UpdateRequest extends FormRequest
             ],
             'password' => [
                 'required',
-                'string',
                 'max:8',
                 'confirmed'
             ],
