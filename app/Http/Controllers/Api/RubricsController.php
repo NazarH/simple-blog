@@ -23,12 +23,12 @@ class RubricsController extends Controller
 
     public function search(SearchRequest $request)
     {
-        $search = $request->validated();
+        $data = $request->validated();
 
         $query = Rubric::query();
 
-        if ($search) {
-            $query->where('name', 'like', '%' . $search . '%')
+        if ($data['search']) {
+            $query->where('name', 'like', '%' . $data['search'] . '%')
                 ->active();
         }
 

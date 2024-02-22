@@ -6,8 +6,6 @@ use App\Http\Requests\Admin\SearchRequest;
 use App\Models\Tag;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
-
 class TagController extends Controller
 {
     public function index()
@@ -25,12 +23,12 @@ class TagController extends Controller
 
     public function search(SearchRequest $request)
     {
-        $search = $request->validated();
+        $data = $request->validated();
 
         $query = Tag::query();
 
-        if ($search) {
-            $query->where('name', 'like', '%' . $search . '%')
+        if ($data['search']) {
+            $query->where('name', 'like', '%' . $data['search'] . '%')
                 ->active();
         }
 

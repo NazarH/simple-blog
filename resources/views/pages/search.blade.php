@@ -6,7 +6,7 @@
     <div class="content2">
         <div class="content__block">
             @foreach ($articles->items() as $article)
-                <x-front.article :article='$article' />
+                <x-article :article='$article' />
             @endforeach
             <div class=paginate>
                 {{ $articles->links() }}

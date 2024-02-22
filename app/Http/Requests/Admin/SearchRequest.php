@@ -23,7 +23,7 @@ class SearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'query' => [
+            'search' => [
                 'string',
                 'max:255'
             ]

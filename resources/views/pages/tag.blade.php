@@ -7,8 +7,8 @@
         <div class="content__block">
             <div class="content__articles">
             @foreach ($articles as $article)
-                @if ($article->is_active === 1)
-                    <x-front.article :article='$article' />
+                @if ($article->is_active)
+                    <x-article :article='$article' />
                 @endif
             @endforeach
             </div>

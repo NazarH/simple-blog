@@ -4,7 +4,7 @@
         <div class="content__block">
             <div class="content__articles">
                 @foreach ($articles as $article)
-                    <x-front.article :article='$article' />
+                    <x-article :article='$article' />
                 @endforeach
             </div>
             <div class="paginate">
