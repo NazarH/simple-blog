@@ -42,8 +42,6 @@ class LoginController extends Controller
 
     public function index(): View
     {
-        $rubrics = Rubric::active()->get();
-
-        return view('auth.login', compact('rubrics'));
+        return view('auth.login');
     }
 }

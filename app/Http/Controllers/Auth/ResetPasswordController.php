@@ -36,8 +36,7 @@ class ResetPasswordController extends Controller
 
     public function index(Request $request)
     {
-        $rubrics = Rubric::active()->get();
-        return view('auth.passwords.reset-password', compact('rubrics', 'request'));
+        return view('auth.passwords.reset-password', compact('request'));
     }
 
     public function update(UpdateRequest $request)

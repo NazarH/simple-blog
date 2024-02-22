@@ -14,8 +14,7 @@ class ForgotPasswordController extends Controller
 
     public function index()
     {
-        $rubrics = Rubric::active()->get();
-        return view('auth.passwords.forgot-password', compact('rubrics'));
+        return view('auth.passwords.forgot-password');
     }
 
     public function store(PasswordResetRequest $request)
