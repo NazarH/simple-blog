@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { deleteRubric, updateRubricData, toggleRubricEdit } from '@/actions/rubrics';
+import { updateRubricData, toggleRubricEdit } from '@/actions/rubrics';
 
-export default function EditButtons({ rubric, rubricStates, index }) {
+export default function EditButtons({ rubric, rubricStates, deletePost}) {
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
 
@@ -27,12 +27,10 @@ export default function EditButtons({ rubric, rubricStates, index }) {
         dispatch(toggleRubricEdit(id));
     };
 
-    const deletePost = (id) => {
-        dispatch(deleteRubric(id));
-    };
-
     return (
-        <td className="buttons">
+        <td
+            className="buttons"
+        >
             <button
                 className="btn btn-primary"
                 onClick={() => rubEdit(rubric.id)}

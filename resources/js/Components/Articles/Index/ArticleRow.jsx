@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { updateArt } from "@/actions/articles";
 import { deleteArt } from "@/actions/articles"
 
-export default function ArticleRow ({ article, articleStates }) {
-
+export default function ArticleRow ({ article, articleStates })
+{
     const dispatch = useDispatch();
+    const [isDelete, setIsDelete] = useState(false);
+
     const handleDeleteArticle = (id) => {
         dispatch(deleteArt(id));
-        document.getElementById('artN' + id).remove();
+        setIsDelete(true);
     };
 
     const handleUpdateArticle = (artId) => {
@@ -25,7 +27,11 @@ export default function ArticleRow ({ article, articleStates }) {
     };
 
     return (
-        <tr key={article.id} id={`artN${article.id}`}>
+        <tr
+            key={article.id}
+            id={`artN${article.id}`}
+            style={{ display: isDelete ? 'none' : 'table-row' }}
+        >
             <td>{article.id}</td>
             <td>{article.title}</td>
             <td>

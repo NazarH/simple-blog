@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { updateTagData, toggleTagEdit, deleteTag } from '@/actions/tags';
+import { updateTagData, toggleTagEdit } from '@/actions/tags';
 
-export default function EditButtons({ tag, tagStates, index }) {
+export default function EditButtons({ tag, tagStates, index, deletePost }) {
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
 
@@ -25,10 +25,6 @@ export default function EditButtons({ tag, tagStates, index }) {
     const tagEdit = (id) => {
         setIsEditing(true);
         dispatch(toggleTagEdit(id));
-    };
-
-    const deletePost = (id) => {
-        dispatch(deleteTag(id));
     };
 
     return (

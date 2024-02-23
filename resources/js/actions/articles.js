@@ -44,6 +44,9 @@ export const deleteArt = (id) => {
     return dispatch => {
         axios.delete('/admin/articles/delete/' + id)
             .then(response => {
+                return axios.get('/api/articles/index');
+            })
+            .then(response => {
                 dispatch({ type: 'DELETE_ARTICLE_SUCCESS', payload: response.data });
             })
             .catch(error => {

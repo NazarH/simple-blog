@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateTag } from '@/actions/tags.js';
 
-export default function UpdateButtons({tag, tagStates, index, setTagStates})
+export default function UpdateButtons({tag})
 {
     const dispatch = useDispatch();
 
@@ -11,7 +11,7 @@ export default function UpdateButtons({tag, tagStates, index, setTagStates})
     };
 
     return (
-        <form form id={`updateForm-${tag.id}`} onSubmit={(e) => e.preventDefault()}>
+        <form id={`updateForm-${tag.id}`} onSubmit={(e) => e.preventDefault()}>
             <input
                 type="hidden"
                 name="_token"

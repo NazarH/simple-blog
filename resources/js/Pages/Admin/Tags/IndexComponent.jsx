@@ -1,10 +1,8 @@
 import React from 'react';
 
 import tagState from "@/Components/Tags/TagState";
-import EditButtons from "@/Components/Tags/EditButtons";
-import UpdateButtons from "@/Components/Tags/UpdateButtons";
-import EditInput from "@/Components/Tags/EditInput";
 import CreateInput from "@/Components/Tags/CreateInput";
+import TagRow from "@/Components/Tags/TagRow";
 
 export default function IndexComponent()
 {
@@ -12,9 +10,7 @@ export default function IndexComponent()
 
     return (
         <div className="container">
-
             <CreateInput setTagStates={setTagStates} />
-
             <table id="example2" className="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -27,34 +23,16 @@ export default function IndexComponent()
                 <tbody>
                     {tagStates &&
                         tagStates.map((tag, index) => (
-                            <tr key={tag.id} id={`tagN${index}`}>
-                                <td>{tag.id}</td>
-                                <td>
-                                    <EditInput
-                                        id={tag.id}
-                                        tagStates={tagStates}
-                                        index={index}
-                                        setTagStates={setTagStates}
-                                    />
-                                </td>
-                                <td>
-                                    <UpdateButtons
-                                        tag={tag}
-                                        tagStates={tagStates}
-                                        index={index}
-                                        setTagStates={setTagStates}
-                                    />
-                                </td>
-
-                                <EditButtons
+                                <TagRow
+                                    key={tag.id}
                                     tag={tag}
-                                    tagStates={tagStates}
                                     index={index}
+                                    tagStates={tagStates}
                                     setTagStates={setTagStates}
                                 />
-                            </tr>
+                            )
                         )
-                    )}
+                    }
                 </tbody>
             </table>
         </div>

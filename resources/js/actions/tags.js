@@ -55,6 +55,9 @@ export const updateTagData = (id, updatedTag) => {
 export const deleteTag = (id) => {
     return (dispatch) => {
         axios.delete(`/admin/tags/delete/${id}`)
+            .then(response => {
+                return axios.get('/api/tags/index');
+            })
             .then(() => {
                 dispatch({ type: 'DELETE_TAG_SUCCESS', payload: id });
             })
