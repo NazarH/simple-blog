@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Articles\StoreRequest;
 use Illuminate\Http\JsonResponse;
 use Inertia\Response as InertiaResponse;
@@ -28,18 +27,17 @@ class ArticlesController extends Controller
         return Inertia::render('Admin/Articles/FormComponent');
     }
 
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(StoreRequest $request): Response
     {
         $data = $request->validated();
-
-        preg_match('/<img[^>]+src="([^">]+)"/', $data['text'], $matches);
-        $src = $matches[1] ?? '';
-
         $data['user_id'] = Auth::user()->id;
+
         $article = Article::create($data);
         $article->tags()->sync($data['tag_ids']);
         $article->rubrics()->sync($data['rubric_ids']);
 
+        preg_match('/<img[^>]+src="([^">]+)"/', $data['text'], $matches);
+        $src = $matches[1] ?? '';
         Image::create([
             'article_id' => $article->id,
             'image_url' => $src

@@ -14,19 +14,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-
 require(base_path('routes/admin/web.php'));
 
 Auth::routes(['register' => false]);
@@ -98,7 +85,6 @@ Route::group(['prefix' => '/'], function(){
             ->name('password.update');
     });
 });
-
 
 Route::get('/test', function(){
     return Inertia::render('TestComponent');

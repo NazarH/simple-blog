@@ -54,7 +54,7 @@
                         this.page.identifier = "{{ $article->id }}";
                     };
 
-                    (function() { // DON'T EDIT BELOW THIS LINE
+                    (function() {
                         var d = document, s = d.createElement('script');
                         s.src = 'https://pet-blog.disqus.com/embed.js';
                         s.setAttribute('data-timestamp', +new Date());
