@@ -8,7 +8,7 @@ export default function EditButtons({ tag, tagStates, index }) {
     const [isEditing, setIsEditing] = useState(false);
 
     const saveTagChanges = (id) => {
-        setIsEditing(false); // Приховати кнопку збереження при збереженні змін
+        setIsEditing(false);
 
         const updatedTagData = {
             name: tagStates.find(tagState => tagState.id === id).name,
@@ -23,7 +23,7 @@ export default function EditButtons({ tag, tagStates, index }) {
     };
 
     const tagEdit = (id) => {
-        setIsEditing(true); // Показати кнопку збереження при редагуванні
+        setIsEditing(true);
         dispatch(toggleTagEdit(id));
     };
 

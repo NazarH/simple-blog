@@ -22,7 +22,6 @@ export default function EditInput({ id, tagStates, index }) {
                 disabled={!tagStates[index].isEditing}
                 onChange={(e) => {
                     const newName = e.target.value;
-                    // Відправляємо дію для оновлення імені тега
                     dispatch(updateTagName(id, newName));
                 }}
             />
