@@ -53,7 +53,7 @@ export default function ArticleRow ({ article, articleStates })
                         onClick={() => handleUpdateArticle(article.id)}
                         id={`articleAct-${article.id}`}
                     >
-                        {article.is_active ? 'Деактивувати' : 'Активувати'}
+                        {article.is_active ? 'Deactivate' : 'Activate'}
                     </button>
                 </form>
             </td>
@@ -63,11 +63,11 @@ export default function ArticleRow ({ article, articleStates })
                     state={{ id: article.id }}
                 >
                     <button className="btn btn-primary">
-                        Редагувати
+                        Edit
                     </button>
                 </Link>
                 <button className="btn btn-danger" onClick={() => handleDeleteArticle(article.id)}>
-                    Видалити
+                    Delete
                 </button>
             </td>
         </tr>

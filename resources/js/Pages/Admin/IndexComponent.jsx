@@ -13,30 +13,29 @@ export default function IndexComponent() {
 
     return (
         <div className="main-page">
-            <h1>Ласкаво просимо!</h1>
-            <h5>Статистика:</h5>
+            <h1>Welcome</h1>
             <ul>
                 <li>
                     <div>
-                        Кількість користувачів:
+                        Number of users:
                     </div>
                     {arrStates.users && arrStates.users.length}
                 </li>
                 <li>
                     <div>
-                        Кількість статтей:
+                        Number of articles:
                     </div>
                     {arrStates.articles && arrStates.articles.length}
                 </li>
                 <li>
                     <div>
-                        Кількість категорій:
+                        Number of categories:
                     </div>
                     {arrStates.rubrics && arrStates.rubrics.length}
                 </li>
                 <li>
                     <div>
-                        Кількість тегів:
+                        Number of tags:
                     </div>
                     {arrStates.tags && arrStates.tags.length}
                 </li>

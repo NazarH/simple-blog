@@ -14,7 +14,7 @@ export default function Aside({tags})
                             </div>
                             <div className="info">
                                 <Link to="/admin" className="d-block">
-                                    Username
+                                    Statistic
                                 </Link>
                             </div>
                         </div>

@@ -21,8 +21,8 @@ export default function IndexComponent() {
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Назва</th>
-                    <th>Активний</th>
+                    <th>Name</th>
+                    <th>Active</th>
                     <th></th>
                 </tr>
                 </thead>
