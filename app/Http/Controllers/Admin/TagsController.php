@@ -4,48 +4,49 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Tag;
 use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Tags\StoreRequest;
+use Illuminate\Http\Response;
 
 class TagsController extends Controller
 {
-    public function index()
+    public function index(): InertiaResponse
     {
         return Inertia::render('Admin/Tags/IndexComponent');
     }
 
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(StoreRequest $request): Response
     {
         $data = $request->validated();
         Tag::create($data);
 
-        return redirect(route('admin.tags.index'));
+        return response(null, 200);
     }
 
-    public function update(UpdateRequest $request, Tag $tag): RedirectResponse
+    public function update(UpdateRequest $request, Tag $tag): Response
     {
         $data = $request->validated();
         $tag->update([
             'is_active' => $data['is_active']
         ]);
 
-        return redirect(route('admin.tags.index'));
+        return response(null, 200);
     }
 
-    public function edit(StoreRequest $request, Tag $tag): RedirectResponse
+    public function edit(StoreRequest $request, Tag $tag): Response
     {
         $data = $request->validated();
         $tag->update($data);
 
-        return redirect(route('admin.tags.index'));
+        return response(null, 200);
     }
 
-    public function destroy(Tag $tag): RedirectResponse
+    public function destroy(Tag $tag): Response
     {
         $tag->delete();
 
-        return redirect(route('admin.tags.index'));
+        return response(null, 200);
     }
 }

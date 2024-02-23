@@ -15,7 +15,7 @@ class Nav extends Component
      */
     public function __construct()
     {
-        $this->rubrics = Rubric::inRandomOrder()->take(10)->get();
+        $this->rubrics = Rubric::active()->inRandomOrder()->take(10)->get();
     }
 
     /**

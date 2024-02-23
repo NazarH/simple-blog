@@ -3,49 +3,50 @@
 namespace App\Http\Controllers\Admin;
 
 use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 use App\Models\Rubric;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Rubrics\StoreRequest;
+use Illuminate\Http\Response;
 
 class RubricsController extends Controller
 {
-    public function index()
+    public function index(): InertiaResponse
     {
         return Inertia::render('Admin/Rubrics/IndexComponent');
     }
 
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(StoreRequest $request): Response
     {
         $data = $request->validated();
         Rubric::create($data);
 
-        return redirect(route('admin.rubrics.index'));
+        return response(null, 200);
     }
 
-    public function update(UpdateRequest $request, Rubric $rubric): RedirectResponse
+    public function update(UpdateRequest $request, Rubric $rubric): Response
     {
         $data = $request->validated();
         $rubric->update([
             'is_active' => $data['is_active']
         ]);
 
-        return redirect(route('admin.rubrics.index'));
+        return response(null, 200);
     }
 
-    public function edit(StoreRequest $request, Rubric $rubric): RedirectResponse
+    public function edit(StoreRequest $request, Rubric $rubric): Response
     {
         $data = $request->validated();
         $rubric->update($data);
 
-        return redirect(route('admin.rubrics.index'));
+        return response(null, 200);
     }
 
-    public function destroy(Rubric $rubric): RedirectResponse
+    public function destroy(Rubric $rubric): Response
     {
         $rubric->delete();
 
-        return redirect(route('admin.rubrics.index'));
+        return response(null, 200);
     }
 }

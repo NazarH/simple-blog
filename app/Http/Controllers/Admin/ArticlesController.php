@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Image;
+use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use App\Models\Article;
@@ -13,15 +14,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Articles\StoreRequest;
 use Illuminate\Http\JsonResponse;
+use Inertia\Response as InertiaResponse;
 
 class ArticlesController extends Controller
 {
-    public function index()
+    public function index(): InertiaResponse
     {
         return Inertia::render('Admin/Articles/IndexComponent');
     }
 
-    public function create()
+    public function create(): InertiaResponse
     {
         return Inertia::render('Admin/Articles/FormComponent');
     }
@@ -43,15 +45,15 @@ class ArticlesController extends Controller
             'image_url' => $src
         ]);
 
-        return redirect(route('admin.articles.index'));
+        return response(null, 200);
     }
 
-    public function edit()
+    public function edit(): InertiaResponse
     {
         return Inertia::render('Admin/Articles/EditComponent');
     }
 
-    public function update(Request $request, Article $article): RedirectResponse
+    public function update(Request $request, Article $article): Response
     {
         $article->update([
            'title' => $request['title'],
@@ -68,17 +70,17 @@ class ArticlesController extends Controller
         $article->tags()->sync($tags);
         $article->rubrics()->sync($rubrics);
 
-        return redirect(route('admin.articles.index'));
+        return response(null, 200);
     }
 
-    public function destroy(Article $article): RedirectResponse
+    public function destroy(Article $article): Response
     {
         $article->delete();
 
-        return redirect(route('admin.articles.index'));
+        return response(null, 200);
     }
 
-    public function activeUpdate(UpdateRequest $request, Article $article): RedirectResponse
+    public function activeUpdate(UpdateRequest $request, Article $article): Response
     {
         $data = $request->validated();
 
@@ -86,7 +88,7 @@ class ArticlesController extends Controller
             'is_active' => $data['is_active']
         ]);
 
-        return redirect(route('admin.articles.index'));
+        return response(null, 200);
     }
 
     public function upload(Request $request): JsonResponse

@@ -3,57 +3,58 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use Illuminate\Http\Response;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Users\StoreRequest;
 use App\Http\Requests\Users\UpdateRequest;
+use Inertia\Response as InertiaResponse;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(): InertiaResponse
     {
         return Inertia::render('Admin/Users/IndexComponent');
     }
 
-    public function create()
+    public function create(): InertiaResponse
     {
         return Inertia::render('Admin/Users/CreateComponent');
     }
 
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(StoreRequest $request): Response
     {
         $data = $request->validated();
         User::create($data);
 
-        return redirect(route('admin.users.index'));
+        return response(null, 200);
     }
 
-    public function update(UpdateRequest $request, User $user): RedirectResponse
+    public function update(UpdateRequest $request, User $user): Response
     {
         $data = $request->validated();
         $user->update([
             'role' => $data['role']
         ]);
 
-        return redirect(route('admin.users.index'));
+        return response(null, 200);
     }
 
-    public function deactivation(User $user): RedirectResponse
+    public function deactivation(User $user): Response
     {
         $user->update([
             'is_active' => false
         ]);
 
-        return redirect(route('admin.users.index'));
+        return response(null, 200);
     }
 
-    public function activation(User $user): RedirectResponse
+    public function activation(User $user): Response
     {
         $user->update([
             'is_active' => true
         ]);
 
-        return redirect(route('admin.users.index'));
+        return response(null, 200);
     }
 }
