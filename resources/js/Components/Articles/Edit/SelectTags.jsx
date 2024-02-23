@@ -7,7 +7,7 @@ export default function SelectTags({arrStates, setFormData})
 {
     const dispatch = useDispatch();
     const [searchTags, setSearchTags] = useState('');
-    const options2 = useSelector(state => state.tagsReducer.tags);
+    const options2 = useSelector(state => state.articlesReducer.tags);
 
     useEffect(() => {
         if (searchTags) {

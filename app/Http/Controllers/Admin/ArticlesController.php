@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use App\Models\Article;
 use Illuminate\Http\Request;
@@ -47,8 +48,15 @@ class ArticlesController extends Controller
            'title' => $request['title'],
             'text' => $request['text'],
         ]);
-        $article->tags()->sync($request['tag_ids']);
-        $article->rubrics()->sync($request['rubric_ids']);
+        $tags = is_array(head($request['tag_ids']))
+            ? Arr::pluck($request['tag_ids'], 'value')
+            : $request['tag_ids'];
+        $rubrics = is_array(head($request['rubric_ids']))
+            ? Arr::pluck($request['rubric_ids'], 'value')
+            : $request['rubric_ids'];
+
+        $article->tags()->sync($tags);
+        $article->rubrics()->sync($rubrics);
 
         return redirect(route('admin.articles.index'));
     }

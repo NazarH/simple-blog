@@ -75,7 +75,8 @@ export const formSubmit = (formData, arrStates) => {
                 dispatch({ type: 'FETCH_ARTICLE_EDIT_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'FETCH_ARTICLE_EDIT_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_ARTICLE_EDIT_FAILURE', payload: errorMessage });
             });
     };
 };

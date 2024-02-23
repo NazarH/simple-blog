@@ -7,7 +7,7 @@ export default function SelectRubrics({arrStates, setFormData}) {
 
     const dispatch = useDispatch();
     const [searchRubrics, setSearchRubrics] = useState('');
-    const options = useSelector(state => state.rubricsReducer.rubrics);
+    const options = useSelector(state => state.articlesReducer.rubrics);
 
     useEffect(() => {
         if (searchRubrics) {
