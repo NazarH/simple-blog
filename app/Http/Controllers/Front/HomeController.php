@@ -29,7 +29,8 @@ class HomeController extends Controller
         $articles = Article::query()->active()->with([
             'rubrics',
             'tags' => fn($q) => $q->active(),
-            'user'
+            'user',
+            'image'
         ])->where('title', 'like', '%'.$data['query'].'%')
         ->orWhere('text', 'like', '%'.$data['query'].'%')
         ->paginate(1);
