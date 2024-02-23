@@ -13,7 +13,8 @@ class HomeController extends Controller
         $articles = Article::query()->active()->with([
             'rubrics' => fn($q) => $q->active(),
             'tags' => fn($q) => $q->active(),
-            'user'
+            'user',
+            'image'
         ])->paginate(9);
 
         return view('pages.home', [

@@ -35,5 +35,8 @@ class Article extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-
+    public function image()
+    {
+        return $this->hasOne(Image::class, 'article_id', 'id', );
+    }
 }

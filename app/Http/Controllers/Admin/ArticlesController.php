@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Image;
 use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use App\Models\Article;
@@ -28,11 +29,19 @@ class ArticlesController extends Controller
     public function store(StoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $data['user_id'] = Auth::user()->id;
 
+        $img = preg_match('/<img[^>]+src="([^">]+)"/', $data['text'], $matches);
+        $src = $matches[1] ?? '';
+
+        $data['user_id'] = Auth::user()->id;
         $article = Article::create($data);
         $article->tags()->sync($data['tag_ids']);
         $article->rubrics()->sync($data['rubric_ids']);
+
+        Image::create([
+            'article_id' => $article->id,
+            'image_url' => $src
+        ]);
 
         return redirect(route('admin.articles.index'));
     }
