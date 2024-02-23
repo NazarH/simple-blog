@@ -1,5 +1,5 @@
 <div class="card mb-3 card-atr">
-    <img src="{{$article->image?->image_url ?? asset("img/noimage.png")}}" class="card-img-top img-atr">
+    <img src="{{boolval($article->image?->image_url) ? $article->image?->image_url : asset("img/noimage.png")}}" class="card-img-top img-atr">
     <div class="card-body">
         <a href="{{route('pages.article', $article->id)}}" class="card-title">{{ $article->title }}</a>
 

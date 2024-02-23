@@ -30,7 +30,7 @@ export default function EditArticleForm() {
 
         console.log(formData);
         dispatch(formSubmit(formData, arrStates));
-        //navigate('/admin/articles');
+        navigate('/admin/articles');
     };
 
     return (
