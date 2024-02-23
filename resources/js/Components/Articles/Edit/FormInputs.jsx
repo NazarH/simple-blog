@@ -1,10 +1,6 @@
 import React from 'react';
 
 export default function FormInputs({formData, setFormData}) {
-    const id = location.state
-        ? location.state.id
-        : window.location.href.match(/\/(\d+)$/)[1];
-
     return (
         <div>
             <input

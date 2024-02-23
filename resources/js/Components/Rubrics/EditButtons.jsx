@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { deleteRubric } from '@/actions/rubrics';
-import { updateRubricData } from '@/actions/rubrics';
-import { toggleRubricEdit } from '@/actions/rubrics';
+import { deleteRubric, updateRubricData, toggleRubricEdit } from '@/actions/rubrics';
 
-export default function EditButtons({rubric, rubricStates, index})
-{
+export default function EditButtons({ rubric, rubricStates, index }) {
     const dispatch = useDispatch();
+    const [isEditing, setIsEditing] = useState(false);
 
     const saveRubricChanges = (id) => {
-        document.getElementById('editBtn'+id).style='display: block';
-        document.getElementById('saveBtn'+id).style='display: none';
-        document.getElementById('rubricName'+id).style='color: white;';
+        setIsEditing(false);
 
         const updatedRubricData = {
             name: rubricStates.find(rubricState => rubricState.id === id).name,
@@ -27,35 +23,34 @@ export default function EditButtons({rubric, rubricStates, index})
     };
 
     const rubEdit = (id) => {
-        document.getElementById('editBtn'+id).style='display: none';
-        document.getElementById('saveBtn'+id).style='display: block';
+        setIsEditing(true);
         dispatch(toggleRubricEdit(id));
     };
 
-    const deletePost = (id, index) => {
+    const deletePost = (id) => {
         dispatch(deleteRubric(id));
-        document.getElementById('rubN' + index).remove();
     };
 
     return (
         <td className="buttons">
             <button
-                id={`editBtn${rubric.id}`}
                 className="btn btn-primary"
                 onClick={() => rubEdit(rubric.id)}
+                style={{ display: isEditing ? 'none' : 'block' }}
             >
                 Edit
             </button>
             <button
-                id={`saveBtn${rubric.id}`}
-                className={`btn btn-success hidden`}
+                className="btn btn-success"
                 onClick={() => saveRubricChanges(rubric.id)}
+                style={{ display: isEditing ? 'block' : 'none' }}
             >
                 Save
             </button>
-            <button className="btn btn-danger" onClick={() => deletePost(rubric.id, index)}>
+            <button className="btn btn-danger" onClick={() => deletePost(rubric.id)}>
                 Delete
             </button>
         </td>
     );
 }
+

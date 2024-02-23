@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { updateTagData } from '@/actions/tags';
-import { toggleTagEdit } from '@/actions/tags';
-import { deleteTag } from '@/actions/tags';
+import { updateTagData, toggleTagEdit, deleteTag } from '@/actions/tags';
 
-export default function EditButtons({tag, tagStates, index, setTagStates})
-{
+export default function EditButtons({ tag, tagStates, index }) {
     const dispatch = useDispatch();
+    const [isEditing, setIsEditing] = useState(false);
 
     const saveTagChanges = (id) => {
-        document.getElementById('editTagBtn'+id).style='display: block';
-        document.getElementById('saveTagBtn'+id).style='display: none';
-        document.getElementById('tagName'+id).style='color: white;';
+        setIsEditing(false); // Приховати кнопку збереження при збереженні змін
 
         const updatedTagData = {
             name: tagStates.find(tagState => tagState.id === id).name,
@@ -27,36 +23,31 @@ export default function EditButtons({tag, tagStates, index, setTagStates})
     };
 
     const tagEdit = (id) => {
-        document.getElementById('editTagBtn'+id).style='display: none';
-        document.getElementById('saveTagBtn'+id).style='display: block';
-        document.getElementById('tagName'+id).style='color: black;';
-
+        setIsEditing(true); // Показати кнопку збереження при редагуванні
         dispatch(toggleTagEdit(id));
     };
 
-    const deletePost = (id, index) => {
+    const deletePost = (id) => {
         dispatch(deleteTag(id));
-
-        document.getElementById('tagN' + index).remove();
     };
 
     return (
         <td className="buttons">
             <button
-                id={`editTagBtn${tag.id}`}
                 className="btn btn-primary"
                 onClick={() => tagEdit(tag.id)}
+                style={{ display: isEditing ? 'none' : 'block' }}
             >
                 Edit
             </button>
             <button
-                id={`saveTagBtn${tag.id}`}
-                className={`btn btn-success hidden`}
+                className="btn btn-success"
                 onClick={() => saveTagChanges(tag.id)}
+                style={{ display: isEditing ? 'block' : 'none' }}
             >
                 Save
             </button>
-            <button className="btn btn-danger" onClick={() => deletePost(tag.id, index)}>
+            <button className="btn btn-danger" onClick={() => deletePost(tag.id)}>
                 Delete
             </button>
         </td>
