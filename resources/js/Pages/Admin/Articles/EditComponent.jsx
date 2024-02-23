@@ -28,7 +28,6 @@ export default function EditArticleForm() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        console.log(formData);
         dispatch(formSubmit(formData, arrStates));
         navigate('/admin/articles');
     };

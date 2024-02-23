@@ -30,7 +30,7 @@ class ArticlesController extends Controller
     {
         $data = $request->validated();
 
-        $img = preg_match('/<img[^>]+src="([^">]+)"/', $data['text'], $matches);
+        preg_match('/<img[^>]+src="([^">]+)"/', $data['text'], $matches);
         $src = $matches[1] ?? '';
 
         $data['user_id'] = Auth::user()->id;
@@ -57,6 +57,7 @@ class ArticlesController extends Controller
            'title' => $request['title'],
             'text' => $request['text'],
         ]);
+
         $tags = is_array(head($request['tag_ids']))
             ? Arr::pluck($request['tag_ids'], 'value')
             : $request['tag_ids'];

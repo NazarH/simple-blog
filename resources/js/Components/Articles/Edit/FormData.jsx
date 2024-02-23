@@ -30,9 +30,9 @@ const useFormInput = (arrStates) => {
             toolbar: {
                 items: [
                     'heading', '|',
-                    'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', '|',
-                    'blockQuote', 'code', 'link', 'imageUpload', '|',
-                    'undo', 'redo',
+                    'bold', 'italic', '|',
+                    'blockQuote', 'link', 'imageUpload', '|',
+                    'undo', 'redo'
                 ],
             },
 

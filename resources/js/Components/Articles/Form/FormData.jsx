@@ -19,8 +19,8 @@ export default function FormData()
                 toolbar: {
                     items: [
                         'heading', '|',
-                        'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', '|',
-                        'blockQuote', 'code', 'link', 'imageUpload', '|',
+                        'bold', 'italic', '|',
+                        'blockQuote', 'link', 'imageUpload', '|',
                         'undo', 'redo'
                     ],
                 },

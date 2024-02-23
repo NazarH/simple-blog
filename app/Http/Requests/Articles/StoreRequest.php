@@ -34,12 +34,10 @@ class StoreRequest extends FormRequest
                 'string'
             ],
             'tag_ids' => [
-                'required',
                 'array',
                 Rule::exists('tags', 'id')
             ],
             'rubric_ids' => [
-                'required',
                 'array',
                 Rule::exists('rubrics', 'id')
             ],
