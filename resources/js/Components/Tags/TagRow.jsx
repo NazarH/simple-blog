@@ -7,7 +7,7 @@ import EditButtons from "@/Components/Tags/EditButtons.jsx";
 
 import {deleteTag} from "@/actions/tags.js";
 
-export default function TagRow({tag, index, tagStates, setTagStates, setIsSuccess})
+export default function TagRow({tag, index, tagStates, setTagStates, setIsSuccess, setPageNumber})
 {
     const dispatch = useDispatch();
     const [isDelete, setIsDelete] = useState(false);
@@ -16,6 +16,7 @@ export default function TagRow({tag, index, tagStates, setTagStates, setIsSucces
         dispatch(deleteTag(id));
         setIsDelete(true);
         setIsSuccess(true);
+        setPageNumber(1);
     };
 
     return (

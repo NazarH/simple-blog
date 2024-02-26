@@ -10,11 +10,15 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::paginate(5)->map(function ($tag) {
+        $paginator = Tag::paginate(5);
+        $total = $paginator->total();
+
+        $tags = $paginator->map(function ($tag) use ($total) {
             return [
                 'id' => $tag->id,
                 'name' => $tag->name,
-                'is_active' => $tag->is_active
+                'is_active' => $tag->is_active,
+                'total' => $total
             ];
         });
 

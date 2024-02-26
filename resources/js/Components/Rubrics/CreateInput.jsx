@@ -13,6 +13,8 @@ export default function CreateInput({setRubricStates, setIsSuccess})
 
         setName('');
         setIsSuccess(true);
+
+        setPageNumber(1);
     };
 
     return (

@@ -10,11 +10,15 @@ class RubricsController extends Controller
 {
     public function index()
     {
-        $rubrics = Rubric::paginate(5)->map(function ($rubric) {
+        $paginator = Rubric::paginate(5);
+        $total = $paginator->total();
+
+        $rubrics = $paginator->map(function ($rubric) use ($total){
             return [
                 'id' => $rubric->id,
                 'name' => $rubric->name,
-                'is_active' => $rubric->is_active
+                'is_active' => $rubric->is_active,
+                'total' => $total
             ];
         });
 

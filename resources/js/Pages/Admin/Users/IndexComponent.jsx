@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import Pagination from "react-js-pagination";
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import UserStates from "@/Components/Users/UserStates";
 import UpdateButtons from "@/Components/Users/UpdateButtons";
 import ChangeRole from "@/Components/Users/ChangeRole";
 import SuccessForm from "@/Components/SuccesForm";
-import { Link } from 'react-router-dom';
+
+import { fetchUsers } from '@/actions/users';
 
 export default function IndexComponent()
 {
+    const dispatch = useDispatch();
+    const [pageNumber, setPageNumber] = useState(1);
     const {
         userStates,
         setUserStates,
         authStates,
-    } = UserStates();
+    } = UserStates(pageNumber);
 
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -67,6 +73,26 @@ export default function IndexComponent()
                     ))}
                 </tbody>
             </table>
+
+            <Pagination
+                activePage={pageNumber}
+                totalItemsCount={
+                    userStates &&
+                        userStates.length > 0
+                            ? userStates[0].total
+                            : 0
+                }
+                itemsCountPerPage={5}
+                onChange={(pageNumber) => {
+                    dispatch(fetchUsers(pageNumber));
+                    setPageNumber(pageNumber++);
+                }}
+                itemClass="page-item"
+                linkClass="page-link"
+                firstPageText="First"
+                lastPageText="Last"
+            />
+
             <SuccessForm
                 setIsSuccess={setIsSuccess}
                 isSuccess={isSuccess}

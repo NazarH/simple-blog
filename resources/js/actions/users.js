@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const fetchUsers = () => {
+export const fetchUsers = (pageNumber) => {
     return dispatch => {
-        axios.get('/api/users/index')
+        axios.get(`/api/users/index?page=${pageNumber}`)
             .then(response => {
                 dispatch({ type: 'FETCH_USERS_SUCCESS', payload: response.data });
             })

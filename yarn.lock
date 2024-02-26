@@ -3244,6 +3244,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"block-stream@npm:*":
+  version: 0.0.9
+  resolution: "block-stream@npm:0.0.9"
+  dependencies:
+    inherits: "npm:~2.0.0"
+  checksum: b39b281c01cc5424e47d9433ac499b0c0cccf55bf72b3998ca5b88a8c479dfaab4d311e1a3544d3ed8f745744b0f393a7984e5e7e581d631eecefccf8012ae95
+  languageName: node
+  linkType: hard
+
 "blurhash@npm:2.0.5":
   version: 2.0.5
   resolution: "blurhash@npm:2.0.5"
@@ -3642,6 +3651,13 @@ __metadata:
   version: 4.12.1
   resolution: "ckeditor@npm:4.12.1"
   checksum: 24e8cace8a01d4af592e20fa688b4b9df5b7840d6a8650f44a9dbc318b5aa2b494145465f13e3cc16d8b445f1b7a03a7b1b10a30ad158a1df84527d4ae88d3de
+  languageName: node
+  linkType: hard
+
+"classnames@npm:^2.2.5":
+  version: 2.5.1
+  resolution: "classnames@npm:2.5.1"
+  checksum: afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
   languageName: node
   linkType: hard
 
@@ -5054,6 +5070,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fstream@npm:1.0.12, fstream@npm:^1.0.12":
+  version: 1.0.12
+  resolution: "fstream@npm:1.0.12"
+  dependencies:
+    graceful-fs: "npm:^4.1.2"
+    inherits: "npm:~2.0.0"
+    mkdirp: "npm:>=0.5 0"
+    rimraf: "npm:2"
+  checksum: f52a0687a0649c6b93973eb7f1d5495e445fa993f797ba1af186e666b6aebe53916a8c497dce7037c74d0d4a33c56b0ab1f98f10ad71cca84ba8661110d25ee2
+  languageName: node
+  linkType: hard
+
 "function-bind@npm:^1.1.2":
   version: 1.1.2
   resolution: "function-bind@npm:1.1.2"
@@ -5595,7 +5623,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inherits@npm:2, inherits@npm:2.0.4, inherits@npm:^2.0.1, inherits@npm:^2.0.3, inherits@npm:^2.0.4, inherits@npm:~2.0.1, inherits@npm:~2.0.3":
+"inherits@npm:2, inherits@npm:2.0.4, inherits@npm:^2.0.1, inherits@npm:^2.0.3, inherits@npm:^2.0.4, inherits@npm:~2.0.0, inherits@npm:~2.0.1, inherits@npm:~2.0.3":
   version: 2.0.4
   resolution: "inherits@npm:2.0.4"
   checksum: 4e531f648b29039fb7426fb94075e6545faa1eb9fe83c29f0b6d9e7263aceb4289d2d4557db0d428188eeb449cc7c5e77b0a0b2c4e248ff2a65933a0dee49ef2
@@ -6362,7 +6390,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:^1.2.0":
+"minimist@npm:^1.2.0, minimist@npm:^1.2.6":
   version: 1.2.8
   resolution: "minimist@npm:1.2.8"
   checksum: 19d3fcdca050087b84c2029841a093691a91259a47def2f18222f41e7645a0b7c44ef4b40e88a1e58a40c84d2ef0ee6047c55594d298146d0eb3f6b737c20ce6
@@ -6450,6 +6478,17 @@ __metadata:
     minipass: "npm:^3.0.0"
     yallist: "npm:^4.0.0"
   checksum: 64fae024e1a7d0346a1102bb670085b17b7f95bf6cfdf5b128772ec8faf9ea211464ea4add406a3a6384a7d87a0cd1a96263692134323477b4fb43659a6cab78
+  languageName: node
+  linkType: hard
+
+"mkdirp@npm:>=0.5 0":
+  version: 0.5.6
+  resolution: "mkdirp@npm:0.5.6"
+  dependencies:
+    minimist: "npm:^1.2.6"
+  bin:
+    mkdirp: bin/cmd.js
+  checksum: e2e2be789218807b58abced04e7b49851d9e46e88a2f9539242cc8a92c9b5c3a0b9bab360bd3014e02a140fc4fbc58e31176c408b493f8a2a6f4986bd7527b01
   languageName: node
   linkType: hard
 
@@ -6822,6 +6861,13 @@ __metadata:
   version: 2.2.0
   resolution: "p-try@npm:2.2.0"
   checksum: c36c19907734c904b16994e6535b02c36c2224d433e01a2f1ab777237f4d86e6289fd5fd464850491e940379d4606ed850c03e0f9ab600b0ebddb511312e177f
+  languageName: node
+  linkType: hard
+
+"paginator@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "paginator@npm:1.0.0"
+  checksum: 98042230d1131d5d62c2e727a6ec4a9c050f80fdfe843232c283028146abd53b885495888db8cf2020294b21f5dff74b74a05027ec8f19995c422bb826cd207b
   languageName: node
   linkType: hard
 
@@ -7512,7 +7558,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15, prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
+"prop-types@npm:15.x.x - 16.x.x, prop-types@npm:^15, prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -7657,6 +7703,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-js-pagination@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "react-js-pagination@npm:3.0.3"
+  dependencies:
+    classnames: "npm:^2.2.5"
+    fstream: "npm:1.0.12"
+    paginator: "npm:^1.0.0"
+    prop-types: "npm:15.x.x - 16.x.x"
+    react: "npm:15.x.x - 16.x.x"
+    tar: "npm:2.2.2"
+  checksum: dfadd803a7d3ac8ed7de92af84627e38d288d46a2fb6a4f4e0d5e53f05dc5e091f381248275a360401f905f10ebf7baeb28f02cd9d637366c70afb5f87d8a65d
+  languageName: node
+  linkType: hard
+
 "react-lifecycles-compat@npm:^3.0.0":
   version: 3.0.4
   resolution: "react-lifecycles-compat@npm:3.0.4"
@@ -7775,6 +7835,17 @@ __metadata:
     react: ">=16.6.0"
     react-dom: ">=16.6.0"
   checksum: 2ba754ba748faefa15f87c96dfa700d5525054a0141de8c75763aae6734af0740e77e11261a1e8f4ffc08fd9ab78510122e05c21c2d79066c38bb6861a886c82
+  languageName: node
+  linkType: hard
+
+"react@npm:15.x.x - 16.x.x":
+  version: 16.14.0
+  resolution: "react@npm:16.14.0"
+  dependencies:
+    loose-envify: "npm:^1.1.0"
+    object-assign: "npm:^4.1.1"
+    prop-types: "npm:^15.6.2"
+  checksum: df8faae43e01387013900e8f8fb3c4ce9935b7edbcbaa77e12999c913eb958000a0a8750bf9a0886dae0ad768dd4a4ee983752d5bade8d840adbe0ce890a2438
   languageName: node
   linkType: hard
 
@@ -8025,6 +8096,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rimraf@npm:2":
+  version: 2.7.1
+  resolution: "rimraf@npm:2.7.1"
+  dependencies:
+    glob: "npm:^7.1.3"
+  bin:
+    rimraf: ./bin.js
+  checksum: 4eef73d406c6940927479a3a9dee551e14a54faf54b31ef861250ac815172bade86cc6f7d64a4dc5e98b65e4b18a2e1c9ff3b68d296be0c748413f092bb0dd40
+  languageName: node
+  linkType: hard
+
 "rimraf@npm:^3.0.2":
   version: 3.0.2
   resolution: "rimraf@npm:3.0.2"
@@ -8081,6 +8163,7 @@ __metadata:
     postcss: "npm:^8.4.31"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-js-pagination: "npm:^3.0.3"
     react-modal: "npm:^3.16.1"
     react-paginate: "npm:^8.2.0"
     react-redux: "npm:^9.0.4"
@@ -8742,6 +8825,17 @@ __metadata:
   version: 2.2.1
   resolution: "tapable@npm:2.2.1"
   checksum: bc40e6efe1e554d075469cedaba69a30eeb373552aaf41caeaaa45bf56ffacc2674261b106245bd566b35d8f3329b52d838e851ee0a852120acae26e622925c9
+  languageName: node
+  linkType: hard
+
+"tar@npm:2.2.2":
+  version: 2.2.2
+  resolution: "tar@npm:2.2.2"
+  dependencies:
+    block-stream: "npm:*"
+    fstream: "npm:^1.0.12"
+    inherits: "npm:2"
+  checksum: 52da9fe8968c091680b697c5eb56762f932d706730b320bd8b4135ca32aaa2c7223bab1113bf33cca92e28964d579588d621ce262edf614c3afbe8a2cd2e1895
   languageName: node
   linkType: hard
 

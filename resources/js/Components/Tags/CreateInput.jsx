@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createTag } from '@/actions/tags';
 
-export default function CreateInput({setTagStates, setIsSuccess})
+export default function CreateInput({setTagStates, setIsSuccess, setPageNumber})
 {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
@@ -14,6 +14,7 @@ export default function CreateInput({setTagStates, setIsSuccess})
         setName('');
 
         setIsSuccess(true);
+        setPageNumber(1);
     };
 
     return (

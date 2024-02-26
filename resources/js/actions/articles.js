@@ -12,9 +12,9 @@ export const fetchArray = () => {
     };
 };
 
-export const fetchArticles = () => {
+export const fetchArticles = (pageNumber) => {
     return dispatch => {
-        axios.get('/api/articles/index')
+        axios.get(`/api/articles/index?page=${pageNumber}`)
             .then(response => {
                 dispatch({ type: 'FETCH_ARTICLES_SUCCESS', payload: response.data });
             })
@@ -44,10 +44,7 @@ export const deleteArt = (id) => {
     return dispatch => {
         axios.delete('/admin/articles/delete/' + id)
             .then(response => {
-                return axios.get('/api/articles/index');
-            })
-            .then(response => {
-                dispatch({ type: 'DELETE_ARTICLE_SUCCESS', payload: response.data });
+                dispatch(fetchArticles(1));
             })
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';

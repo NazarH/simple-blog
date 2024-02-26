@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const fetchRubrics = () => {
+export const fetchRubrics = (pageNumber) => {
     return dispatch => {
-        axios.get('/api/rubrics/index')
+        axios.get(`/api/rubrics/index?page=${pageNumber}`)
             .then(response => {
                 dispatch({ type: 'FETCH_RUBRICS_SUCCESS', payload: response.data });
             })
@@ -44,10 +44,7 @@ export const deleteRubric = (id) => {
     return (dispatch) => {
         axios.delete(`/admin/rubrics/delete/${id}`)
             .then(response => {
-                return axios.get('/api/rubrics/index');
-            })
-            .then(() => {
-                dispatch({ type: 'DELETE_RUBRIC_SUCCESS', payload: id });
+                dispatch(fetchRubrics());
             })
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';

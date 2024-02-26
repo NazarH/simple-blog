@@ -13,6 +13,7 @@ const tagsReducer = (state = initialState, action) => {
                     tag.id === action.payload.tagId
                         ? { ...tag, is_active: action.payload.active ? 0 : 1 }
                         : tag),
+                total: state.tags.total,
                 loading: false,
                 error: null
             };

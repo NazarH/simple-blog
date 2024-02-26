@@ -10,13 +10,17 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(5)->map(function ($user) {
+        $paginator = User::paginate(5);
+        $total = $paginator->total();
+
+        $users = $paginator->map(function ($user) use ($total){
             return [
                 'id' => $user->id,
                 'login' => $user->login,
                 'email' => $user->email,
                 'role' => $user->role,
-                'is_active' => $user->is_active
+                'is_active' => $user->is_active,
+                'total' => $total
             ];
         });
 

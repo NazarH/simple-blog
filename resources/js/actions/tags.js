@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const fetchTags = () => {
+export const fetchTags = (pageNumber) => {
     return dispatch => {
-        axios.get('/api/tags/index')
+        axios.get(`/api/tags/index?page=${pageNumber}`)
             .then(response => {
                 dispatch({ type: 'FETCH_TAGS_SUCCESS', payload: response.data });
             })
@@ -55,11 +55,8 @@ export const updateTagData = (id, updatedTag) => {
 export const deleteTag = (id) => {
     return (dispatch) => {
         axios.delete(`/admin/tags/delete/${id}`)
-            .then(response => {
-                return axios.get('/api/tags/index');
-            })
             .then(() => {
-                dispatch({ type: 'DELETE_TAG_SUCCESS', payload: id });
+                dispatch(fetchTags());
             })
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
@@ -67,6 +64,7 @@ export const deleteTag = (id) => {
             });
     };
 };
+
 
 export const toggleTagEdit = (id) => {
     return {

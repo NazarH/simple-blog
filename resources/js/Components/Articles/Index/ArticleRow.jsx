@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { updateArt } from "@/actions/articles";
 import { deleteArt } from "@/actions/articles"
 
-export default function ArticleRow ({ article, articleStates, setIsSuccess })
+export default function ArticleRow ({ article, articleStates, setIsSuccess, setPageNumber })
 {
     const dispatch = useDispatch();
     const [isDelete, setIsDelete] = useState(false);
@@ -14,6 +14,7 @@ export default function ArticleRow ({ article, articleStates, setIsSuccess })
         dispatch(deleteArt(id));
         setIsDelete(true);
         setIsSuccess(true);
+        setPageNumber(1);
     };
 
     const handleUpdateArticle = (artId) => {

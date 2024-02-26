@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Pagination from "react-js-pagination";
 
 import rubricState from "@/Components/Rubrics/RubricState";
 import CreateInput from "@/Components/Rubrics/CreateInput";
 import RubricRow from "@/Components/Rubrics/RubricRow";
 import SuccessForm from "@/Components/SuccesForm";
+import { fetchRubrics } from '@/actions/rubrics';
 
 export default function IndexComponent()
 {
-    const { rubricStates, setRubricStates } = rubricState();
+    const dispatch = useDispatch();
+    const [pageNumber, setPageNumber] = useState(1);
+    const { rubricStates, setRubricStates } = rubricState(pageNumber);
     const [isSuccess, setIsSuccess] = useState(false);
 
     return (
@@ -15,6 +20,7 @@ export default function IndexComponent()
             <CreateInput
                 setRubricStates={setRubricStates}
                 setIsSuccess={setIsSuccess}
+                setPageNumber={setPageNumber}
             />
             <table id="example2" className="table table-bordered table-hover">
                 <thead>
@@ -35,12 +41,33 @@ export default function IndexComponent()
                                     rubricStates={rubricStates}
                                     setRubricStates={setRubricStates}
                                     setIsSuccess={setIsSuccess}
+                                    setPageNumber={setPageNumber}
                                 />
                             )
                         )
                     }
                 </tbody>
             </table>
+
+            <Pagination
+                activePage={pageNumber}
+                totalItemsCount={
+                    rubricStates &&
+                        rubricStates.length > 0
+                            ? rubricStates[0].total
+                            : 0
+                }
+                itemsCountPerPage={5}
+                onChange={(pageNumber) => {
+                    dispatch(fetchRubrics(pageNumber));
+                    setPageNumber(pageNumber++);
+                }}
+                itemClass="page-item"
+                linkClass="page-link"
+                firstPageText="First"
+                lastPageText="Last"
+            />
+
             <SuccessForm
                 setIsSuccess={setIsSuccess}
                 isSuccess={isSuccess}
