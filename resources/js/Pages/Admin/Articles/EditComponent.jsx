@@ -9,6 +9,7 @@ import FormData from '@/Components/Articles/Edit/FormData';
 
 import { fetchEditData } from "@/actions/articles";
 import { formSubmit } from "@/actions/articles";
+import SuccessForm from "@/Components/SuccesForm.jsx";
 
 export default function EditArticleForm() {
     const location = useLocation();
@@ -16,6 +17,8 @@ export default function EditArticleForm() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [isSuccess, setIsSuccess] = useState(false);
 
     useEffect(() => {
         dispatch(fetchEditData(id));
@@ -29,7 +32,12 @@ export default function EditArticleForm() {
         e.preventDefault();
 
         dispatch(formSubmit(formData, arrStates));
-        navigate('/admin/articles');
+
+        setIsSuccess(true);
+
+        setTimeout(() => {
+            navigate('/admin/articles');
+        }, 2000);
     };
 
     return (
@@ -45,6 +53,10 @@ export default function EditArticleForm() {
                     </button>
                 </div>
             </form>
+            <SuccessForm
+                setIsSuccess={setIsSuccess}
+                isSuccess={isSuccess}
+            />
         </div>
     );
 }

@@ -2,12 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '@/actions/users';
 
-export default function UpdateButtons({ user, setUserStates, userStates })
+export default function UpdateButtons({ user, setUserStates, userStates, setIsSuccess })
 {
     const dispatch = useDispatch();
 
     const updateUserHandler = (id, action, active) => {
         dispatch(updateUser(id, action, active));
+        setIsSuccess(true);
     };
 
     return (

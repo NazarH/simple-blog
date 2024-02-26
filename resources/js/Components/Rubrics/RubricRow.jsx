@@ -7,7 +7,7 @@ import EditButtons from "@/Components/Rubrics/EditButtons.jsx";
 
 import { deleteRubric } from '@/actions/rubrics';
 
-export default function RubricRow({rubric, index, rubricStates, setRubricStates})
+export default function RubricRow({rubric, index, rubricStates, setRubricStates, setIsSuccess})
 {
     const dispatch = useDispatch();
     const [isDelete, setIsDelete] = useState(false);
@@ -15,6 +15,7 @@ export default function RubricRow({rubric, index, rubricStates, setRubricStates}
     const deletePost = (id) => {
         dispatch(deleteRubric(id));
         setIsDelete(true);
+        setIsSuccess(true);
     };
 
     return (
@@ -38,6 +39,7 @@ export default function RubricRow({rubric, index, rubricStates, setRubricStates}
                     rubricStates={rubricStates}
                     index={index}
                     setRubricStates={setRubricStates}
+                    setIsSuccess={setIsSuccess}
                 />
             </td>
             <EditButtons
@@ -46,6 +48,7 @@ export default function RubricRow({rubric, index, rubricStates, setRubricStates}
                 index={index}
                 setRubricStates={setRubricStates}
                 deletePost={deletePost}
+                setIsSuccess={setIsSuccess}
             />
         </tr>
     );

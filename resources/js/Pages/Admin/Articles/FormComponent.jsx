@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,12 +8,17 @@ import SelectRubrics from '@/Components/Articles/Form/SelectRubrics';
 import FormData from "@/Components/Articles/Form/FormData";
 
 import { createArticle } from "@/actions/articles";
+import SuccessForm from "@/Components/SuccesForm";
 
 export default function CreateArticleForm()
 {
     const navigate = useNavigate();
+
     const dispatch = useDispatch();
+
     const { formData, setFormData } = FormData();
+
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const handleSelectChange = (selectedOptions, { name }) => {
         const selectedValues = selectedOptions.map((option) => option.value);
@@ -25,8 +30,14 @@ export default function CreateArticleForm()
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         dispatch(createArticle(formData));
-        navigate('/admin/articles');
+
+        setIsSuccess(true);
+
+        setTimeout(() => {
+            navigate('/admin/articles');
+        }, 2000);
     };
 
     return (
@@ -52,6 +63,10 @@ export default function CreateArticleForm()
                     </button>
                 </div>
             </form>
+            <SuccessForm
+                setIsSuccess={setIsSuccess}
+                isSuccess={isSuccess}
+            />
         </div>
     );
 }

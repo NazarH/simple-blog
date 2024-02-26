@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import UserStates from "@/Components/Users/UserStates";
 import UpdateButtons from "@/Components/Users/UpdateButtons";
 import ChangeRole from "@/Components/Users/ChangeRole";
-import CreateForm from "@/Components/Users/CreateForm.jsx";
+import SuccessForm from "@/Components/SuccesForm";
+import { Link } from 'react-router-dom';
 
 export default function IndexComponent()
 {
@@ -13,9 +14,15 @@ export default function IndexComponent()
         authStates,
     } = UserStates();
 
+    const [isSuccess, setIsSuccess] = useState(false);
+
     return (
         <div className="container">
-            <CreateForm />
+            <Link to='/admin/users/create'>
+                <button className="btn btn-primary top-btn">
+                    Create
+                </button>
+            </Link>
             <table id="example2" className="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -46,11 +53,13 @@ export default function IndexComponent()
                                             authStates={authStates}
                                             user={user}
                                             setUserStates={setUserStates}
+                                            setIsSuccess={setIsSuccess}
                                         />
                                         <UpdateButtons
                                             user={user}
                                             userStates={userStates}
                                             setUserStates={setUserStates}
+                                            setIsSuccess={setIsSuccess}
                                         />
                                     </td>
                             : ''}
@@ -58,6 +67,10 @@ export default function IndexComponent()
                     ))}
                 </tbody>
             </table>
+            <SuccessForm
+                setIsSuccess={setIsSuccess}
+                isSuccess={isSuccess}
+            />
         </div>
     );
 }

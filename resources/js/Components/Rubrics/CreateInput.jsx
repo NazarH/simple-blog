@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createRubric } from '@/actions/rubrics';
 
-export default function CreateInput({setRubricStates})
+export default function CreateInput({setRubricStates, setIsSuccess})
 {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
@@ -11,8 +11,8 @@ export default function CreateInput({setRubricStates})
         e.preventDefault();
         dispatch(createRubric(name));
 
-        const updatedRubrics = axios.get('/api/rubrics/index');
         setName('');
+        setIsSuccess(true);
     };
 
     return (

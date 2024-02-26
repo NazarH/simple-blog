@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { updateTagData, toggleTagEdit } from '@/actions/tags';
 
-export default function EditButtons({ tag, tagStates, index, deletePost }) {
+export default function EditButtons({ tag, tagStates, index, deletePost, setIsSuccess}) {
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
 
@@ -17,6 +17,7 @@ export default function EditButtons({ tag, tagStates, index, deletePost }) {
 
         try {
             dispatch(updateTagData(id, updatedTagData));
+            setIsSuccess(true);
         } catch (error) {
             console.error('Error saving tag changes:', error);
         }

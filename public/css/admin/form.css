@@ -197,3 +197,18 @@ blockquote {
 .simple-link{
     padding: 5px 7px;
 }
+
+
+/* ================ Form Success ================= */
+
+.success{
+    position: absolute;
+    font-weight: bold;
+    background-color: green;
+    color: white;
+    top: -57px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 7px 0;
+}

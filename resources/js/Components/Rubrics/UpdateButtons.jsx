@@ -2,12 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateRubric } from '@/actions/rubrics';
 
-export default function UpdateButtons({rubric})
+export default function UpdateButtons({rubric, setIsSuccess})
 {
     const dispatch = useDispatch();
 
     const handleUpdateTag = (rubricId, active) => {
         dispatch(updateRubric(rubricId, active));
+        setIsSuccess(true);
     };
 
     return (

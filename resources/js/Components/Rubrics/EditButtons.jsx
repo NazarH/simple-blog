@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { updateRubricData, toggleRubricEdit } from '@/actions/rubrics';
 
-export default function EditButtons({ rubric, rubricStates, deletePost}) {
+export default function EditButtons({ rubric, rubricStates, deletePost, setIsSuccess}) {
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
 
@@ -17,6 +17,7 @@ export default function EditButtons({ rubric, rubricStates, deletePost}) {
 
         try {
             dispatch(updateRubricData(id, updatedRubricData));
+            setIsSuccess(true);
         } catch (error) {
             console.error('Error saving rubric changes:', error);
         }

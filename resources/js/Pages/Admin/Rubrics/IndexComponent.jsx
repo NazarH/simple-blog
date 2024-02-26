@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import rubricState from "@/Components/Rubrics/RubricState";
 import CreateInput from "@/Components/Rubrics/CreateInput";
 import RubricRow from "@/Components/Rubrics/RubricRow.jsx";
+import SuccessForm from "@/Components/SuccesForm.jsx";
 
 export default function IndexComponent()
 {
     const { rubricStates, setRubricStates } = rubricState();
+    const [isSuccess, setIsSuccess] = useState(false);
 
     return (
         <div className="container">
-            <CreateInput setRubricStates={setRubricStates}/>
+            <CreateInput
+                setRubricStates={setRubricStates}
+                setIsSuccess={setIsSuccess}
+            />
             <table id="example2" className="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -29,12 +34,17 @@ export default function IndexComponent()
                                     index={index}
                                     rubricStates={rubricStates}
                                     setRubricStates={setRubricStates}
+                                    setIsSuccess={setIsSuccess}
                                 />
                             )
                         )
                     }
                 </tbody>
             </table>
+            <SuccessForm
+                setIsSuccess={setIsSuccess}
+                isSuccess={isSuccess}
+            />
         </div>
     );
 }
