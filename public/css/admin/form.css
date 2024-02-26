@@ -172,6 +172,7 @@ blockquote {
 }
 
 /* ========================================= */
+
 .table td, .table th{
     vertical-align: baseline;
 }
@@ -213,3 +214,12 @@ blockquote {
     text-align: center;
     padding: 7px 0;
 }
+
+/* ========================================= */
+
+.table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+
