@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,11 +13,8 @@ import SuccessForm from "@/Components/SuccesForm";
 export default function CreateArticleForm()
 {
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
-
     const { formData, setFormData } = FormData();
-
     const [isSuccess, setIsSuccess] = useState(false);
 
     const handleSelectChange = (selectedOptions, { name }) => {
@@ -70,4 +67,3 @@ export default function CreateArticleForm()
         </div>
     );
 }
-

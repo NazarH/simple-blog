@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import rubricState from "@/Components/Rubrics/RubricState";
 import CreateInput from "@/Components/Rubrics/CreateInput";
-import RubricRow from "@/Components/Rubrics/RubricRow.jsx";
-import SuccessForm from "@/Components/SuccesForm.jsx";
+import RubricRow from "@/Components/Rubrics/RubricRow";
+import SuccessForm from "@/Components/SuccesForm";
 
 export default function IndexComponent()
 {

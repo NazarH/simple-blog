@@ -9,7 +9,7 @@ import FormData from '@/Components/Articles/Edit/FormData';
 
 import { fetchEditData } from "@/actions/articles";
 import { formSubmit } from "@/actions/articles";
-import SuccessForm from "@/Components/SuccesForm.jsx";
+import SuccessForm from "@/Components/SuccesForm";
 
 export default function EditArticleForm() {
     const location = useLocation();

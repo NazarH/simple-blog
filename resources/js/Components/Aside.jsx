@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-export default function Aside({tags})
+export default function Aside()
 {
     return (
         <aside className="main-sidebar sidebar-dark-primary elevation-4">

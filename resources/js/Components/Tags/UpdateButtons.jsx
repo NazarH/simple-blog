@@ -2,8 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateTag } from '@/actions/tags.js';
 
-import SuccessForm from '@/Components/SuccesForm';
-
 export default function UpdateButtons({tag, setIsSuccess})
 {
     const dispatch = useDispatch();
