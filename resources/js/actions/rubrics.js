@@ -7,7 +7,9 @@ export const fetchRubrics = (pageNumber) => {
                 dispatch({ type: 'FETCH_RUBRICS_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'FETCH_RUBRICS_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_RUBRICS_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -19,7 +21,9 @@ export const updateRubric = (rubricId, active, formData) => {
                 dispatch({ type: 'UPDATE_RUBRIC_SUCCESS', payload: { rubricId, active } });
             })
             .catch(error => {
-                dispatch({ type: 'UPDATE_RUBRIC_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'UPDATE_RUBRIC_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -31,7 +35,7 @@ export const createRubric = (rubricName) => {
                 dispatch(fetchRubrics());
             })
             .catch(error => {
-                console.error('Error creating rubric:', error);
+                throw error;
             });
     };
 };
@@ -45,6 +49,7 @@ export const deleteRubric = (id) => {
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
                 dispatch({ type: 'DELETE_RUBRIC_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -70,8 +75,9 @@ export const updateRubricData = (id, updatedRubric) => {
                 dispatch({ type: 'UPDATE_RUBRIC_DATA_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                console.error('Error updating rubric data:', error);
-                dispatch({ type: 'UPDATE_RUBRIC_DATA_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'UPDATE_RUBRIC_DATA_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };

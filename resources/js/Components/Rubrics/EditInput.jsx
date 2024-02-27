@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { updateRubricName } from '@/actions/rubrics';
 
-export default function EditInput({id, rubricStates, index})
+export default function EditInput({id, rubricStates, index, errors})
 {
     const dispatch = useDispatch();
 
@@ -27,8 +27,9 @@ export default function EditInput({id, rubricStates, index})
                     dispatch(updateRubricName(id, newName));
                 }}
             />
-            <button id={`saveTagChanges${id}`} className="hidden">
-            </button>
+            {errors.name && <div className="error">{errors.name}</div>}
+
+            <button id={`saveTagChanges${id}`} className="hidden"></button>
         </form>
     );
 }

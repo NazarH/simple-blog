@@ -1,4 +1,4 @@
-export default function FormInputs({formData, setFormData})
+export default function FormInputs({formData, setFormData, errors})
 {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -18,6 +18,7 @@ export default function FormInputs({formData, setFormData})
                 value={formData.title}
                 onChange={handleInputChange}
             />
+            {errors.title && <div className="error">{errors.title}</div>}
 
             <textarea
                 name="text"
@@ -26,6 +27,7 @@ export default function FormInputs({formData, setFormData})
                 resize="none"
                 id="editor"
             />
+            {errors.text && <div className="error">{errors.text}</div>}
         </>
     )
 }

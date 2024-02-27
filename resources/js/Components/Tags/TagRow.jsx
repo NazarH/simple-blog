@@ -10,7 +10,9 @@ import {deleteTag} from "@/actions/tags.js";
 export default function TagRow({tag, index, tagStates, setTagStates, setIsSuccess, setPageNumber})
 {
     const dispatch = useDispatch();
+
     const [isDelete, setIsDelete] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const deletePost = (id) => {
         dispatch(deleteTag(id));
@@ -31,6 +33,7 @@ export default function TagRow({tag, index, tagStates, setTagStates, setIsSucces
                     tagStates={tagStates}
                     index={index}
                     setTagStates={setTagStates}
+                    errors={errors}
                 />
             </td>
             <td>
@@ -50,6 +53,7 @@ export default function TagRow({tag, index, tagStates, setTagStates, setIsSucces
                 setTagStates={setTagStates}
                 deletePost={deletePost}
                 setIsSuccess={setIsSuccess}
+                setErrors={setErrors}
             />
         </tr>
     );

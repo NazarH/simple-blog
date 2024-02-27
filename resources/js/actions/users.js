@@ -7,7 +7,9 @@ export const fetchUsers = (pageNumber) => {
                 dispatch({ type: 'FETCH_USERS_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'FETCH_USERS_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_USERS_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -19,7 +21,9 @@ export const fetchAuth = () => {
                 dispatch({ type: 'FETCH_AUTH_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'FETCH_AUTH_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_AUTH_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -34,7 +38,9 @@ export const updateUser = (id, action, active, formData) => {
                 dispatch({ type: 'UPDATE_USER_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'UPDATE_USER_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'UPDATE_USER_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -49,7 +55,9 @@ export const changeRole = (id, newRole, formData) => {
                 dispatch({ type: 'UPDATE_USER_ROLE_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'UPDATE_USER_ROLE_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'UPDATE_USER_ROLE_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -67,7 +75,7 @@ export const createUser = (formData) => {
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
                 dispatch({ type: 'CREATE_USER_FAILURE', payload: errorMessage });
-                throw error; // Передача помилки далі для обробки в then
+                throw error;
             });
     };
 };

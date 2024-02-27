@@ -7,7 +7,9 @@ export const fetchArray = () => {
                 dispatch({ type: 'FETCH_ARRAY_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'FETCH_ARRAY_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_ARRAY_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -19,7 +21,9 @@ export const fetchArticles = (pageNumber) => {
                 dispatch({ type: 'FETCH_ARTICLES_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'FETCH_ARTICLES_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_ARTICLES_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -36,6 +40,7 @@ export const updateArt = (artId, formData) => {
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
                 dispatch({ type: 'UPDATE_ARTICLE_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -49,6 +54,7 @@ export const deleteArt = (id) => {
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
                 dispatch({ type: 'DELETE_ARTICLE_FAILURE', payload: errorMessage });
+                throw error;
             });
     }
 }
@@ -60,41 +66,53 @@ export const fetchEditData = (id) => {
                 dispatch({ type: 'FETCH_ARTICLE_DATA_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'FETCH_ARTICLE_DATA_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_ARTICLE_DATA_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
 
 export const formSubmit = (formData, arrStates) => {
     return dispatch => {
-        axios.post(`/admin/articles/edit/${arrStates.article && arrStates.article.id}/update`, formData)
-            .then(response => {
-                return axios.get('/api/articles/index');
-            })
-            .then(response => {
-                dispatch({ type: 'FETCH_ARTICLE_EDIT_SUCCESS', payload: response.data });
-            })
-            .catch(error => {
-                const errorMessage = error.message || 'Unknown error occurred';
-                dispatch({ type: 'FETCH_ARTICLE_EDIT_FAILURE', payload: errorMessage });
-            });
+        return new Promise((resolve, reject) => {
+            axios.post(`/admin/articles/edit/${arrStates.article && arrStates.article.id}/update`, formData)
+                .then(response => {
+                    return axios.get('/api/articles/index');
+                })
+                .then(response => {
+                    dispatch({ type: 'FETCH_ARTICLE_EDIT_SUCCESS', payload: response.data });
+                    resolve(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                    const errorMessage = error.message || 'Unknown error occurred';
+                    dispatch({ type: 'FETCH_ARTICLE_EDIT_FAILURE', payload: errorMessage });
+                    reject(error);
+                });
+        });
     };
 };
 
+
 export const createArticle = (formData) => {
     return dispatch => {
-        axios.post('/admin/articles/create/store', formData)
-            .then(response => {
-                return axios.get('/api/articles/index');
-            })
-            .then(response => {
-                dispatch({ type: 'FETCH_ARTICLE_CREATE_SUCCESS', payload: response.data });
-            })
-            .catch(error => {
-                dispatch({ type: 'FETCH_ARTICLE_CREATE_FAILURE', payload: error });
-            });
+        return new Promise((resolve, reject) => {
+            axios.post('/admin/articles/create/store', formData)
+                .then(response => {
+                    dispatch({ type: 'FETCH_ARTICLE_CREATE_SUCCESS', payload: response.data });
+                    resolve(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                    const errorMessage = error.message || 'Unknown error occurred';
+                    dispatch({ type: 'FETCH_ARTICLE_CREATE_FAILURE', payload: errorMessage });
+                    reject(error);
+                });
+        });
     };
 };
+
 
 export const fetchTags = (searchTerm) => {
     return (dispatch) => {
@@ -105,6 +123,7 @@ export const fetchTags = (searchTerm) => {
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
                 dispatch({ type: 'FETCH_TAGS_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -118,6 +137,7 @@ export const fetchRubrics = (searchTerm) => {
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
                 dispatch({ type: 'FETCH_RUBRICS_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };

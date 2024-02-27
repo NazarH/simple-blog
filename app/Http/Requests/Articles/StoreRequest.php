@@ -27,7 +27,8 @@ class StoreRequest extends FormRequest
             'title' => [
                 'required',
                 'string',
-                'max:255'
+                'min: 1',
+                'max:255',
             ],
             'text' => [
                 'required',
@@ -39,6 +40,7 @@ class StoreRequest extends FormRequest
             ],
             'rubric_ids' => [
                 'array',
+                'required',
                 Rule::exists('rubrics', 'id')
             ],
         ];

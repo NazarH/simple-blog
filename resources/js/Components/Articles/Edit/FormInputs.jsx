@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function FormInputs({formData, setFormData}) {
+export default function FormInputs({formData, setFormData, errors}) {
     return (
         <div>
             <input
@@ -14,6 +14,8 @@ export default function FormInputs({formData, setFormData}) {
                     title: e.target.value
                 }))}
             />
+            {errors.title && <div className="error">{errors.title}</div>}
+
             <textarea
                 name="text"
                 className="form-control"
@@ -21,6 +23,7 @@ export default function FormInputs({formData, setFormData}) {
                 resize="none"
                 id="editor"
             />
+            {errors.text && <div className="error">{errors.text}</div>}
         </div>
     );
 }

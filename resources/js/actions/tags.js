@@ -7,7 +7,9 @@ export const fetchTags = (pageNumber) => {
                 dispatch({ type: 'FETCH_TAGS_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'FETCH_TAGS_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'FETCH_TAGS_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -19,7 +21,9 @@ export const updateTag = (tagId, active, formData) => {
                 dispatch({ type: 'UPDATE_TAG_SUCCESS', payload: { tagId, active } });
             })
             .catch(error => {
-                dispatch({ type: 'UPDATE_TAG_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'UPDATE_TAG_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -31,7 +35,7 @@ export const createTag = (tagName) => {
                 dispatch(fetchTags());
             })
             .catch(error => {
-                console.error('Error creating tag:', error);
+                throw error;
             });
     };
 };
@@ -43,7 +47,9 @@ export const updateTagData = (id, updatedTag) => {
                 dispatch({ type: 'UPDATE_TAG_DATA_SUCCESS', payload: response.data });
             })
             .catch(error => {
-                dispatch({ type: 'UPDATE_TAG_DATA_FAILURE', payload: error });
+                const errorMessage = error.message || 'Unknown error occurred';
+                dispatch({ type: 'UPDATE_TAG_DATA_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };
@@ -57,6 +63,7 @@ export const deleteTag = (id) => {
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
                 dispatch({ type: 'DELETE_TAG_FAILURE', payload: errorMessage });
+                throw error;
             });
     };
 };

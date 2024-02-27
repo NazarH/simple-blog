@@ -22,9 +22,20 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'token' => ['required'],
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'confirmed', 'max:8'],
+            'token' => [
+                'required'
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email'
+            ],
+            'password' => [
+                'required',
+                'confirmed',
+                'min:8',
+                'max:16'
+            ],
 
         ];
     }

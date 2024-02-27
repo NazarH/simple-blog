@@ -26,7 +26,8 @@ class StoreRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
-                'max:255',
+                'min:2',
+                'max:24',
                 'unique:rubrics'
             ]
         ];

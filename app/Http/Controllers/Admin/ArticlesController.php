@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Articles\UpdateRequest as ArticleUpdate;
 use App\Models\Image;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
@@ -51,19 +52,21 @@ class ArticlesController extends Controller
         return Inertia::render('Admin/Articles/EditComponent');
     }
 
-    public function update(Request $request, Article $article): Response
+    public function update(ArticleUpdate $request, Article $article): Response
     {
+        $data = $request->validated();
+
         $article->update([
-           'title' => $request['title'],
-            'text' => $request['text'],
+            'title' => $data['title'],
+            'text' => $data['text'],
         ]);
 
-        $tags = is_array(head($request['tag_ids']))
-            ? Arr::pluck($request['tag_ids'], 'value')
-            : $request['tag_ids'];
-        $rubrics = is_array(head($request['rubric_ids']))
-            ? Arr::pluck($request['rubric_ids'], 'value')
-            : $request['rubric_ids'];
+        $tags = is_array(head($data['tag_ids']))
+            ? Arr::pluck($data['tag_ids'], 'value')
+            : $data['tag_ids'];
+        $rubrics = is_array(head($data['rubric_ids']))
+            ? Arr::pluck($data['rubric_ids'], 'value')
+            : $data['rubric_ids'];
 
         $article->tags()->sync($tags);
         $article->rubrics()->sync($rubrics);

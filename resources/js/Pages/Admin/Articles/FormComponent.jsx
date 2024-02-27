@@ -17,6 +17,7 @@ export default function CreateArticleForm()
 
     const { formData, setFormData } = FormData();
     const [isSuccess, setIsSuccess] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const handleSelectChange = (selectedOptions, { name }) => {
         const selectedValues = selectedOptions.map((option) => option.value);
@@ -29,12 +30,21 @@ export default function CreateArticleForm()
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(createArticle(formData));
-        setIsSuccess(true);
+        dispatch(createArticle(formData))
+            .then(() => {
+                setIsSuccess(true);
 
-        setTimeout(() => {
-            navigate('/admin/articles');
-        }, 2000);
+                setTimeout(() => {
+                    navigate('/admin/articles');
+                }, 2000);
+            })
+            .catch(error => {
+                if (error.response && error.response.data) {
+                    setErrors(error.response.data.errors);
+                } else {
+                    console.log(error);
+                }
+            });
     };
 
     return (
@@ -51,9 +61,9 @@ export default function CreateArticleForm()
                         defaultValue={window.csrfToken}
                     />
 
-                    <FormInputs formData={formData} setFormData={setFormData}/>
+                    <FormInputs formData={formData} setFormData={setFormData} errors={errors}/>
                     <SelectTags handleSelectChange={handleSelectChange} />
-                    <SelectRubrics handleSelectChange={handleSelectChange} />
+                    <SelectRubrics handleSelectChange={handleSelectChange} errors={errors}/>
 
                     <button type="submit" className="btn btn-success">
                         Create

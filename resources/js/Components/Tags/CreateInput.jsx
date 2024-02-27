@@ -6,16 +6,28 @@ import { createTag } from '@/actions/tags';
 export default function CreateInput({setTagStates, setIsSuccess, setPageNumber})
 {
     const dispatch = useDispatch();
+
     const [name, setName] = useState('');
+    const [errors, setErrors] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createTag(name));
+        dispatch(createTag(name))
+            .then(() => {
+                setName('');
 
-        setName('');
+                setIsSuccess(true);
+                setPageNumber(1);
+            })
+            .catch(error => {
+                if (error.response && error.response.data) {
+                    setErrors(error.response.data.errors);
+                } else {
+                    console.log(error);
+                }
+            });
 
-        setIsSuccess(true);
-        setPageNumber(1);
+
     };
 
     return (
@@ -32,6 +44,7 @@ export default function CreateInput({setTagStates, setIsSuccess, setPageNumber})
                     Create
                 </button>
             </form>
+            {errors.name && <div className="error">{errors.name}</div>}
         </>
     );
 }

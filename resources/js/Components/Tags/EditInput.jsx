@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { updateTagName } from '@/actions/tags';
 
-export default function EditInput({ id, tagStates, index }) {
+export default function EditInput({ id, tagStates, index, errors }) {
     const dispatch = useDispatch();
 
     return (
@@ -26,6 +26,8 @@ export default function EditInput({ id, tagStates, index }) {
                     dispatch(updateTagName(id, newName));
                 }}
             />
+            {errors.name && <div className="error">{errors.name}</div>}
+
             <button id={`saveTagChanges${id}`} className="hidden"></button>
         </form>
     );

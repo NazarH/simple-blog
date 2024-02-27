@@ -25,6 +25,7 @@ class SearchRequest extends FormRequest
             'query' => [
                 'required',
                 'string',
+                'min: 1',
                 'max:255'
             ]
         ];

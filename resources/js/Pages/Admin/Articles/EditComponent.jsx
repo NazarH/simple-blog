@@ -21,6 +21,7 @@ export default function EditArticleForm() {
     const dispatch = useDispatch();
 
     const [isSuccess, setIsSuccess] = useState(false);
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         dispatch(fetchEditData(id));
@@ -32,21 +33,31 @@ export default function EditArticleForm() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(formSubmit(formData, arrStates));
-        setIsSuccess(true);
+        dispatch(formSubmit(formData, arrStates))
+            .then(() => {
+                setIsSuccess(true);
 
-        setTimeout(() => {
-            navigate('/admin/articles');
-        }, 2000);
+                setTimeout(() => {
+                    navigate('/admin/articles');
+                }, 2000);
+            })
+            .catch(error => {
+                if (error.response && error.response.data) {
+                    setErrors(error.response.data.errors);
+                } else {
+                    console.log(error);
+                }
+            });
+
     };
 
     return (
         <div className="container">
             <form onSubmit={handleFormSubmit} className="form">
                 <div className="form__block">
-                    <FormInputs formData={formData} setFormData={setFormData}/>
+                    <FormInputs formData={formData} setFormData={setFormData} errors={errors}/>
                     <SelectTags arrStates={arrStates} setFormData={setFormData}/>
-                    <SelectRubrics arrStates={arrStates} setFormData={setFormData}/>
+                    <SelectRubrics arrStates={arrStates} setFormData={setFormData} errors={errors}/>
 
                     <button type="submit" className="btn btn-success">
                         Edit

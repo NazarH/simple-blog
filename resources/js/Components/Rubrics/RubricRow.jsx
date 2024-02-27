@@ -10,7 +10,9 @@ import { deleteRubric } from '@/actions/rubrics';
 export default function RubricRow({rubric, index, rubricStates, setRubricStates, setIsSuccess, setPageNumber})
 {
     const dispatch = useDispatch();
+
     const [isDelete, setIsDelete] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const deletePost = (id) => {
         dispatch(deleteRubric(id));
@@ -32,6 +34,7 @@ export default function RubricRow({rubric, index, rubricStates, setRubricStates,
                     index={index}
                     setRubricStates={setRubricStates}
                     rubric={rubric}
+                    errors={errors}
                 />
             </td>
             <td>
@@ -50,6 +53,7 @@ export default function RubricRow({rubric, index, rubricStates, setRubricStates,
                 setRubricStates={setRubricStates}
                 deletePost={deletePost}
                 setIsSuccess={setIsSuccess}
+                setErrors={setErrors}
             />
         </tr>
     );

@@ -2,17 +2,18 @@
 
 namespace App\Http\Requests\Articles;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
-class CommentRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return !empty(Auth::user());
+        return Auth::user()->role === 'admin';
     }
 
     /**
@@ -23,11 +24,24 @@ class CommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'text' => [
+            'title' => [
                 'required',
                 'string',
-                'max:500',
-            ]
+                'min: 1',
+                'max:255',
+            ],
+            'text' => [
+                'required',
+                'string'
+            ],
+            'tag_ids' => [
+                'array',
+
+            ],
+            'rubric_ids' => [
+                'array',
+                'required',
+            ],
         ];
     }
 }

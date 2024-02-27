@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchRubrics } from "@/actions/articles.js";
 
-export default function SelectRubrics({arrStates, setFormData}) {
+export default function SelectRubrics({arrStates, setFormData, errors}) {
     const dispatch = useDispatch();
     const [searchRubrics, setSearchRubrics] = useState('');
     const options = useSelector(state => state.articlesReducer.rubrics);
@@ -35,6 +35,7 @@ export default function SelectRubrics({arrStates, setFormData}) {
                     }
                 />
             )}
+            {errors.rubric_ids && <div className="error">{errors.rubric_ids}</div>}
         </>
     );
 }

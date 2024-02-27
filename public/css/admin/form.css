@@ -229,4 +229,11 @@ blockquote {
     width: 100%;
 }
 
+/* ========================================= */
+
+.error {
+    color: indianred;
+    margin: 5px 0px;
+}
+
 
