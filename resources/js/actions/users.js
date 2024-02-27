@@ -62,10 +62,12 @@ export const createUser = (formData) => {
             })
             .then(response => {
                 dispatch({ type: 'CREATE_USER_SUCCESS', payload: response.data });
+                return response.data; // Передача даних для подальшого використання в then
             })
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
                 dispatch({ type: 'CREATE_USER_FAILURE', payload: errorMessage });
+                throw error; // Передача помилки далі для обробки в then
             });
     };
 };

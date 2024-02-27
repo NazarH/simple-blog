@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
 import { createUser } from '@/actions/users';
 
 import SuccessForm from "@/Components/SuccesForm.jsx";
 
-export default function CreateComponent()
-{
+export default function CreateComponent() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const [formData, setFormData] = useState({
         login: '',
@@ -23,8 +22,8 @@ export default function CreateComponent()
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
-          ...formData,
-          [name]: value,
+            ...formData,
+            [name]: value,
         });
     };
 
@@ -38,6 +37,13 @@ export default function CreateComponent()
                 setTimeout(() => {
                     navigate('/admin/users');
                 }, 2000);
+            })
+            .catch(error => {
+                if (error.response && error.response.data) {
+                    setErrors(error.response.data.errors);
+                } else {
+                    console.log(error);
+                }
             });
     };
 
@@ -55,6 +61,8 @@ export default function CreateComponent()
                         className="form-control"
                         disabled={isSubmitted}
                     />
+                    {errors.login && <div className="error">{errors.login}</div>}
+
                     <input
                         type="password"
                         name="password"
@@ -64,6 +72,8 @@ export default function CreateComponent()
                         className="form-control"
                         disabled={isSubmitted}
                     />
+                    {errors.password && <div className="error">{errors.password}</div>}
+
                     <input
                         type="email"
                         name="email"
@@ -73,6 +83,7 @@ export default function CreateComponent()
                         className="form-control"
                         disabled={isSubmitted}
                     />
+                    {errors.email && <div className="error">{errors.email}</div>}
                 </div>
                 <button type="submit" className="btn btn-success">
                     Create
@@ -85,3 +96,4 @@ export default function CreateComponent()
         </>
     );
 }
+
