@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+
 import { updateTagName } from '@/actions/tags';
 
 export default function EditInput({ id, tagStates, index }) {

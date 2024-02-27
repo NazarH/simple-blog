@@ -6,6 +6,7 @@ import { fetchAuth } from '@/actions/users';
 
 export default function UserState({pageNumber}) {
     const dispatch = useDispatch();
+
     const userStates = useSelector(state => state.usersReducer.users);
     const authStates = useSelector(state => state.usersReducer.auth);
 

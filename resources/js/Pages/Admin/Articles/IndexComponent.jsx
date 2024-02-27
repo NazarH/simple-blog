@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import Pagination from "react-js-pagination";
 
 import ArticleRow from '@/Components/Articles/Index/ArticleRow';
+import SuccessForm from "@/Components/SuccesForm";
 
 import { fetchArticles } from "@/actions/articles";
-import SuccessForm from "@/Components/SuccesForm";
 
 export default function IndexComponent() {
     const dispatch = useDispatch();
+
     const [pageNumber, setPageNumber] = useState(1);
     const articleStates = useSelector(state => state.articlesReducer.articles);
     const [isSuccess, setIsSuccess] = useState(false);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createRubric } from '@/actions/rubrics';
 
-export default function CreateInput({setRubricStates, setIsSuccess})
+export default function CreateInput({setIsSuccess, setPageNumber})
 {
     const dispatch = useDispatch();
     const [name, setName] = useState('');

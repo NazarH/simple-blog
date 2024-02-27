@@ -10,7 +10,11 @@ export default function Aside()
                     <div className="sidebar">
                         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                             <div className="image">
-                                <img src={window.location.protocol + "/dist/img/user2-160x160.jpg"} className="img-circle elevation-2" alt="User Image" />
+                                <img
+                                    src={window.location.protocol + "/dist/img/user2-160x160.jpg"}
+                                    className="img-circle elevation-2"
+                                    alt="User Image"
+                                />
                             </div>
                             <div className="info">
                                 <Link to="/admin" className="d-block">
@@ -20,7 +24,12 @@ export default function Aside()
                         </div>
 
                         <nav className="mt-2">
-                            <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <ul
+                                className="nav nav-pills nav-sidebar flex-column"
+                                data-widget="treeview"
+                                role="menu"
+                                data-accordion="false"
+                            >
                                 <li className="nav-item">
                                     <Link to="/admin/tags" className="nav-link">
                                         <p>Tags</p>

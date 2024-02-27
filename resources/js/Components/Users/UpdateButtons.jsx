@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+
 import { updateUser } from '@/actions/users';
 
-export default function UpdateButtons({ user, setUserStates, userStates, setIsSuccess })
+export default function UpdateButtons({ user, setIsSuccess })
 {
     const dispatch = useDispatch();
 

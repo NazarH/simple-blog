@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
+
 import { createUser } from '@/actions/users';
+
 import SuccessForm from "@/Components/SuccesForm.jsx";
 
 export default function CreateComponent()

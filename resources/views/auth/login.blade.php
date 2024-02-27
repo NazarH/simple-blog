@@ -50,13 +50,10 @@
                 </button>
             </div>
         </div>
-
     </form>
-
     <a href="{{route('password.index')}}" class="pass-memb">Забули пароль?</a>
-
+    
     @if(session('status'))
         <div class="center mail-send">Пароль успішно змінено</div>
     @endif
-
 @endsection

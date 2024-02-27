@@ -6,14 +6,15 @@ import FormInputs from '@/Components/Articles/Form/FormInputs';
 import SelectTags from '@/Components/Articles/Form/SelectTags';
 import SelectRubrics from '@/Components/Articles/Form/SelectRubrics';
 import FormData from "@/Components/Articles/Form/FormData";
+import SuccessForm from "@/Components/SuccesForm";
 
 import { createArticle } from "@/actions/articles";
-import SuccessForm from "@/Components/SuccesForm";
 
 export default function CreateArticleForm()
 {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const { formData, setFormData } = FormData();
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -29,7 +30,6 @@ export default function CreateArticleForm()
         e.preventDefault();
 
         dispatch(createArticle(formData));
-
         setIsSuccess(true);
 
         setTimeout(() => {

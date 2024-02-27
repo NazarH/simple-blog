@@ -6,19 +6,19 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import store from './store'
 import { Provider } from 'react-redux';
+import store from '@/store'
 
-import IndexComponent from './Pages/Admin/IndexComponent';
-import ArticleIndexComponent from './Pages/Admin/Articles/IndexComponent';
-import FormComponent from './Pages/Admin/Articles/FormComponent';
-import EditComponent from './Pages/Admin/Articles/EditComponent';
-import RubricIndexComponent from './Pages/Admin/Rubrics/IndexComponent';
-import TagIndexComponent from './Pages/Admin/Tags/IndexComponent';
-import UserIndexComponent from './Pages/Admin/Users/IndexComponent';
-import CreateComponent from './Pages/Admin/Users/CreateComponent';
+import IndexComponent from '@/Pages/Admin/IndexComponent';
+import ArticleIndexComponent from '@/Pages/Admin/Articles/IndexComponent';
+import FormComponent from '@/Pages/Admin/Articles/FormComponent';
+import EditComponent from '@/Pages/Admin/Articles/EditComponent';
+import RubricIndexComponent from '@/Pages/Admin/Rubrics/IndexComponent';
+import TagIndexComponent from '@/Pages/Admin/Tags/IndexComponent';
+import UserIndexComponent from '@/Pages/Admin/Users/IndexComponent';
+import CreateComponent from '@/Pages/Admin/Users/CreateComponent';
 
-import Aside from './Components/Aside'
+import Aside from '@/Components/Aside'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -33,7 +33,6 @@ createInertiaApp({
                     path="/admin"
                     element={<IndexComponent />}
                 />
-
                 <Route
                     path="/admin/tags"
                     element={<TagIndexComponent />}
@@ -46,7 +45,6 @@ createInertiaApp({
                     path="/admin/tags/create"
                     element={<TagIndexComponent />}
                 />
-
                 <Route
                     path="/admin/rubrics"
                     element={<RubricIndexComponent />}
@@ -59,7 +57,6 @@ createInertiaApp({
                     path="/admin/rubrics/create"
                     element={<RubricIndexComponent />}
                 />
-
                 <Route
                     path="/admin/articles"
                     element={<ArticleIndexComponent/>}
@@ -72,7 +69,6 @@ createInertiaApp({
                     path="/admin/articles/create"
                     element={<FormComponent />}
                 />
-
                 <Route
                     path="/admin/users"
                     element={<UserIndexComponent />}

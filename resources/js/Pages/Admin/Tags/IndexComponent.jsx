@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Pagination from "react-js-pagination";
 
 import tagState from "@/Components/Tags/TagState";
 import CreateInput from "@/Components/Tags/CreateInput";
 import TagRow from "@/Components/Tags/TagRow";
-
 import SuccessForm from "@/Components/SuccesForm";
-import Pagination from "react-js-pagination";
+
 import { fetchTags } from '@/actions/tags';
 
 export default function IndexComponent()
 {
     const dispatch = useDispatch();
+
     const [isSuccess, setIsSuccess] = useState(false);
     const [pageNumber, setPageNumber] = useState(1);
     const { tagStates, setTagStates } = tagState(pageNumber);

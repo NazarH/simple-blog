@@ -6,11 +6,13 @@ import rubricState from "@/Components/Rubrics/RubricState";
 import CreateInput from "@/Components/Rubrics/CreateInput";
 import RubricRow from "@/Components/Rubrics/RubricRow";
 import SuccessForm from "@/Components/SuccesForm";
+
 import { fetchRubrics } from '@/actions/rubrics';
 
 export default function IndexComponent()
 {
     const dispatch = useDispatch();
+
     const [pageNumber, setPageNumber] = useState(1);
     const { rubricStates, setRubricStates } = rubricState(pageNumber);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -18,7 +20,6 @@ export default function IndexComponent()
     return (
         <div className="container">
             <CreateInput
-                setRubricStates={setRubricStates}
                 setIsSuccess={setIsSuccess}
                 setPageNumber={setPageNumber}
             />

@@ -13,13 +13,9 @@ import { fetchUsers } from '@/actions/users';
 export default function IndexComponent()
 {
     const dispatch = useDispatch();
-    const [pageNumber, setPageNumber] = useState(1);
-    const {
-        userStates,
-        setUserStates,
-        authStates,
-    } = UserStates(pageNumber);
 
+    const [pageNumber, setPageNumber] = useState(1);
+    const { userStates, setUserStates, authStates } = UserStates(pageNumber);
     const [isSuccess, setIsSuccess] = useState(false);
 
     return (
@@ -63,8 +59,6 @@ export default function IndexComponent()
                                         />
                                         <UpdateButtons
                                             user={user}
-                                            userStates={userStates}
-                                            setUserStates={setUserStates}
                                             setIsSuccess={setIsSuccess}
                                         />
                                     </td>

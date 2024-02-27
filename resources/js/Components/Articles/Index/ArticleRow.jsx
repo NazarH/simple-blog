@@ -19,6 +19,7 @@ export default function ArticleRow ({ article, articleStates, setIsSuccess, setP
 
     const handleUpdateArticle = (artId) => {
         const formData = new FormData();
+
         formData.append('_token', window.csrfToken);
         formData.append(
             'is_active',
@@ -26,6 +27,7 @@ export default function ArticleRow ({ article, articleStates, setIsSuccess, setP
         );
 
         dispatch(updateArt(artId, formData));
+
         setIsSuccess(true);
     };
 
@@ -65,9 +67,7 @@ export default function ArticleRow ({ article, articleStates, setIsSuccess, setP
                     to={`/admin/articles/edit/${article.id}`}
                     state={{ id: article.id }}
                 >
-                    <button className="btn btn-primary">
-                        Edit
-                    </button>
+                    <button className="btn btn-primary"> Edit </button>
                 </Link>
                 <button className="btn btn-danger" onClick={() => handleDeleteArticle(article.id)}>
                     Delete

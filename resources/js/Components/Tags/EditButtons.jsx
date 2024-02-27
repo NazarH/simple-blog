@@ -12,15 +12,10 @@ export default function EditButtons({ tag, tagStates, index, deletePost, setIsSu
 
         const updatedTagData = {
             name: tagStates.find(tagState => tagState.id === id).name,
-            _token: window.csrfToken
         };
 
-        try {
-            dispatch(updateTagData(id, updatedTagData));
-            setIsSuccess(true);
-        } catch (error) {
-            console.error('Error saving tag changes:', error);
-        }
+        dispatch(updateTagData(id, updatedTagData));
+        setIsSuccess(true);
     };
 
     const tagEdit = (id) => {

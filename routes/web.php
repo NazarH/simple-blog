@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -8,11 +10,10 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\RubricController;
 use App\Http\Controllers\Front\TagController;
+
 use App\Models\Rubric;
 use App\Models\Tag;
 use App\Models\User;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 require(base_path('routes/admin/web.php'));
 
@@ -84,9 +85,5 @@ Route::group(['prefix' => '/'], function(){
             ->uses([ResetPasswordController::class, 'update'])
             ->name('password.update');
     });
-});
-
-Route::get('/test', function(){
-    return Inertia::render('TestComponent');
 });
 

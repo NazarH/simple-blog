@@ -12,15 +12,10 @@ export default function EditButtons({ rubric, rubricStates, deletePost, setIsSuc
 
         const updatedRubricData = {
             name: rubricStates.find(rubricState => rubricState.id === id).name,
-            _token: window.csrfToken
         };
 
-        try {
-            dispatch(updateRubricData(id, updatedRubricData));
-            setIsSuccess(true);
-        } catch (error) {
-            console.error('Error saving rubric changes:', error);
-        }
+        dispatch(updateRubricData(id, updatedRubricData));
+        setIsSuccess(true);
     };
 
     const rubEdit = (id) => {
@@ -29,9 +24,7 @@ export default function EditButtons({ rubric, rubricStates, deletePost, setIsSuc
     };
 
     return (
-        <td
-            className="user-btns"
-        >
+        <td className="user-btns">
             <button
                 className="btn btn-primary"
                 onClick={() => rubEdit(rubric.id)}

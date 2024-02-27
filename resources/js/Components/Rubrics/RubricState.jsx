@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { fetchRubrics } from '@/actions/rubrics';
 
 export default function RubricState({pageNumber}) {

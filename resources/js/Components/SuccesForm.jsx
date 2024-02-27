@@ -12,7 +12,10 @@ const SuccessForm = ({setIsSuccess, isSuccess}) => {
 
     return (
         <div>
-            {isSuccess && <div className="success">Form Has Been Sent Successfully</div>}
+            {
+                isSuccess
+                    && <div className="success">Form Has Been Sent Successfully</div>
+            }
         </div>
     );
 };

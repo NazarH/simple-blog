@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+
 import { changeRole } from '@/actions/users';
 
 export default function ChangeRole({authStates, user, setUserStates, setIsSuccess})

@@ -6,14 +6,16 @@ import FormInputs from '@/Components/Articles/Edit/FormInputs';
 import SelectTags from '@/Components/Articles/Edit/SelectTags';
 import SelectRubrics from '@/Components/Articles/Edit/SelectRubrics';
 import FormData from '@/Components/Articles/Edit/FormData';
+import SuccessForm from "@/Components/SuccesForm";
 
 import { fetchEditData } from "@/actions/articles";
 import { formSubmit } from "@/actions/articles";
-import SuccessForm from "@/Components/SuccesForm";
 
 export default function EditArticleForm() {
     const location = useLocation();
-    const id = location.state ? location.state.id : window.location.href.match(/\/(\d+)$/)[1];
+    const id = location.state
+        ? location.state.id
+        : window.location.href.match(/\/(\d+)$/)[1];
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -25,14 +27,12 @@ export default function EditArticleForm() {
     }, []);
 
     const arrStates = useSelector(state => state.articlesReducer.article);
-    let [count, setCount] = useState(0);
     const { formData, setFormData } = FormData(arrStates);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
         dispatch(formSubmit(formData, arrStates));
-
         setIsSuccess(true);
 
         setTimeout(() => {

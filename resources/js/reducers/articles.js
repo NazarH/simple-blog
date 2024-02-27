@@ -50,7 +50,6 @@ const articlesReducer = (state = initialState, action) => {
                 error: action.payload
             };
         case 'DELETE_ARTICLE_SUCCESS':
-            console.log(action.payload);
             return {
                 ...state,
                 articles: action.payload,
