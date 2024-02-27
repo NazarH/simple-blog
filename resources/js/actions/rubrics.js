@@ -12,12 +12,8 @@ export const fetchRubrics = (pageNumber) => {
     };
 };
 
-export const updateRubric = (rubricId, active) => {
+export const updateRubric = (rubricId, active, formData) => {
     return dispatch => {
-        const formData = new FormData();
-        formData.append('_token', window.csrfToken);
-        formData.append('is_active', active ? 0 : 1);
-
         axios.post(`/admin/rubrics/update/${rubricId}`, formData)
             .then(response => {
                 dispatch({ type: 'UPDATE_RUBRIC_SUCCESS', payload: { rubricId, active } });

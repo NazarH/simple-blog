@@ -7,7 +7,12 @@ export default function ChangeRole({authStates, user, setUserStates, setIsSucces
     const dispatch = useDispatch();
 
     const handleUserRole = (id, newRole) => {
-        dispatch(changeRole(id, newRole));
+        const formData = new FormData();
+
+        formData.append('role', newRole);
+        formData.append('_token', window.csrfToken);
+
+        dispatch(changeRole(id, newRole, formData));
         setIsSuccess(true);
     };
 

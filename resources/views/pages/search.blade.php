@@ -14,6 +14,10 @@
         </div>
     </div>
     <div class="footer">
-
+        <div class="footer__logo">
+        </div>
+        <div class="all-rights">
+            © 2023-2024 PetBlog.test
+        </div>
     </div>
 @endsection

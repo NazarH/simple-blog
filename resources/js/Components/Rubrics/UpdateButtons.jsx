@@ -8,7 +8,12 @@ export default function UpdateButtons({rubric, setIsSuccess})
     const dispatch = useDispatch();
 
     const handleUpdateTag = (rubricId, active) => {
-        dispatch(updateRubric(rubricId, active));
+        const formData = new FormData();
+
+        formData.append('_token', window.csrfToken);
+        formData.append('is_active', active ? 0 : 1);
+
+        dispatch(updateRubric(rubricId, active, formData));
         setIsSuccess(true);
     };
 

@@ -24,12 +24,8 @@ export const fetchAuth = () => {
     };
 };
 
-export const updateUser = (id, action, active) => {
+export const updateUser = (id, action, active, formData) => {
     return dispatch => {
-        const formData = new FormData();
-        formData.append('_token', window.csrfToken);
-        formData.append('is_active', active ? 0 : 1);
-
         return axios.post(`/admin/users/${id}/${action}`, formData)
             .then(response => {
                 return axios.get('/api/users/index');
@@ -43,12 +39,8 @@ export const updateUser = (id, action, active) => {
     };
 };
 
-export const changeRole = (id, newRole) => {
+export const changeRole = (id, newRole, formData) => {
     return dispatch => {
-        const formData = new FormData();
-        formData.append('role', newRole);
-        formData.append('_token', window.csrfToken);
-
         return axios.post(`/admin/users/${id}/update`, formData)
             .then(response => {
                 return axios.get('/api/users/index');

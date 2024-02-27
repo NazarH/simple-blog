@@ -8,7 +8,12 @@ export default function UpdateButtons({tag, setIsSuccess})
     const dispatch = useDispatch();
 
     const handleUpdateTag = (tagId, active) => {
-        dispatch(updateTag(tagId, active));
+        const formData = new FormData();
+
+        formData.append('_token', window.csrfToken);
+        formData.append('is_active', active ? 0 : 1);
+
+        dispatch(updateTag(tagId, active, formData));
         setIsSuccess(true);
     };
 

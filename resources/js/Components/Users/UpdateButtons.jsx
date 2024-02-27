@@ -8,7 +8,12 @@ export default function UpdateButtons({ user, setIsSuccess })
     const dispatch = useDispatch();
 
     const updateUserHandler = (id, action, active) => {
-        dispatch(updateUser(id, action, active));
+        const formData = new FormData();
+
+        formData.append('_token', window.csrfToken);
+        formData.append('is_active', active ? 0 : 1);
+
+        dispatch(updateUser(id, action, active, formData));
         setIsSuccess(true);
     };
 

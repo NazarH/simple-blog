@@ -12,12 +12,8 @@ export const fetchTags = (pageNumber) => {
     };
 };
 
-export const updateTag = (tagId, active) => {
+export const updateTag = (tagId, active, formData) => {
     return dispatch => {
-        const formData = new FormData();
-        formData.append('_token', window.csrfToken);
-        formData.append('is_active', active ? 0 : 1);
-
         axios.post(`/admin/tags/update/${tagId}`, formData)
             .then(response => {
                 dispatch({ type: 'UPDATE_TAG_SUCCESS', payload: { tagId, active } });
