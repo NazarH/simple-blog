@@ -29,7 +29,7 @@ export default function EditButtons({ tag, tagStates, index, deletePost, setIsSu
     };
 
     return (
-        <td className="buttons">
+        <td className="user-btns">
             <button
                 className="btn btn-primary"
                 onClick={() => tagEdit(tag.id)}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Pagination from "react-js-pagination";
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -68,7 +68,7 @@ export default function IndexComponent()
                                             setIsSuccess={setIsSuccess}
                                         />
                                     </td>
-                            : ''}
+                            : <td className="empty-td"></td>}
                         </tr>
                     ))}
                 </tbody>

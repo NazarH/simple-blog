@@ -30,7 +30,7 @@ export default function EditButtons({ rubric, rubricStates, deletePost, setIsSuc
 
     return (
         <td
-            className="buttons"
+            className="user-btns"
         >
             <button
                 className="btn btn-primary"
