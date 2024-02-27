@@ -54,12 +54,13 @@ export default function IndexComponent()
                                         <ChangeRole
                                             authStates={authStates}
                                             user={user}
-                                            setUserStates={setUserStates}
                                             setIsSuccess={setIsSuccess}
+                                            setPageNumber={setPageNumber}
                                         />
                                         <UpdateButtons
                                             user={user}
                                             setIsSuccess={setIsSuccess}
+                                            setPageNumber={setPageNumber}
                                         />
                                     </td>
                             : <td className="empty-td"></td>}

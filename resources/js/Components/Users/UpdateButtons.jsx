@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { updateUser } from '@/actions/users';
 
-export default function UpdateButtons({ user, setIsSuccess })
+export default function UpdateButtons({ user, setIsSuccess, setPageNumber })
 {
     const dispatch = useDispatch();
 
@@ -15,6 +15,7 @@ export default function UpdateButtons({ user, setIsSuccess })
 
         dispatch(updateUser(id, action, active, formData));
         setIsSuccess(true);
+        setPageNumber(1);
     };
 
     return (

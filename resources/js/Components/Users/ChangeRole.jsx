@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 
 import { changeRole } from '@/actions/users';
 
-export default function ChangeRole({authStates, user, setUserStates, setIsSuccess})
+export default function ChangeRole({authStates, user, setIsSuccess, setPageNumber})
 {
     const dispatch = useDispatch();
 
@@ -14,6 +14,7 @@ export default function ChangeRole({authStates, user, setUserStates, setIsSucces
 
         dispatch(changeRole(id, newRole, formData));
         setIsSuccess(true);
+        setPageNumber(1);
     };
 
     return (

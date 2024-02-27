@@ -37,13 +37,23 @@
                     <div class="header__search">
                         <form action="{{route('pages.search')}}">
                             @csrf
-                            <input type="text" name="query" placeholder="Пошук..." id="search">
+                            <input
+                                type="text"
+                                name="query"
+                                placeholder="Пошук..."
+                                id="search"
+                            >
                         </form>
                     </div>
                     <div class="header__icons">
                         <i class="fa-solid fa-magnifying-glass custom-icon" onclick="showSearch()"></i>
                         @if (Auth::user())
-                            <i class="fa-solid fa-bars custom-icon" id="bar" onclick="showDropdown()"></i>
+                            <i
+                                class="fa-solid fa-bars custom-icon"
+                                id="bar"
+                                onclick="showDropdown()"
+                            >
+                            </i>
                         @else
                             <a href="/login">
                                 <i class="fa-solid fa-user custom-icon"></i>
@@ -57,28 +67,50 @@
         </div>
     </div>
     @if (Auth::user())
-        <div class="auth-user" id="dropdown" aria-labelledby="navbarDropdown">
-            <div class="close-nav" onclick="closeNav()">×</div>
+        <div
+            class="auth-user"
+            id="dropdown"
+            aria-labelledby="navbarDropdown"
+        >
+            <div class="close-nav" onclick="closeNav()"> × </div>
 
             @if (Auth::user())
-                <a class="top-menu-item top-border" href="/profile">Особистий кабінет</a>
+                <a
+                    class="top-menu-item top-border"
+                    href="/profile"
+                    target="_blank"
+                >
+                    Особистий кабінет
+                </a>
             @endif
 
             @if (Auth::user()->role === 'admin')
-                <a class="top-menu-item" href="/admin">Адмін-панель</a>
+                <a
+                    class="top-menu-item"
+                    href="/admin"
+                    target="_blank"
+                >
+                    Адмін-панель
+                </a>
             @endif
 
-            <a class="top-menu-item"
-               href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-               document.getElementById('logout-form').submit();">
+            <a
+                class="top-menu-item"
+                href="{{ route('logout') }}"
+                onclick="
+                    event.preventDefault();
+                    document.getElementById('logout-form').submit();
+                "
+            >
                 Вийти
             </a>
 
-            <form id="logout-form"
-                  action="{{ route('logout') }}"
-                  method="POST"
-                  class="d-none">
+            <form
+                id="logout-form"
+                action="{{ route('logout') }}"
+                method="POST"
+                class="d-none"
+            >
                 @csrf
             </form>
         </div>
