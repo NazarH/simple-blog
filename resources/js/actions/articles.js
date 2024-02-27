@@ -85,7 +85,6 @@ export const formSubmit = (formData, arrStates) => {
                     resolve(response.data);
                 })
                 .catch(error => {
-                    console.log(error);
                     const errorMessage = error.message || 'Unknown error occurred';
                     dispatch({ type: 'FETCH_ARTICLE_EDIT_FAILURE', payload: errorMessage });
                     reject(error);
@@ -104,7 +103,6 @@ export const createArticle = (formData) => {
                     resolve(response.data);
                 })
                 .catch(error => {
-                    console.log(error);
                     const errorMessage = error.message || 'Unknown error occurred';
                     dispatch({ type: 'FETCH_ARTICLE_CREATE_FAILURE', payload: errorMessage });
                     reject(error);
