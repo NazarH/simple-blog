@@ -3,20 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\TagsController;
-use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\ReactController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\RubricsController;
 use App\Http\Controllers\Admin\ArticlesController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
-    Route::get('/')
-            ->uses(IndexController::class);
-
     Route::group(['prefix' => 'tags'], function(){
-        Route::get('/')
-            ->uses([TagsController::class, 'index'])
-            ->name('admin.tags.index');
-
         Route::post('/update/{tag}')
             ->uses([TagsController::class, 'update'])
             ->name('admin.tags.update');
@@ -35,10 +28,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
     });
 
     Route::group(['prefix' => 'rubrics'], function(){
-        Route::get('/')
-            ->uses([RubricsController::class, 'index'])
-            ->name('admin.rubrics.index');
-
         Route::post('/update/{rubric}')
             ->uses([RubricsController::class, 'update'])
             ->name('admin.rubrics.update');
@@ -57,10 +46,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
     });
 
     Route::group(['prefix' => 'articles'], function(){
-        Route::get('/')
-            ->uses([ArticlesController::class, 'index'])
-            ->name('admin.articles.index');
-
         Route::post('/update/{article}')
             ->uses([ArticlesController::class, 'activeUpdate'])
             ->name('admin.articles.update');
@@ -79,10 +64,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
                 ->name('admin.articles.form.store');
         });
         Route::group(['prefix' => 'edit'], function(){
-            Route::get('/{article}')
-                ->uses([ArticlesController::class, 'edit'])
-                ->name('admin.articles.form.edit');
-
             Route::post('/{article}/update')
                 ->uses([ArticlesController::class, 'update'])
                 ->name('admin.articles.form.edit.update');
@@ -93,12 +74,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
     });
 
     Route::group(['prefix' => 'users'], function(){
-        Route::get('/')
-                ->uses([UsersController::class, 'index'])
-                ->name('admin.users.index');
-        Route::get('/create')
-                ->uses([UsersController::class, 'create'])
-                ->name('admin.users.create');
         Route::post('/store')
                 ->uses([UsersController::class, 'store'])
                 ->name('admin.users.store');
@@ -113,3 +88,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
                 ->name('admin.users.update');
     });
 });
+
+Route::get('/{path?}')
+    ->uses([ReactController::class, 'index'])
+    ->where('path', '.*')
+    ->name('react');

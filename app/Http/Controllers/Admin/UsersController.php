@@ -4,24 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Response;
-use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreRequest;
 use App\Http\Requests\Users\UpdateRequest;
-use Inertia\Response as InertiaResponse;
 
 class UsersController extends Controller
 {
-    public function index(): InertiaResponse
-    {
-        return Inertia::render('Admin/Users/IndexComponent');
-    }
-
-    public function create(): InertiaResponse
-    {
-        return Inertia::render('Admin/Users/CreateComponent');
-    }
-
     public function store(StoreRequest $request): Response
     {
         $data = $request->validated();

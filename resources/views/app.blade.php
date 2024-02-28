@@ -13,16 +13,13 @@
 
         @routes
         @viteReactRefresh
-        @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
-        @inertiaHead
+        @vite(['resources/js/app.jsx', "resources/js/Pages/Admin/{$page['component']}.jsx"])
+
     </head>
     <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
         <div class="wrapper">
-
             <div id="root" class="content-wrapper">
-                @inertia
             </div>
-
         </div>
     </body>
 

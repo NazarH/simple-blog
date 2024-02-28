@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Tag;
-use Inertia\Inertia;
-use Inertia\Response as InertiaResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateRequest;
 use App\Http\Requests\Tags\StoreRequest;
@@ -12,11 +10,6 @@ use Illuminate\Http\Response;
 
 class TagsController extends Controller
 {
-    public function index(): InertiaResponse
-    {
-        return Inertia::render('Admin/Tags/IndexComponent');
-    }
-
     public function store(StoreRequest $request): Response
     {
         $data = $request->validated();

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Inertia\Inertia;
-use Inertia\Response as InertiaResponse;
 use App\Models\Rubric;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateRequest;
@@ -12,11 +10,6 @@ use Illuminate\Http\Response;
 
 class RubricsController extends Controller
 {
-    public function index(): InertiaResponse
-    {
-        return Inertia::render('Admin/Rubrics/IndexComponent');
-    }
-
     public function store(StoreRequest $request): Response
     {
         $data = $request->validated();
