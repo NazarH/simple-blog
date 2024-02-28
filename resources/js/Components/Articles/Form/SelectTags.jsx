@@ -7,6 +7,7 @@ import { fetchTags } from "@/actions/articles.js";
 export default function SelectTags({handleSelectChange})
 {
     const dispatch = useDispatch();
+
     const [searchTags, setSearchTags] = useState('');
     const options2 = useSelector(state => state.tagsReducer.tags);
 

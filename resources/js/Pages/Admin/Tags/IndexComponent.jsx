@@ -26,27 +26,28 @@ export default function IndexComponent()
             />
             <table id="example2" className="table table-bordered table-hover">
                 <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Tag Name</th>
-                    <th>Active</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tag Name</th>
+                        <th>Active</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                    {tagStates &&
-                        tagStates.map((tag, index) => (
-                            <TagRow
-                                key={tag.id}
-                                tag={tag}
-                                index={index}
-                                tagStates={tagStates}
-                                setTagStates={setTagStates}
-                                setIsSuccess={setIsSuccess}
-                                setPageNumber={setPageNumber}
-                            />
-                        )
-                    )}
+                    {
+                        tagStates &&
+                            tagStates.map((tag, index) => (
+                                <TagRow
+                                    key={tag.id}
+                                    tag={tag}
+                                    index={index}
+                                    tagStates={tagStates}
+                                    setTagStates={setTagStates}
+                                    setIsSuccess={setIsSuccess}
+                                    setPageNumber={setPageNumber}
+                                />
+                            ))
+                    }
                 </tbody>
             </table>
 

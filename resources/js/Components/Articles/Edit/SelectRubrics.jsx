@@ -17,24 +17,27 @@ export default function SelectRubrics({arrStates, setFormData, errors}) {
 
     return (
         <>
-            { arrStates.rubrics && (
-                <Select
-                    name="rubric_ids[]"
-                    options={options}
-                    isMulti
-                    onChange={(selectedOptions) => setFormData((prevFormData) => ({
-                        ...prevFormData,
-                        rubric_ids: selectedOptions.map((option) => option.value),
-                    }))}
-                    onInputChange={setSearchRubrics}
-                    defaultValue={
-                        arrStates.rubrics.map((rubric) => ({
-                            'value': rubric.id,
-                            'label': rubric.name
-                        }))
-                    }
-                />
-            )}
+            {   arrStates
+                    && arrStates.rubrics
+                        && (
+                            <Select
+                                name="rubric_ids[]"
+                                options={options}
+                                isMulti
+                                onChange={(selectedOptions) => setFormData((prevFormData) => ({
+                                    ...prevFormData,
+                                    rubric_ids: selectedOptions.map((option) => option.value),
+                                }))}
+                                onInputChange={setSearchRubrics}
+                                defaultValue={
+                                    arrStates.rubrics.map((rubric) => ({
+                                        'value': rubric.id,
+                                        'label': rubric.name
+                                    }))
+                                }
+                            />
+                        )
+            }
             {errors.rubric_ids && <div className="error">{errors.rubric_ids}</div>}
         </>
     );

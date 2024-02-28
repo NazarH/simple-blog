@@ -36,36 +36,40 @@ export default function IndexComponent()
                     </tr>
                 </thead>
                 <tbody>
-                    {userStates &&
-                        userStates.map((user) => (
-                        <tr key={ user.id }>
-                            <td>{ user.id }</td>
-                            <td>{ user.login }</td>
-                            <td>
-                                {user.role}
-                                { authStates && authStates.id === user.id ? '(auth)' : '' }
-                            </td>
-                            <td>
-                                { user.is_active ? 'Active' : 'Ban' }
-                            </td>
-                            { authStates &&
-                                authStates.id !== user.id ?
-                                    <td className={ user.role !== 'admin' ? 'user-btns' : '' }>
-                                        <ChangeRole
-                                            authStates={authStates}
-                                            user={user}
-                                            setIsSuccess={setIsSuccess}
-                                            setPageNumber={setPageNumber}
-                                        />
-                                        <UpdateButtons
-                                            user={user}
-                                            setIsSuccess={setIsSuccess}
-                                            setPageNumber={setPageNumber}
-                                        />
+                    {
+                        userStates &&
+                            userStates.map((user) => (
+                                <tr key={ user.id }>
+                                    <td>{ user.id }</td>
+                                    <td>{ user.login }</td>
+                                    <td>
+                                        {user.role}
+                                        { authStates && authStates.id === user.id ? '(auth)' : '' }
                                     </td>
-                            : <td className="empty-td"></td>}
-                        </tr>
-                    ))}
+                                    <td>
+                                        { user.is_active ? 'Active' : 'Ban' }
+                                    </td>
+                                    {
+                                        authStates &&
+                                            authStates.id !== user.id
+                                                ? <td className={ user.role !== 'admin' ? 'user-btns' : '' }>
+                                                        <ChangeRole
+                                                            authStates={authStates}
+                                                            user={user}
+                                                            setIsSuccess={setIsSuccess}
+                                                            setPageNumber={setPageNumber}
+                                                        />
+                                                        <UpdateButtons
+                                                            user={user}
+                                                            setIsSuccess={setIsSuccess}
+                                                            setPageNumber={setPageNumber}
+                                                        />
+                                                    </td>
+                                                : <td className="empty-td"></td>
+                                    }
+                                </tr>
+                            ))
+                    }
                 </tbody>
             </table>
 

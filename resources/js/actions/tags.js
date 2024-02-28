@@ -68,7 +68,6 @@ export const deleteTag = (id) => {
     };
 };
 
-
 export const toggleTagEdit = (id) => {
     return {
         type: 'TOGGLE_TAG_EDIT',

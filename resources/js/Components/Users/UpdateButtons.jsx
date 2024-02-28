@@ -16,26 +16,27 @@ export default function UpdateButtons({ user, setIsSuccess, setPageNumber }) {
 
     return (
         <>
-            { user &&
-                user.role !== 'admin' && (
-                    <>
-                        {user.is_active ? (
-                            <button
-                                className="btn btn-danger"
-                                onClick={() => updateUserHandler(user.id, 'ban', 0)}
-                            >
-                                Ban
-                            </button>
-                        ) : (
-                            <button
-                                className="btn btn-success"
-                                onClick={() => updateUserHandler(user.id, 'unban', 1)}
-                            >
-                                Unban
-                            </button>
-                        )}
-                    </>
-                )
+            { user
+                && user.role !== 'admin'
+                    && (
+                        <>
+                            {user.is_active ? (
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={() => updateUserHandler(user.id, 'ban', 0)}
+                                >
+                                    Ban
+                                </button>
+                            ) : (
+                                <button
+                                    className="btn btn-success"
+                                    onClick={() => updateUserHandler(user.id, 'unban', 1)}
+                                >
+                                    Unban
+                                </button>
+                            )}
+                        </>
+                    )
             }
         </>
     );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 import { createUser } from '@/actions/users';
 
 import SuccessForm from "@/Components/SuccesForm.jsx";
@@ -51,7 +52,11 @@ export default function CreateComponent() {
         <>
             <form onSubmit={handleSubmit} className="user-form">
                 <div>
-                    <input type="hidden" name="_token" value={window.csrfToken}/>
+                    <input
+                        type="hidden"
+                        name="_token"
+                        value={window.csrfToken}
+                    />
                     <input
                         type="text"
                         name="login"
@@ -61,7 +66,7 @@ export default function CreateComponent() {
                         className="form-control"
                         disabled={isSubmitted}
                     />
-                    {errors.login && <div className="error">{errors.login}</div>}
+                    { errors.login && <div className="error">{errors.login}</div> }
 
                     <input
                         type="password"
@@ -72,7 +77,7 @@ export default function CreateComponent() {
                         className="form-control"
                         disabled={isSubmitted}
                     />
-                    {errors.password && <div className="error">{errors.password}</div>}
+                    { errors.password && <div className="error">{errors.password}</div> }
 
                     <input
                         type="email"
@@ -83,12 +88,13 @@ export default function CreateComponent() {
                         className="form-control"
                         disabled={isSubmitted}
                     />
-                    {errors.email && <div className="error">{errors.email}</div>}
+                    { errors.email && <div className="error">{errors.email}</div> }
                 </div>
                 <button type="submit" className="btn btn-success">
                     Create
                 </button>
             </form>
+
             <SuccessForm
                 setIsSuccess={setIsSuccess}
                 isSuccess={isSuccess}
