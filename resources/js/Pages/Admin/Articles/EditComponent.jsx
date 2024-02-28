@@ -36,6 +36,7 @@ export default function EditArticleForm() {
         dispatch(formSubmit(formData, arrStates))
             .then(() => {
                 setIsSuccess(true);
+                setErrors({});
 
                 setTimeout(() => {
                     navigate('/admin/articles');

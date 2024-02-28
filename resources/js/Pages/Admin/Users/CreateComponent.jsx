@@ -34,6 +34,7 @@ export default function CreateComponent() {
             .then(() => {
                 setIsSuccess(true);
                 setIsSubmitted(true);
+                setErrors({});
 
                 setTimeout(() => {
                     navigate('/admin/users');

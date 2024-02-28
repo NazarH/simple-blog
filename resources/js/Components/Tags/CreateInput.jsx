@@ -15,9 +15,9 @@ export default function CreateInput({setTagStates, setIsSuccess, setPageNumber})
         dispatch(createTag(name))
             .then(() => {
                 setName('');
-
                 setIsSuccess(true);
                 setPageNumber(1);
+                setErrors({});
             })
             .catch(error => {
                 if (error.response && error.response.data) {

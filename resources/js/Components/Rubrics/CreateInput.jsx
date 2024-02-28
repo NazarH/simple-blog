@@ -16,6 +16,7 @@ export default function CreateInput({setIsSuccess, setPageNumber})
                 setName('');
                 setIsSuccess(true);
                 setPageNumber(1);
+                setErrors({});
             })
             .catch(error => {
                 if (error.response && error.response.data) {

@@ -33,6 +33,7 @@ export default function CreateArticleForm()
         dispatch(createArticle(formData))
             .then(() => {
                 setIsSuccess(true);
+                setErrors({});
 
                 setTimeout(() => {
                     navigate('/admin/articles');
