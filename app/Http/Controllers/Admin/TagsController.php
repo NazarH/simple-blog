@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Tag;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateRequest;
+use App\Http\Requests\Tags\UpdateRequest as TagsEditRequest;
 use App\Http\Requests\Tags\StoreRequest;
 use Illuminate\Http\Response;
 
@@ -28,7 +29,7 @@ class TagsController extends Controller
         return response(null, 200);
     }
 
-    public function edit(StoreRequest $request, Tag $tag): Response
+    public function edit(TagsEditRequest $request, Tag $tag): Response
     {
         $data = $request->validated();
         $tag->update($data);
