@@ -13,7 +13,7 @@
 
         @routes
         @viteReactRefresh
-        @vite(['resources/js/app.jsx', "resources/js/Pages/Admin/{$page['component']}.jsx"])
+        @vite(['resources/js/app.jsx'])
 
     </head>
     <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
