@@ -36,6 +36,4 @@
     <script src={{asset("plugins/jquery-mapael/maps/usa_states.min.js")}}></script>
     <script src={{asset("plugins/chart.js/Chart.min.js")}}></script>
     <script src={{asset("js/admin/scripts.js")}}></script>
-
-    @vite('resources/js/app.js')
 </html>
