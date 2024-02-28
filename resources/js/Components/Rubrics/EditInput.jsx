@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { updateRubricName } from '@/actions/rubrics';
 
-export default function EditInput({id, rubricStates, index, errors})
+export default function EditInput({id, rubricStates, index, errors, disInput})
 {
     const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ export default function EditInput({id, rubricStates, index, errors})
                 value={rubricStates[index].name}
                 placeholder={rubricStates[index].name}
                 name="name"
-                disabled={!rubricStates[index].isEditing}
+                disabled={!disInput}
                 onChange={(e) => {
                     const newName = e.target.value;
                     dispatch(updateRubricName(id, newName));

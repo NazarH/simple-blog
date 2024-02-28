@@ -13,9 +13,10 @@ export default function TagRow({tag, index, tagStates, setTagStates, setIsSucces
 
     const [isDelete, setIsDelete] = useState(false);
     const [errors, setErrors] = useState({});
+    const [disInput, setDisInput] = useState(false);
 
     const deletePost = (id) => {
-        dispatch(deleteTag(id));
+        dispatch(deleteTag(id))
         setIsDelete(true);
         setIsSuccess(true);
         setPageNumber(1);
@@ -34,6 +35,7 @@ export default function TagRow({tag, index, tagStates, setTagStates, setIsSucces
                     index={index}
                     setTagStates={setTagStates}
                     errors={errors}
+                    disInput={disInput}
                 />
             </td>
             <td>
@@ -54,6 +56,7 @@ export default function TagRow({tag, index, tagStates, setTagStates, setIsSucces
                 deletePost={deletePost}
                 setIsSuccess={setIsSuccess}
                 setErrors={setErrors}
+                setDisInput={setDisInput}
             />
         </tr>
     );

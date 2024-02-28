@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import EditInput from "@/Components/Rubrics/EditInput.jsx";
-import UpdateButtons from "@/Components/Rubrics/UpdateButtons.jsx";
-import EditButtons from "@/Components/Rubrics/EditButtons.jsx";
+import EditInput from "@/Components/Rubrics/EditInput";
+import UpdateButtons from "@/Components/Rubrics/UpdateButtons";
+import EditButtons from "@/Components/Rubrics/EditButtons";
 
 import { deleteRubric } from '@/actions/rubrics';
 
@@ -13,6 +13,7 @@ export default function RubricRow({rubric, index, rubricStates, setRubricStates,
 
     const [isDelete, setIsDelete] = useState(false);
     const [errors, setErrors] = useState({});
+    const [disInput, setDisInput] = useState(false);
 
     const deletePost = (id) => {
         dispatch(deleteRubric(id));
@@ -32,28 +33,23 @@ export default function RubricRow({rubric, index, rubricStates, setRubricStates,
                     id={rubric.id}
                     rubricStates={rubricStates}
                     index={index}
-                    setRubricStates={setRubricStates}
-                    rubric={rubric}
                     errors={errors}
+                    disInput={disInput}
                 />
             </td>
             <td>
                 <UpdateButtons
                     rubric={rubric}
-                    rubricStates={rubricStates}
-                    index={index}
-                    setRubricStates={setRubricStates}
                     setIsSuccess={setIsSuccess}
                 />
             </td>
             <EditButtons
                 rubric={rubric}
                 rubricStates={rubricStates}
-                index={index}
-                setRubricStates={setRubricStates}
                 deletePost={deletePost}
                 setIsSuccess={setIsSuccess}
                 setErrors={setErrors}
+                setDisInput={setDisInput}
             />
         </tr>
     );

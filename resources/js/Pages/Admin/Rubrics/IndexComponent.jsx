@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import Pagination from "react-js-pagination";
+import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 
 import rubricState from "@/Components/Rubrics/RubricState";
 import CreateInput from "@/Components/Rubrics/CreateInput";
@@ -33,19 +33,20 @@ export default function IndexComponent()
                     </tr>
                 </thead>
                 <tbody>
-                    {rubricStates &&
-                        rubricStates.map((rubric, index) => (
-                                <RubricRow
-                                    key={rubric.id}
-                                    rubric={rubric}
-                                    index={index}
-                                    rubricStates={rubricStates}
-                                    setRubricStates={setRubricStates}
-                                    setIsSuccess={setIsSuccess}
-                                    setPageNumber={setPageNumber}
-                                />
+                    {
+                        rubricStates &&
+                            rubricStates.map((rubric, index) => (
+                                    <RubricRow
+                                        key={rubric.id}
+                                        rubric={rubric}
+                                        index={index}
+                                        rubricStates={rubricStates}
+                                        setRubricStates={setRubricStates}
+                                        setIsSuccess={setIsSuccess}
+                                        setPageNumber={setPageNumber}
+                                    />
+                                )
                             )
-                        )
                     }
                 </tbody>
             </table>

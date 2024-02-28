@@ -28,14 +28,11 @@ export const fetchArticles = (pageNumber) => {
     };
 };
 
-export const updateArt = (artId, formData) => {
+export const updateArt = (artId, active, formData) => {
     return dispatch => {
         axios.post(`/admin/articles/update/${artId}`, formData)
             .then(response => {
-                return axios.get('/api/articles/index');
-            })
-            .then(response => {
-                dispatch({ type: 'UPDATE_ARTICLE_SUCCESS', payload: response.data });
+                dispatch({ type: 'UPDATE_ARTICLE_SUCCESS', payload: { artId, active } });
             })
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';

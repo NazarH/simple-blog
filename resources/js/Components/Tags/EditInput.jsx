@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { updateTagName } from '@/actions/tags';
 
-export default function EditInput({ id, tagStates, index, errors }) {
+export default function EditInput({ id, tagStates, index, errors, disInput }) {
     const dispatch = useDispatch();
 
     return (
@@ -20,7 +20,7 @@ export default function EditInput({ id, tagStates, index, errors }) {
                 value={tagStates[index].name}
                 placeholder={tagStates[index].name}
                 name="name"
-                disabled={!tagStates[index].isEditing}
+                disabled={!disInput}
                 onChange={(e) => {
                     const newName = e.target.value;
                     dispatch(updateTagName(id, newName));

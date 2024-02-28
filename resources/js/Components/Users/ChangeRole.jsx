@@ -14,7 +14,6 @@ export default function ChangeRole({authStates, user, setIsSuccess, setPageNumbe
 
         dispatch(changeRole(id, newRole, formData));
         setIsSuccess(true);
-        setPageNumber(1);
     };
 
     return (

@@ -32,10 +32,7 @@ export const updateUser = (id, action, active, formData) => {
     return dispatch => {
         return axios.post(`/admin/users/${id}/${action}`, formData)
             .then(response => {
-                return axios.get('/api/users/index');
-            })
-            .then(response => {
-                dispatch({ type: 'UPDATE_USER_SUCCESS', payload: response.data });
+                dispatch({ type: 'UPDATE_USER_SUCCESS', payload: {id, active} });
             })
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';
@@ -49,10 +46,7 @@ export const changeRole = (id, newRole, formData) => {
     return dispatch => {
         return axios.post(`/admin/users/${id}/update`, formData)
             .then(response => {
-                return axios.get('/api/users/index');
-            })
-            .then(response => {
-                dispatch({ type: 'UPDATE_USER_ROLE_SUCCESS', payload: response.data });
+                dispatch({ type: 'UPDATE_USER_ROLE_SUCCESS', payload: {id, newRole}});
             })
             .catch(error => {
                 const errorMessage = error.message || 'Unknown error occurred';

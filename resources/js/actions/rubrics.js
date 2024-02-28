@@ -54,20 +54,6 @@ export const deleteRubric = (id) => {
     };
 };
 
-export const toggleRubricEdit = (id) => {
-    return {
-        type: 'TOGGLE_RUBRIC_EDIT',
-        payload: id
-    };
-};
-
-export const updateRubricName = (id, newName) => {
-    return {
-        type: 'UPDATE_RUBRIC_NAME',
-        payload: { id, newName }
-    };
-};
-
 export const updateRubricData = (id, updatedRubric) => {
     return dispatch => {
         return axios.post(`/admin/rubrics/edit/${id}`, updatedRubric)
@@ -79,5 +65,19 @@ export const updateRubricData = (id, updatedRubric) => {
                 dispatch({ type: 'UPDATE_RUBRIC_DATA_FAILURE', payload: errorMessage });
                 throw error;
             });
+    };
+};
+
+export const toggleRubricEdit = (id) => {
+    return {
+        type: 'TOGGLE_RUBRIC_EDIT',
+        payload: id
+    };
+};
+
+export const updateRubricName = (id, newName) => {
+    return {
+        type: 'UPDATE_RUBRIC_NAME',
+        payload: { id, newName }
     };
 };

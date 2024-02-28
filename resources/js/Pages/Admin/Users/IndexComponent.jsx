@@ -15,7 +15,7 @@ export default function IndexComponent()
     const dispatch = useDispatch();
 
     const [pageNumber, setPageNumber] = useState(1);
-    const { userStates, setUserStates, authStates } = UserStates(pageNumber);
+    const { userStates, authStates } = UserStates(pageNumber);
     const [isSuccess, setIsSuccess] = useState(false);
 
     return (

@@ -36,7 +36,10 @@ const usersReducer = (state = initialState, action) => {
         case 'UPDATE_USER_SUCCESS':
             return {
                 ...state,
-                users: action.payload,
+                users: state.users.map(user =>
+                    user.id === action.payload.id
+                        ? { ...user, is_active: action.payload.active ? 1 : 0 }
+                        : user),
                 loading: false,
                 error: null
             };
@@ -49,7 +52,10 @@ const usersReducer = (state = initialState, action) => {
         case 'UPDATE_USER_ROLE_SUCCESS':
             return {
                 ...state,
-                users: action.payload,
+                users: state.users.map(user =>
+                    user.id === action.payload.id
+                        ? { ...user, role: action.payload.newRole }
+                        : user),
                 loading: false,
                 error: null
             };

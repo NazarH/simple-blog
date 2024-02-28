@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Pagination from "react-js-pagination";
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
+import articleState from "@/Components/Articles/Index/ArticleState";
 import ArticleRow from '@/Components/Articles/Index/ArticleRow';
 import SuccessForm from "@/Components/SuccesForm";
 
 import { fetchArticles } from "@/actions/articles";
 
-export default function IndexComponent() {
+export default function IndexComponent()
+{
     const dispatch = useDispatch();
 
     const [pageNumber, setPageNumber] = useState(1);
-    const articleStates = useSelector(state => state.articlesReducer.articles);
+    const { articleStates, setArticleStates } = articleState(pageNumber);
     const [isSuccess, setIsSuccess] = useState(false);
-
-    useEffect(() => {
-        dispatch(fetchArticles(pageNumber))
-    }, [dispatch]);
 
     return (
         <div className="container">
@@ -34,15 +32,19 @@ export default function IndexComponent() {
                 </tr>
                 </thead>
                 <tbody>
-                    {articleStates.map((article) => (
-                        <ArticleRow
-                            key={article.id}
-                            article={article}
-                            articleStates={articleStates}
-                            setIsSuccess={setIsSuccess}
-                            setPageNumber={setPageNumber}
-                        />
-                    ))}
+                    {
+                        articleStates &&
+                            articleStates.map((article) => (
+                                    <ArticleRow
+                                        key={article.id}
+                                        article={article}
+                                        articleStates={articleStates}
+                                        setIsSuccess={setIsSuccess}
+                                        setPageNumber={setPageNumber}
+                                    />
+                                )
+                            )
+                    }
                 </tbody>
             </table>
 
@@ -50,9 +52,9 @@ export default function IndexComponent() {
                 activePage={pageNumber}
                 totalItemsCount={
                     articleStates &&
-                    articleStates.length > 0
-                        ? articleStates[0].total
-                        : 0
+                        articleStates.length > 0
+                            ? articleStates[0].total
+                            : 0
                 }
                 itemsCountPerPage={5}
                 onChange={(pageNumber) => {

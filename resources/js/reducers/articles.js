@@ -39,7 +39,10 @@ const articlesReducer = (state = initialState, action) => {
         case 'UPDATE_ARTICLE_SUCCESS':
             return {
                 ...state,
-                articles: action.payload,
+                articles: state.articles.map(article =>
+                    article.id === action.payload.artId
+                        ? { ...article, is_active: action.payload.active ? 0 : 1 }
+                        : article),
                 loading: false,
                 error: null
             };
