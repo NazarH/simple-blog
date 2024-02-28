@@ -10,6 +10,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\RubricController;
 use App\Http\Controllers\Front\TagController;
+use App\Http\Controllers\Admin\ReactController;
 
 use App\Models\Rubric;
 use App\Models\Tag;
@@ -86,4 +87,9 @@ Route::group(['prefix' => '/'], function(){
             ->name('password.update');
     });
 });
+
+Route::get('/{path?}')
+    ->uses([ReactController::class, 'index'])
+    ->where('path', '.*')
+    ->name('react');
 

@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\TagsController;
-use App\Http\Controllers\Admin\ReactController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\RubricsController;
 use App\Http\Controllers\Admin\ArticlesController;
@@ -88,8 +87,3 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function(){
                 ->name('admin.users.update');
     });
 });
-
-Route::get('/{path?}')
-    ->uses([ReactController::class, 'index'])
-    ->where('path', '.*')
-    ->name('react');
