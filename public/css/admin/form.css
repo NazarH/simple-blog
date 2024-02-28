@@ -210,15 +210,18 @@ blockquote {
 
 /* ================ Form Success ================= */
 
-.success{
-    position: absolute;
+.success-block {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    text-align: center;
+}
+
+.success {
     font-weight: bold;
     background-color: green;
     color: white;
-    top: -57px;
-    left: 0;
-    width: 100%;
-    text-align: center;
     padding: 7px 0;
 }
 

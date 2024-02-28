@@ -11,7 +11,7 @@ const SuccessForm = ({setIsSuccess, isSuccess}) => {
     }, [isSuccess]);
 
     return (
-        <div>
+        <div className="success-block">
             {
                 isSuccess
                     && <div className="success">Form Has Been Sent Successfully</div>
