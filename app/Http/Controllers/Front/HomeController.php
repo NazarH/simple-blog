@@ -33,7 +33,7 @@ class HomeController extends Controller
             'image'
         ])->where('title', 'like', '%'.$data['query'].'%')
         ->orWhere('text', 'like', '%'.$data['query'].'%')
-        ->paginate(1);
+        ->paginate(9);
 
         return view('pages.search', [
             'articles' => $articles,

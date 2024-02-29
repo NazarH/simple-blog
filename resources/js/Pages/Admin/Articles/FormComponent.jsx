@@ -62,9 +62,16 @@ export default function CreateArticleForm()
                         defaultValue={window.csrfToken}
                     />
 
-                    <FormInputs formData={formData} setFormData={setFormData} errors={errors}/>
+                    <FormInputs
+                        formData={formData}
+                        setFormData={setFormData}
+                        errors={errors}
+                    />
                     <SelectTags handleSelectChange={handleSelectChange} />
-                    <SelectRubrics handleSelectChange={handleSelectChange} errors={errors}/>
+                    <SelectRubrics
+                        handleSelectChange={handleSelectChange}
+                        errors={errors}
+                    />
 
                     <button type="submit" className="btn btn-success">
                         Create

@@ -56,9 +56,20 @@ export default function EditArticleForm() {
         <div className="container">
             <form onSubmit={handleFormSubmit} className="form">
                 <div className="form__block">
-                    <FormInputs formData={formData} setFormData={setFormData} errors={errors}/>
-                    <SelectTags arrStates={arrStates} setFormData={setFormData}/>
-                    <SelectRubrics arrStates={arrStates} setFormData={setFormData} errors={errors}/>
+                    <FormInputs
+                        formData={formData}
+                        setFormData={setFormData}
+                        errors={errors}
+                    />
+                    <SelectTags
+                        arrStates={arrStates}
+                        setFormData={setFormData}
+                    />
+                    <SelectRubrics
+                        arrStates={arrStates}
+                        setFormData={setFormData}
+                        errors={errors}
+                    />
 
                     <button type="submit" className="btn btn-success">
                         Edit
